@@ -1,0 +1,49 @@
+ext.versions = [
+        // Properties
+        minSdkVersion       : 21,
+        targetSdkVersion    : 28,
+        compileSdkVersion   : 28,
+        publishVersionName  : '1.0.0',
+        publishVersionCode  : 1,
+
+        //tests
+        junit               : '4.12',
+        testRunner          : '1.2.0',
+        espressoCore        : '3.2.0',
+
+        // Plugins
+        gradlePlugin        : '3.3.2',
+        fabricPlugin        : '1.+',
+        spotlessPlugin    : '3.23.1',
+
+        // Kotlin
+        kotlin              : '1.3.40',
+        coroutines          : '1.1.0',
+
+        // AndroidX
+        androidxCore        : '1.0.1',
+        androidxRecyclerView: '1.0.0',
+        androidxMaterial    : '1.0.0',
+        androidxBrowser     : '1.0.0',
+        constraintLayout    : '1.1.3',
+        lifecycle           : '2.1.0-alpha01',
+        navigation          : '1.0.0',
+
+        //dagger
+        dagger              : '2.21',
+        glassfish           : '10.0-b28',
+
+        materialDialogs     : '3.0.0-rc1',
+        timber              : '4.7.1',
+
+        //Network
+        retrofit            : "2.6.0",
+        okhttp              : "4.0.1",
+
+        //room
+        room                : "2.0.0",
+
+        //work manager
+        work                : "1.0.0-alpha11"
+]
+

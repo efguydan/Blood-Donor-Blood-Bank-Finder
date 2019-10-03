@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">CSC 503</string>
+    <string name="default_loading_message">Loading, Please wait . . .</string>
+    <string name="ok">OK</string>
+    <string name="breed_list_info">Below are the list of common cat breeds. Click on any of the breeds to view more detailed information about the breed</string>
+
+</resources>

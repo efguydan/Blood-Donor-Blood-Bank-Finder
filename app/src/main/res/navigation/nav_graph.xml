@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/catsListFragment">
+
+    <fragment
+        android:id="@+id/catsListFragment"
+        android:name="com.cottacush.android.androidbaseprojectkt.sample.catlist.BreedListFragment"
+        tools:layout="@layout/fragment_cat_lists">
+        <action
+            android:id="@+id/action_catsListFragment_to_breedDetailsFragment"
+            app:destination="@id/breedDetailsFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+    <fragment
+        android:id="@+id/breedDetailsFragment"
+        android:name="com.cottacush.android.androidbaseprojectkt.sample.breeddetails.BreedDetailsFragment"
+        tools:layout="@layout/fragment_breed_detail">
+        <argument
+            android:name="Breed"
+            app:argType="com.cottacush.android.androidbaseprojectkt.sample.models.Breed" />
+    </fragment>
+</navigation>

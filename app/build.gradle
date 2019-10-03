@@ -1,0 +1,92 @@
+apply from: '../dependencies.gradle'
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'androidx.navigation.safeargs'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion versions.compileSdkVersion
+    dataBinding {
+        enabled = true
+    }
+
+    defaultConfig {
+        applicationId "com.cottacush.android.androidbaseprojectkt"
+        minSdkVersion versions.minSdkVersion
+        targetSdkVersion versions.targetSdkVersion
+        versionCode versions.publishVersionCode
+        versionName versions.publishVersionName
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility = '1.8'
+        targetCompatibility = '1.8'
+    }
+    androidExtensions {
+        experimental = true
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    //tests
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    testImplementation 'junit:junit:' + versions.junit
+    androidTestImplementation 'androidx.test:runner:' + versions.testRunner
+    androidTestImplementation 'androidx.test.espresso:espresso-core:' + versions.espressoCore
+
+    // Kotlin
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:' + versions.kotlin
+
+    // Constraint Layout
+    implementation 'androidx.constraintlayout:constraintlayout:' + versions.constraintLayout
+
+    // ViewModel and LiveData
+    implementation 'androidx.lifecycle:lifecycle-extensions:' + versions.lifecycle
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:' + versions.lifecycle
+
+    // Navigation
+    implementation 'android.arch.navigation:navigation-fragment-ktx:' + versions.navigation
+    implementation 'android.arch.navigation:navigation-ui-ktx:' + versions.navigation
+
+    // Coroutine
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:' + versions.coroutines
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:' + versions.coroutines
+
+    // Android X
+    implementation 'androidx.core:core-ktx:' + versions.androidxCore
+    implementation 'androidx.recyclerview:recyclerview:' + versions.androidxRecyclerView
+    implementation 'androidx.browser:browser:' + versions.androidxBrowser
+
+    //Dagger 2
+    kapt 'com.google.dagger:dagger-compiler:' + versions.dagger
+    implementation 'com.google.dagger:dagger:' + versions.dagger
+    compileOnly 'org.glassfish:javax.annotation:' + versions.glassfish
+
+    implementation 'com.google.android.material:material:' + versions.androidxMaterial
+    implementation 'com.jakewharton.timber:timber:' + versions.timber
+    implementation 'com.afollestad.material-dialogs:core:' + versions.materialDialogs
+
+    //Network
+    implementation 'com.squareup.retrofit2:retrofit:' + versions.retrofit
+    implementation 'com.squareup.retrofit2:converter-gson:' + versions.retrofit
+    implementation 'com.squareup.retrofit2:retrofit-mock:' + versions.retrofit
+    implementation 'com.squareup.okhttp3:logging-interceptor:' + versions.okhttp
+
+    //room
+    implementation 'androidx.room:room-runtime:' + versions.room
+    kapt 'androidx.room:room-compiler:' + versions.room
+
+    //workmanager
+    implementation 'android.arch.work:work-runtime-ktx:' + versions.work
+}
+
+apply from: '../spotless.gradle'
