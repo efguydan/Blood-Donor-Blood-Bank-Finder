@@ -2,6 +2,6 @@
 <resources>
     <color name="colorPrimary">#800000</color>
     <color name="colorPrimaryDark">#400000</color>
-    <color name="colorAccent">#74C5F0</color>
+    <color name="colorAccent">#F0DEDE</color>
     <color name="line_separator_color">#a7d4d3d3</color>
 </resources>

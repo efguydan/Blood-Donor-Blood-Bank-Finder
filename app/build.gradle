@@ -87,6 +87,10 @@ dependencies {
 
     //workmanager
     implementation 'android.arch.work:work-runtime-ktx:' + versions.work
+
+    //Firebase
+    implementation 'com.google.firebase:firebase-analytics:' + versions.analytics
 }
 
 apply from: '../spotless.gradle'
+apply plugin: 'com.google.gms.google-services'
