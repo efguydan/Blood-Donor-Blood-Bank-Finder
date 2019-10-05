@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="raised_toolbar_elevation">4dp</dimen>
+    <dimen name="toolbar_left_right_padding_root">16dp</dimen>
+    <dimen name="toolbar_left_right_padding">60dp</dimen>
+    <dimen name="toolbar_top_bottom_padding">2dp</dimen>
+</resources>

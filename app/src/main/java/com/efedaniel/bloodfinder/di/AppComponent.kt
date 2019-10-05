@@ -1,6 +1,7 @@
 package com.efedaniel.bloodfinder.di
 
 import android.app.Application
+import com.efedaniel.bloodfinder.bloodfinder.auth.signin.SignInFragment
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
@@ -9,9 +10,7 @@ import javax.inject.Singleton
 @Component(modules = [APIServiceModule::class, ViewModelModule::class])
 interface AppComponent {
 
-    //TODO Inject To Fragments
-//    fun inject(target: BreedListFragment)
-//    fun inject(target: RefreshDataWork)
+    fun inject(target: SignInFragment)
 
     @Component.Builder
     interface Builder {

@@ -4,6 +4,7 @@ import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
+import androidx.annotation.DimenRes
 import androidx.core.view.children
 
 fun View.show() {
@@ -19,4 +20,10 @@ fun ViewGroup.showViewWithChildren() {
     for (view in children) {
         view.show()
     }
+}
+
+fun View.setViewPadding(@DimenRes topButtomPaddingRes: Int, @DimenRes leftRightPaddingRes: Int) {
+    val leftRightPadding = context.resources.getDimension(leftRightPaddingRes).toInt()
+    val topBottomPadding = context.resources.getDimension(topButtomPaddingRes).toInt()
+    setPadding(leftRightPadding, topBottomPadding, leftRightPadding, topBottomPadding)
 }

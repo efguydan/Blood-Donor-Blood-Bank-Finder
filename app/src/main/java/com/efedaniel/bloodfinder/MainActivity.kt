@@ -1,6 +1,7 @@
 package com.efedaniel.bloodfinder
 
 import android.os.Bundle
+import androidx.annotation.DrawableRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
@@ -11,6 +12,7 @@ import com.efedaniel.bloodfinder.base.LoadingCallback
 import com.efedaniel.bloodfinder.extensions.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.loading_indicator.*
+import kotlinx.android.synthetic.main.toolbar_layout.*
 
 class MainActivity : AppCompatActivity(), LoadingCallback {
 
@@ -24,6 +26,7 @@ class MainActivity : AppCompatActivity(), LoadingCallback {
     }
 
     private fun setUpNavigation() {
+        toolbar.overflowIcon = getDrawable(R.drawable.ic_more_vert_24dp)
         setSupportActionBar(toolbar)
         supportActionBar!!.setDisplayShowTitleEnabled(false)
         navController = findNavController(R.id.nav_host_fragment)
@@ -34,8 +37,16 @@ class MainActivity : AppCompatActivity(), LoadingCallback {
         supportActionBar!!.run {
             setDisplayHomeAsUpEnabled(!isRootPage)
             setHomeAsUpIndicator(if (!isRootPage) R.drawable.ic_arrow_back_white_24dp else 0)
-            toolbar.title = toolbarTitle
+            toolbarTitleTextView.text = toolbarTitle
+            val leftRightPaddingRes = if (isRootPage) R.dimen.toolbar_left_right_padding_root else R.dimen.toolbar_left_right_padding
+            toolbarTitleTextView.setViewPadding(R.dimen.toolbar_top_bottom_padding, leftRightPaddingRes)
         }
+    }
+
+    fun hideToolbar() = includeToolbar.hide()
+
+    fun setToolbarIcon(@DrawableRes resId: Int) {
+        supportActionBar!!.setHomeAsUpIndicator(resId)
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -72,6 +83,14 @@ class MainActivity : AppCompatActivity(), LoadingCallback {
         MaterialDialog(this).show {
             title(text = message)
             positiveButton(R.string.ok)
+        }
+    }
+
+    fun invalidateToolbarElevation(scrollY: Int) {
+        if (scrollY > (toolbar.measuredHeight / 2)) {
+            appBarLayout.elevation = resources.getDimension(R.dimen.raised_toolbar_elevation)
+        } else {
+            appBarLayout.elevation = 0f
         }
     }
 }
