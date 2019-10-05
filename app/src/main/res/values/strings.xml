@@ -4,4 +4,7 @@
     <string name="ok">OK</string>
     <string name="breed_list_info">Below are the list of common cat breeds. Click on any of the breeds to view more detailed information about the breed</string>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>
