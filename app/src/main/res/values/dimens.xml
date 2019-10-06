@@ -4,4 +4,6 @@
     <dimen name="toolbar_left_right_padding_root">16dp</dimen>
     <dimen name="toolbar_left_right_padding">60dp</dimen>
     <dimen name="toolbar_top_bottom_padding">2dp</dimen>
+    <dimen name="normal_margin">16dp</dimen>
+    <dimen name="small_margin">8dp</dimen>
 </resources>

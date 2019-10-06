@@ -3,4 +3,6 @@
     <string name="default_loading_message">Loading, Please wait . . .</string>
     <string name="ok">OK</string>
     <string name="sign_in">Sign In</string>
+    <string name="email_address">Email Address</string>
+    <string name="password">Password</string>
 </resources>
