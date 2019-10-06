@@ -1,8 +1,5 @@
 package com.efedaniel.bloodfinder.di
 
-import android.os.Build
-import androidx.work.Constraints
-import androidx.work.NetworkType
 import com.efedaniel.bloodfinder.BuildConfig
 import com.efedaniel.bloodfinder.auth.AccessTokenAuthenticator
 import com.efedaniel.bloodfinder.auth.AccessTokenInterceptor
@@ -73,20 +70,6 @@ class APIServiceModule {
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
             .create(ExampleApiService::class.java)
-    }
-
-    @Provides
-    @Singleton
-    fun provideWorkManagerConstraint(): Constraints {
-        return Constraints.Builder()
-            .setRequiredNetworkType(NetworkType.UNMETERED)
-            .setRequiresBatteryNotLow(true)
-            .setRequiresCharging(true)
-            .apply {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    setRequiresDeviceIdle(true)
-                }
-            }.build()
     }
 
     @Provides

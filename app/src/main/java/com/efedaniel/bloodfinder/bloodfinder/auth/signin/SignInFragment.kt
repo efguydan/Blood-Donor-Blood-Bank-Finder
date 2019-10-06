@@ -11,6 +11,7 @@ import com.efedaniel.bloodfinder.App
 
 import com.efedaniel.bloodfinder.R
 import com.efedaniel.bloodfinder.base.BaseFragment
+import com.efedaniel.bloodfinder.base.BaseViewModel
 import com.efedaniel.bloodfinder.databinding.FragmentSignInBinding
 import javax.inject.Inject
 
@@ -28,6 +29,7 @@ class SignInFragment : BaseFragment() {
     ): View? {
         binding = FragmentSignInBinding.inflate(inflater)
         binding.lifecycleOwner = this
+        mainActivity.hideToolbar()
         return binding.root
     }
 
@@ -44,4 +46,10 @@ class SignInFragment : BaseFragment() {
         invalidateToolbarElevation(0)
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        mainActivity.showToolbar()
+    }
+
+    override fun getViewModel(): BaseViewModel = viewModel
 }

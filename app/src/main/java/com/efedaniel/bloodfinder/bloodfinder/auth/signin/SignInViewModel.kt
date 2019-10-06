@@ -7,4 +7,8 @@ class SignInViewModel @Inject constructor(
 
 ): BaseViewModel() {
 
+    override fun addAllLiveDataToObservablesList() {
+
+    }
+
 }

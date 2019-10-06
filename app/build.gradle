@@ -81,13 +81,6 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit-mock:' + versions.retrofit
     implementation 'com.squareup.okhttp3:logging-interceptor:' + versions.okhttp
 
-    //room
-    implementation 'androidx.room:room-runtime:' + versions.room
-    kapt 'androidx.room:room-compiler:' + versions.room
-
-    //workmanager
-    implementation 'android.arch.work:work-runtime-ktx:' + versions.work
-
     //Firebase
     implementation 'com.google.firebase:firebase-analytics:' + versions.analytics
 }

@@ -8,6 +8,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import com.afollestad.materialdialogs.MaterialDialog
+import com.efedaniel.bloodfinder.base.BaseFragment
 import com.efedaniel.bloodfinder.base.LoadingCallback
 import com.efedaniel.bloodfinder.extensions.*
 import kotlinx.android.synthetic.main.activity_main.*
@@ -18,6 +19,7 @@ class MainActivity : AppCompatActivity(), LoadingCallback {
 
     private lateinit var navController: NavController
     private lateinit var appBarConfiguration: AppBarConfiguration
+    private lateinit var currentFragment: BaseFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,6 +46,8 @@ class MainActivity : AppCompatActivity(), LoadingCallback {
     }
 
     fun hideToolbar() = includeToolbar.hide()
+
+    fun showToolbar() = includeToolbar.show()
 
     fun setToolbarIcon(@DrawableRes resId: Int) {
         supportActionBar!!.setHomeAsUpIndicator(resId)
@@ -92,5 +96,14 @@ class MainActivity : AppCompatActivity(), LoadingCallback {
         } else {
             appBarLayout.elevation = 0f
         }
+    }
+
+    fun setCurrentFragment(baseFragment: BaseFragment) {
+        currentFragment = baseFragment
+    }
+
+    override fun onBackPressed() {
+        //If the current fragment doesn't consume the back pressed action, then call super onBackPressed
+        if (!currentFragment.onBackPressed()) super.onBackPressed()
     }
 }
