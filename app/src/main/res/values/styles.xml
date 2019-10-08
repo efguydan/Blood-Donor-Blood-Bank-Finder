@@ -15,8 +15,24 @@
         <item name="android:lineSpacingExtra">2sp</item>
     </style>
 
+    <style name="AppTheme.TextAppearance.LightText" parent="AppTheme.TextAppearance.NormalText">
+        <item name="fontFamily">@font/muli_light</item>
+    </style>
+
+    <style name="AppTheme.TextAppearance">
+        <item name="android:fontFamily">@font/muli_light</item>
+    </style>
+
     <style name="AppTheme.EditText.OutlinedBox" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <item name="android:fontFamily">@font/muli</item>
+    </style>
+
+    <style name="AppTheme.ButtonAppearance" parent="Widget.MaterialComponents.Button.Icon">
+        <item name="android:fontFamily">@font/muli_bold</item>
+        <item name="fontFamily">@font/muli_bold</item>
+        <item name="cornerRadius">8dp</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:layout_height">60dp</item>
     </style>
 
 </resources>

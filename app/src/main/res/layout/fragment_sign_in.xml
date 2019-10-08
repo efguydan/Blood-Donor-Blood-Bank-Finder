@@ -11,23 +11,49 @@
             name="viewModel"
             type="com.efedaniel.bloodfinder.bloodfinder.auth.signin.SignInViewModel" />
     </data>
-    
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/ic_transfusion"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.15" />
+
+        <TextView
+            android:id="@+id/appNameTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/muli_bold"
+            android:text="@string/app_name"
+            android:textColor="@color/colorAccent"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/idLayout"
             style="@style/AppTheme.EditText.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/normal_margin"
-            android:layout_marginTop="@dimen/normal_margin"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
             android:layout_marginEnd="@dimen/normal_margin"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@id/appNameTextView">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/idEditText"
@@ -35,7 +61,10 @@
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/ic_email_black_24dp"
                 android:drawablePadding="@dimen/normal_margin"
-                android:hint="@string/email_address" />
+                android:singleLine="true"
+                android:fontFamily="@font/muli_light"
+                android:hint="@string/email_address"
+                android:textSize="16sp" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -47,20 +76,94 @@
             android:layout_marginStart="@dimen/normal_margin"
             android:layout_marginTop="@dimen/normal_margin"
             android:layout_marginEnd="@dimen/normal_margin"
+            app:counterEnabled="true"
+            app:counterMaxLength="6"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/idLayout">
+            app:layout_constraintTop_toBottomOf="@id/idLayout"
+            app:passwordToggleEnabled="true"
+            app:passwordToggleTint="@color/colorAccent">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/passwordEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/password"
                 android:drawableStart="@drawable/ic_lock_open_black_24dp"
-                android:drawablePadding="@dimen/normal_margin" />
+                android:drawablePadding="@dimen/normal_margin"
+                android:singleLine="true"
+                android:fontFamily="@font/muli_light"
+                android:hint="@string/password"
+                android:inputType="textPassword"
+                android:maxLength="6"
+                android:textSize="16sp" />
 
         </com.google.android.material.textfield.TextInputLayout>
-    
+
+        <CheckBox
+            android:id="@+id/rememberMeCheckBox"
+            style="@style/AppTheme.TextAppearance.LightText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/remember_me"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/passwordLayout" />
+
+        <TextView
+            android:id="@+id/forgotPasswordTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/muli_bold"
+            android:padding="8dp"
+            android:text="@string/forgot_password"
+            android:textAllCaps="true"
+            android:textColor="@color/colorAccent"
+            app:layout_constraintBaseline_toBaselineOf="@+id/rememberMeCheckBox"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/rememberMeCheckBox" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button"
+            style="@style/AppTheme.ButtonAppearance"
+            android:layout_width="0dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="24dp"
+            android:text="@string/sign_in"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rememberMeCheckBox" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/muli_light"
+            android:text="@string/dont_have_an_account"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintEnd_toStartOf="@+id/textView5"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sign_up"
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/muli_bold"
+            android:textColor="@color/colorAccent"
+            app:layout_constraintBaseline_toBaselineOf="@+id/textView3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/textView3" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>
