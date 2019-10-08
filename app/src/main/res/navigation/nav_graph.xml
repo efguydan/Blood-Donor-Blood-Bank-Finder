@@ -20,7 +20,21 @@
             android:id="@+id/action_signInFragment_to_dashboardFragment"
             app:destination="@id/dashboardFragment"
             app:enterAnim="@anim/slide_in_from_left"
-            app:exitAnim="@anim/nav_default_exit_anim" />
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popUpTo="@+id/nav_graph" />
+        <action
+            android:id="@+id/action_signInFragment_to_profileFragment"
+            app:destination="@id/profileFragment"
+            app:enterAnim="@anim/slide_in_from_left"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popUpTo="@+id/nav_graph" />
+        <action
+            android:id="@+id/action_signInFragment_to_forgotPasswordFragment"
+            app:destination="@id/forgotPasswordFragment"
+            app:enterAnim="@anim/slide_in_from_right"
+            app:exitAnim="@anim/slide_out_to_left"
+            app:popEnterAnim="@anim/slide_in_from_left"
+            app:popExitAnim="@anim/slide_out_to_right" />
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"
@@ -39,4 +53,21 @@
         android:name="com.efedaniel.bloodfinder.bloodfinder.home.dashboard.DashboardFragment"
         android:label="fragment_dashboard"
         tools:layout="@layout/fragment_dashboard" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.efedaniel.bloodfinder.bloodfinder.home.profile.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_dashboardFragment"
+            app:destination="@id/dashboardFragment"
+            app:enterAnim="@anim/slide_in_from_left"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popUpTo="@+id/nav_graph" />
+    </fragment>
+    <fragment
+        android:id="@+id/forgotPasswordFragment"
+        android:name="com.efedaniel.bloodfinder.bloodfinder.auth.forgotpassword.ForgotPasswordFragment"
+        android:label="fragment_forgot_password"
+        tools:layout="@layout/fragment_forgot_password" />
 </navigation>

@@ -1,11 +1,10 @@
 package com.efedaniel.bloodfinder.networkutils
 
-import okhttp3.ResponseBody
 import org.json.JSONObject
 import retrofit2.Response
 import timber.log.Timber
 
-const val GENERIC_ERROR_MESSAGE = "An error occurred, Please try again"
+const val GENERIC_ERROR_MESSAGE = "We are unable to proceed due to network failure. Please try again"
 const val GENERIC_ERROR_CODE = "-1"
 
 fun <T : Any> getAPIResult(response: Response<T>): Result<T> {
@@ -19,33 +18,31 @@ fun <T : Any> getAPIResult(response: Response<T>): Result<T> {
     else {
         val errorBody = response.errorBody()
         if (errorBody != null) {
+            val errorBodyString = errorBody.string()
+            Timber.d(errorBodyString)
             return Result.Error(
-                getErrorCode(errorBody),
-                getErrorMessage(errorBody)
+                getErrorCode(errorBodyString), getErrorMessage(errorBodyString)
             )
         }
     }
     // Fallback to regular status code and message
-    return Result.Error(
-        "${response.code()}",
-        response.message()
-    )
+    return Result.Error("${response.code()}", response.message())
 }
 
-fun getErrorMessage(responseBody: ResponseBody): String {
+fun getErrorMessage(errorBody: String): String {
     return try {
-        val jsonObject = JSONObject(responseBody.string())
-        jsonObject.getString("message").replace("_".toRegex(), " ")
+        val errorBodyJsonObject = JSONObject(errorBody)
+        errorBodyJsonObject.getJSONObject("error").getString("message")
     } catch (e: Exception) {
         Timber.e(e)
         GENERIC_ERROR_MESSAGE
     }
 }
 
-fun getErrorCode(errorBody: ResponseBody): String {
+fun getErrorCode(errorBody: String): String {
     return try {
-        val errorBodyJsonObject = JSONObject(errorBody.string())
-        errorBodyJsonObject.getString("code")
+        val errorBodyJsonObject = JSONObject(errorBody)
+        errorBodyJsonObject.getJSONObject("error").getString("code")
     } catch (e: Exception) {
         Timber.e(e)
         GENERIC_ERROR_CODE

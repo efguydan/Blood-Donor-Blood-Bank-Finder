@@ -3,6 +3,7 @@ package com.efedaniel.bloodfinder
 import android.os.Bundle
 import androidx.annotation.DrawableRes
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -86,9 +87,8 @@ class MainActivity : AppCompatActivity(), LoadingCallback {
         hideKeyBoard()
         dismissLoading()
         MaterialDialog(this).show {
-            title(text = message)
+            message(text = message)
             positiveButton(R.string.ok)
-            cornerRadius(16f)
         }
     }
 

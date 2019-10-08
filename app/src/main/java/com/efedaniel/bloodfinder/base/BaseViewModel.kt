@@ -18,6 +18,15 @@ abstract class BaseViewModel : ViewModel() {
         _loadingStatus.value = null
     }
 
+    protected val _snackMessage = MutableLiveData<String>()
+
+    val snackMessage: LiveData<String>
+        get() = _snackMessage
+
+    fun snackMessageShown() {
+        _snackMessage.value = null
+    }
+
     /**
      * We want to add all observables to the list so that they are removed when the view is destroyed
      * If this isn't done, we would have multiple observers on the same variable which might lead to a crash

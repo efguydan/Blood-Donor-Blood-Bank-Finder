@@ -1,4 +1,4 @@
-package com.efedaniel.bloodfinder.bloodfinder.auth.signin
+package com.efedaniel.bloodfinder.bloodfinder.auth.forgotpassword
 
 import androidx.lifecycle.viewModelScope
 import com.efedaniel.bloodfinder.R
@@ -11,19 +11,18 @@ import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject
 
-class SignInViewModel @Inject constructor(
+class ForgotPasswordViewModel @Inject constructor(
     private val authRepository: AuthRepository,
     private val resourceProvider: ResourceProvider
 ): BaseViewModel() {
 
-    fun signInUser(email: String, password: String) {
+    fun resetUserPassword(email: String) {
         viewModelScope.launch {
             _loadingStatus.value = LoadingStatus.Loading(resourceProvider.getString(R.string.signing_up))
-            when (val result = authRepository.signInUser(email, password)) {
+            when (val result = authRepository.resetUserPassword(email)) {
                 is Result.Success -> {
-                    Timber.d(result.data.localId)
                     _loadingStatus.value = LoadingStatus.Success
-                    _snackMessage.value = "Successfully logged in"
+                    _snackMessage.value = "Reset Mail Sent to Mail"
                 }
                 is Result.Error -> _loadingStatus.value = LoadingStatus.Error(result.errorCode, result.errorMessage)
             }

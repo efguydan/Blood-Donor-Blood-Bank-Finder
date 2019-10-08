@@ -29,6 +29,12 @@ abstract class BaseFragment : Fragment() {
                 }
             }
         })
+        getViewModel().snackMessage.observe(this, Observer {
+            if (it != null) {
+                showSnackbar(it)
+                getViewModel().snackMessageShown()
+            }
+        })
     }
 
     fun showDialogWithAction(
@@ -41,6 +47,10 @@ abstract class BaseFragment : Fragment() {
     ) = mainActivity.showDialogWithAction(title, body, positiveRes, positiveAction, negativeRes, negativeAction)
 
     fun showSnackbar(@StringRes stringRes: Int) = mainActivity.showSnackBar(getString(stringRes))
+
+    fun showSnackbar(message: String) {
+        mainActivity.showSnackBar(message)
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()

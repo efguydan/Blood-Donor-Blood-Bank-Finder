@@ -7,7 +7,7 @@
         <item name="md_corner_radius">8dp</item>
         <item name="md_color_button_text">@color/colorAccent</item>
         <item name="md_font_title">@font/muli_extrabold</item>
-        <item name="md_font_body">@font/muli_light</item>
+        <item name="md_font_body">@font/muli</item>
         <item name="md_font_button">@font/muli_bold</item>
     </style>
 

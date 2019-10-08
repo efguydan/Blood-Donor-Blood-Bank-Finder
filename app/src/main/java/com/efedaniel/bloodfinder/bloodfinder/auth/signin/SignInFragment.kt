@@ -41,17 +41,19 @@ class SignInFragment : BaseFragment() {
             findNavController().navigate(SignInFragmentDirections.actionSignInFragmentToSignUpFragment())
         }
         binding.signInButton.setOnClickListener {
-            findNavController().navigate(SignInFragmentDirections.actionSignInFragmentToDashboardFragment())
+            viewModel.signInUser(
+                binding.idEditText.text.toString(),
+                binding.passwordEditText.text.toString()
+            )
+        }
+        binding.forgotPasswordTextView.setOnClickListener {
+            findNavController().navigate(SignInFragmentDirections.actionSignInFragmentToForgotPasswordFragment())
         }
     }
 
     private fun setUpToolbar() = mainActivity.run {
         setUpToolBar("", true)
         invalidateToolbarElevation(0)
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
     }
 
     override fun getViewModel(): BaseViewModel = viewModel

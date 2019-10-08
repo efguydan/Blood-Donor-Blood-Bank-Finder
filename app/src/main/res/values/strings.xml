@@ -9,15 +9,22 @@
     <string name="forgot_password">Forgot Password?</string>
     <string name="dont_have_an_account">Don\'t Have An Account?</string>
     <string name="sign_up">Sign Up</string>
-    <string name="please_enter_your_details_below">Please enter your details below</string>
     <string name="first_name">First Name</string>
     <string name="last_name">Last Name</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="title">Title</string>
     <string name="phone_number">Phone Number</string>
     <string name="proceed">Proceed</string>
+    <string name="dashboard">Dashboard</string>
+    <string name="profile">Profile</string>
+    <string name="please_fill_the_details_to_create_your_account">Please fill the following details to create your account</string>
+    <string name="please_fill_the_details_to_complete_your_account_creation">Please fill the following details to complete your account creation</string>
+    <string name="gender">Gender</string>
+    <string name="religion">Religion</string>
+    <string name="signing_up">Please Wait, Signing Up...</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="dashboard">Dashboard</string>
+    <string name="reset_password">Reset Password</string>
+    <string name="please_enter_your_registered_email_address_to_continue">Please enter your registered email address to continue</string>
 </resources>

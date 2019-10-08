@@ -45,11 +45,10 @@ class SignUpFragment : BaseFragment() {
             mainActivity.invalidateToolbarElevation(it)
         }
         binding.signUpButton.setOnClickListener {
-            showDialogWithAction(
-                title = "Success",
-                body = "Your account has been successfully created. Please proceed to login",
-                positiveRes = R.string.proceed,
-                positiveAction = { findNavController().navigate(SignUpFragmentDirections.actionSignUpFragmentToSignInFragment()) })
+            viewModel.signUpUser(
+                binding.emailEditText.text.toString(),
+                binding.passwordEditText.text.toString()
+            )
         }
     }
 

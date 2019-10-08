@@ -1,5 +1,6 @@
 package com.efedaniel.bloodfinder.auth
 
+import com.efedaniel.bloodfinder.utils.ApiKeys
 import okhttp3.Interceptor
 import okhttp3.Response
 
@@ -8,15 +9,10 @@ class AccessTokenInterceptor(
 ) : Interceptor {
 
     override fun intercept(chain: Interceptor.Chain): Response {
-        val token = tokenProvider.token()
-        return if (token == null) {
-            chain.proceed(chain.request())
-        } else {
-            val requestBuilder = chain.request().newBuilder()
-            val url = chain.request().url.newBuilder()
-                .addQueryParameter(AccessTokenAuthenticator.AUTH_KEY, token).build()
-            requestBuilder.url(url)
-            return chain.proceed(requestBuilder.build())
-        }
+        val requestBuilder = chain.request().newBuilder()
+        val url = chain.request().url.newBuilder()
+            .addQueryParameter("key", ApiKeys.WEB_API_KEY).build()
+        requestBuilder.url(url)
+        return chain.proceed(requestBuilder.build())
     }
 }
