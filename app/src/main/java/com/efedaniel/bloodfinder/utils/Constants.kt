@@ -11,4 +11,11 @@ class Utils{
         const val LIMIT = 40
     }
 }
+
 class APIDataKeys
+
+class ApiKeys{
+    companion object{
+
+    }
+}

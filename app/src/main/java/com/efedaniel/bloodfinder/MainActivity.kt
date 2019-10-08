@@ -11,6 +11,7 @@ import com.afollestad.materialdialogs.MaterialDialog
 import com.efedaniel.bloodfinder.base.BaseFragment
 import com.efedaniel.bloodfinder.base.LoadingCallback
 import com.efedaniel.bloodfinder.extensions.*
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.loading_indicator.*
 import kotlinx.android.synthetic.main.toolbar_layout.*
@@ -87,6 +88,7 @@ class MainActivity : AppCompatActivity(), LoadingCallback {
         MaterialDialog(this).show {
             title(text = message)
             positiveButton(R.string.ok)
+            cornerRadius(16f)
         }
     }
 
@@ -96,6 +98,28 @@ class MainActivity : AppCompatActivity(), LoadingCallback {
         } else {
             appBarLayout.elevation = 0f
         }
+    }
+
+    fun showDialogWithAction(
+        title: String?,
+        body: String?,
+        positiveRes: Int,
+        positiveAction: (() -> Unit)?,
+        negativeRes: Int?,
+        negativeAction: (() -> Unit)?
+    ) {
+        MaterialDialog(this).show {
+            if (title != null) title(text = title)
+            if (body != null) message(text = body)
+            if (negativeRes != null) negativeButton(negativeRes) { negativeAction?.invoke() }
+            positiveButton(positiveRes) { positiveAction?.invoke() }
+            cancelOnTouchOutside(false)
+        }
+    }
+
+    fun showSnackBar(message: String) {
+        hideKeyBoard()
+        Snackbar.make(findViewById(android.R.id.content), message, Snackbar.LENGTH_LONG).show()
     }
 
     fun setCurrentFragment(baseFragment: BaseFragment) {

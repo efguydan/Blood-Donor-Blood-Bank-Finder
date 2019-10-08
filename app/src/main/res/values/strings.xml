@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Blood Finder</string>
     <string name="default_loading_message">Loading, Please wait . . .</string>
-    <string name="ok">OK</string>
+    <string name="ok">Ok</string>
     <string name="sign_in">Sign In</string>
     <string name="email_address">Email Address</string>
     <string name="password">Password</string>
@@ -9,7 +9,15 @@
     <string name="forgot_password">Forgot Password?</string>
     <string name="dont_have_an_account">Don\'t Have An Account?</string>
     <string name="sign_up">Sign Up</string>
+    <string name="please_enter_your_details_below">Please enter your details below</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="title">Title</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="proceed">Proceed</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="dashboard">Dashboard</string>
 </resources>

@@ -34,7 +34,7 @@ ext.versions = [
         dagger              : '2.21',
         glassfish           : '10.0-b28',
 
-        materialDialogs     : '3.0.0-rc1',
+        materialDialogs     : '3.1.1',
         timber              : '4.7.1',
 
         //Network

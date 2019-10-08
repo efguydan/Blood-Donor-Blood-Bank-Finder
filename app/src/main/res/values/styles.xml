@@ -1,10 +1,14 @@
 <resources>
 
     <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
-        <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:statusBarColor">@color/colorPrimaryDark</item>
+        <item name="md_corner_radius">8dp</item>
+        <item name="md_color_button_text">@color/colorAccent</item>
+        <item name="md_font_title">@font/muli_extrabold</item>
+        <item name="md_font_body">@font/muli_light</item>
+        <item name="md_font_button">@font/muli_bold</item>
     </style>
 
     <style name="AppTheme.TextAppearance.NormalText" parent="TextAppearance.MaterialComponents.Headline6">

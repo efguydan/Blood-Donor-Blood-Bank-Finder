@@ -1,8 +1,10 @@
 package com.efedaniel.bloodfinder.base
 
+import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.efedaniel.bloodfinder.MainActivity
+import com.efedaniel.bloodfinder.R
 import com.efedaniel.bloodfinder.networkutils.LoadingStatus
 import timber.log.Timber
 
@@ -28,6 +30,17 @@ abstract class BaseFragment : Fragment() {
             }
         })
     }
+
+    fun showDialogWithAction(
+        title: String? = null,
+        body: String? = null,
+        @StringRes positiveRes: Int = R.string.ok,
+        positiveAction: (() -> Unit)? = null,
+        @StringRes negativeRes: Int? = null,
+        negativeAction: (() -> Unit)? = null
+    ) = mainActivity.showDialogWithAction(title, body, positiveRes, positiveAction, negativeRes, negativeAction)
+
+    fun showSnackbar(@StringRes stringRes: Int) = mainActivity.showSnackBar(getString(stringRes))
 
     override fun onDestroyView() {
         super.onDestroyView()

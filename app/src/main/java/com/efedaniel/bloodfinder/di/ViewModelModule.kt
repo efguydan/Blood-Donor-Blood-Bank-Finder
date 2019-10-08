@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.efedaniel.bloodfinder.bloodfinder.auth.signin.SignInViewModel
 import com.efedaniel.bloodfinder.bloodfinder.auth.signup.SignUpViewModel
+import com.efedaniel.bloodfinder.bloodfinder.home.dashboard.DashboardViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -24,6 +25,11 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(SignUpViewModel::class)
     abstract fun bindsSignUpViewModel(viewModel: SignUpViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(DashboardViewModel::class)
+    abstract fun bindsDashboardViewModel(viewModel: DashboardViewModel): ViewModel
 
     // TODO Add other ViewModels.
 }
