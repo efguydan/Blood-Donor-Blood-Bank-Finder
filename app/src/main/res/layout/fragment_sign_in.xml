@@ -14,10 +14,11 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@android:color/white">
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/appIconImageView"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:contentDescription="@string/app_name"
@@ -27,7 +28,7 @@
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.15" />
+            app:layout_constraintVertical_bias="0.08" />
 
         <TextView
             android:id="@+id/appNameTextView"
@@ -41,7 +42,7 @@
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+            app:layout_constraintTop_toBottomOf="@+id/appIconImageView" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/idLayout"
@@ -146,17 +147,17 @@
             android:fontFamily="@font/muli_light"
             android:text="@string/dont_have_an_account"
             app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintEnd_toStartOf="@+id/textView5"
+            app:layout_constraintEnd_toStartOf="@+id/signUpTextView"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/button" />
 
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/signUpTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/sign_up"
-            android:layout_marginStart="8dp"
+            android:padding="8dp"
             android:fontFamily="@font/muli_bold"
             android:textColor="@color/colorAccent"
             app:layout_constraintBaseline_toBaselineOf="@+id/textView3"

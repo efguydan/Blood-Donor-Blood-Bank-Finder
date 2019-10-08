@@ -1,4 +1,5 @@
-package com.efedaniel.bloodfinder.bloodfinder.auth.signin
+package com.efedaniel.bloodfinder.bloodfinder.auth.signup
+
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,28 +8,27 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
-import androidx.navigation.fragment.findNavController
 import com.efedaniel.bloodfinder.App
 
 import com.efedaniel.bloodfinder.R
 import com.efedaniel.bloodfinder.base.BaseFragment
 import com.efedaniel.bloodfinder.base.BaseViewModel
-import com.efedaniel.bloodfinder.databinding.FragmentSignInBinding
+import com.efedaniel.bloodfinder.databinding.FragmentSignUpBinding
 import javax.inject.Inject
 
-class SignInFragment : BaseFragment() {
+class SignUpFragment : BaseFragment() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
-    private lateinit var binding: FragmentSignInBinding
-    private lateinit var viewModel: SignInViewModel
+    private lateinit var binding: FragmentSignUpBinding
+    private lateinit var viewModel: SignUpViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentSignInBinding.inflate(inflater)
+        binding = FragmentSignUpBinding.inflate(inflater)
         binding.lifecycleOwner = this
         return binding.root
     }
@@ -37,20 +37,13 @@ class SignInFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         setUpToolbar()
         (mainActivity.applicationContext as App).component.inject(this)
-        viewModel = ViewModelProviders.of(this, viewModelFactory).get(SignInViewModel::class.java)
+        viewModel = ViewModelProviders.of(this, viewModelFactory).get(SignUpViewModel::class.java)
         binding.viewModel = viewModel
-        binding.signUpTextView.setOnClickListener {
-            findNavController().navigate(SignInFragmentDirections.actionSignInFragmentToSignUpFragment())
-        }
     }
 
     private fun setUpToolbar() = mainActivity.run {
-        setUpToolBar("", true)
+        setUpToolBar(getString(R.string.sign_up), false)
         invalidateToolbarElevation(0)
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
     }
 
     override fun getViewModel(): BaseViewModel = viewModel
