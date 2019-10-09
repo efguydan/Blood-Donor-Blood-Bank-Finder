@@ -47,7 +47,7 @@ class SignUpFragment : BaseFragment() {
             mainActivity.invalidateToolbarElevation(it)
         }
         binding.signUpButton.setOnClickListener {
-            if (binding.emailEditText.text.trim().isEmpty()) {
+            if (binding.emailEditText.text.toString().trim().isEmpty()) {
                 showSnackbar(R.string.email_cant_be_empty)
                 return@setOnClickListener
             }
