@@ -47,6 +47,18 @@ class SignUpFragment : BaseFragment() {
             mainActivity.invalidateToolbarElevation(it)
         }
         binding.signUpButton.setOnClickListener {
+            if (binding.emailEditText.text.trim().isEmpty()) {
+                showSnackbar(R.string.email_cant_be_empty)
+                return@setOnClickListener
+            }
+            if (binding.passwordEditText.text.toString() != binding.confirmPasswordEditText.text.toString()) {
+                showSnackbar(R.string.passwords_dont_match)
+                return@setOnClickListener
+            }
+            if (binding.passwordEditText.text.toString().length < 6) {
+                showSnackbar(R.string.password_must_be_at_least_chars)
+                return@setOnClickListener
+            }
             viewModel.signUpUser(
                 binding.emailEditText.text.toString(),
                 binding.passwordEditText.text.toString()

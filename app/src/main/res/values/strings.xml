@@ -36,4 +36,21 @@
     <string name="account_has_been_disabled">Your account has been disabled by an administrator. Please contact the system administrator</string>
     <string name="too_many_sign_in_attempts">There have been too many unsuccessful attempts and your account has been temporarily disabled. Please try again later</string>
     <string name="user_type">User Type</string>
+    <string name="marital_status">Marital Status</string>
+    <string name="address">Address</string>
+    <string name="verifying_credentials">Verifying Credentials...</string>
+    <string name="saving_user_details">Saving User Details...</string>
+    <string name="please_wait">Please Wait...</string>
+    <string name="name_of_hospital">Name Of Hospital</string>
+    <string name="name_of_blood_bank">Name Of Blood Bank</string>
+    <string name="select_user_type">Please select user type</string>
+    <string name="field_cant_be_empty">Field Can\'t be Empty</string>
+    <string name="please_select_title">Please select your title</string>
+    <string name="please_select_gender">Please select your gender</string>
+    <string name="please_select_marital_status">Please select your marital status to continue</string>
+    <string name="incomplete_phone_number">Incomplete phone number</string>
+    <string name="logout">Logout</string>
+    <string name="retrieving_account_details">Retrieving Account Details...</string>
+    <string name="password_must_be_at_least_chars">Password must be at least 6 characters</string>
+    <string name="passwords_dont_match">Passwords don\'t match</string>
 </resources>

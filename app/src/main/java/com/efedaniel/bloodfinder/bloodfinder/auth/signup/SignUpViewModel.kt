@@ -29,8 +29,8 @@ class SignUpViewModel @Inject constructor(
             _loadingStatus.value = LoadingStatus.Loading(resourceProvider.getString(R.string.signing_up))
             when (val result = authRepository.signUpUser(email, password)) {
                 is Result.Success -> {
-                    _loadingStatus.value = LoadingStatus.Success
                     _signUpSuccessful.value = true
+                    _loadingStatus.value = LoadingStatus.Success
                 }
                 is Result.Error -> {
                     if (result.errorCode.toInt() == APIDataKeys.INPUT_ERROR_CODE) {

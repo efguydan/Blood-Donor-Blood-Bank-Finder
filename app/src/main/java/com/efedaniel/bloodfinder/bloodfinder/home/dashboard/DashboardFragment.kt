@@ -2,11 +2,10 @@ package com.efedaniel.bloodfinder.bloodfinder.home.dashboard
 
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 import com.efedaniel.bloodfinder.App
 import com.efedaniel.bloodfinder.R
 
@@ -38,10 +37,26 @@ class DashboardFragment : BaseFragment() {
         (mainActivity.applicationContext as App).component.inject(this)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(DashboardViewModel::class.java)
         binding.viewModel = viewModel
+        setHasOptionsMenu(true)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater?.inflate(R.menu.dashboard_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        return when(item?.itemId) {
+            R.id.action_logout -> {
+                findNavController().navigate(DashboardFragmentDirections.actionDashboardFragmentToSignInFragment())
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
     private fun setUpToolbar() = mainActivity.run {
-        setUpToolBar(getString(R.string.dashboard), false)
+        setUpToolBar(getString(R.string.dashboard), true)
         invalidateToolbarElevation(0)
     }
 

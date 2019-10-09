@@ -41,7 +41,11 @@ class ForgotPasswordFragment : BaseFragment() {
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(ForgotPasswordViewModel::class.java)
         binding.viewModel = viewModel
         binding.proceedButton.setOnClickListener {
-            viewModel.resetUserPassword(binding.emailEditText.text.toString())
+            if (binding.emailEditText.text.toString().trim().isEmpty()) {
+                showSnackbar(R.string.email_cant_be_empty)
+            } else {
+                viewModel.resetUserPassword(binding.emailEditText.text.toString().trim())
+            }
         }
         viewModel.resetSentToMail.observe(this, Observer {
             if (it == false) return@Observer

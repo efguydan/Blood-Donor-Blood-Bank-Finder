@@ -4,31 +4,41 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.efedaniel.bloodfinder.R
 import com.efedaniel.bloodfinder.base.BaseViewModel
+import com.efedaniel.bloodfinder.bloodfinder.models.request.UserDetails
 import com.efedaniel.bloodfinder.bloodfinder.repositories.AuthRepository
+import com.efedaniel.bloodfinder.bloodfinder.repositories.DatabaseRepository
+import com.efedaniel.bloodfinder.networkutils.GENERIC_ERROR_CODE
+import com.efedaniel.bloodfinder.networkutils.GENERIC_ERROR_MESSAGE
 import com.efedaniel.bloodfinder.networkutils.LoadingStatus
 import com.efedaniel.bloodfinder.networkutils.Result
-import com.efedaniel.bloodfinder.utils.APIDataKeys
-import com.efedaniel.bloodfinder.utils.ErrorCodes
-import com.efedaniel.bloodfinder.utils.ResourceProvider
+import com.efedaniel.bloodfinder.utils.*
+import com.google.gson.Gson
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class SignInViewModel @Inject constructor(
     private val authRepository: AuthRepository,
-    private val resourceProvider: ResourceProvider
+    private val databaseRepository: DatabaseRepository,
+    private val resourceProvider: ResourceProvider,
+    private val prefsUtils: PrefsUtils
 ): BaseViewModel() {
 
-    private val _signInSuccessful = MutableLiveData(false)
+    enum class UserDetailsFlow {
+        PROFILE,
+        DASHBOARD
+    }
+
+    private val _signInSuccessful = MutableLiveData<UserDetailsFlow>()
 
     val signInSuccessful get() = _signInSuccessful
 
     fun signInUser(email: String, password: String) {
         viewModelScope.launch {
-            _loadingStatus.value = LoadingStatus.Loading(resourceProvider.getString(R.string.signing_up))
+            _loadingStatus.value = LoadingStatus.Loading(resourceProvider.getString(R.string.verifying_credentials))
             when (val result = authRepository.signInUser(email, password)) {
                 is Result.Success -> {
-                    _loadingStatus.value = LoadingStatus.Success
-                    _signInSuccessful.value = true
+                    prefsUtils.putObject(PrefKeys.LOGGED_IN_FIREBASE_AUTH_USER, result.data)
+                    getUserDetails(result.data.localId)
                 }
                 is Result.Error -> {
                     if (result.errorCode.toInt() == APIDataKeys.INPUT_ERROR_CODE) {
@@ -48,8 +58,23 @@ class SignInViewModel @Inject constructor(
         }
     }
 
+    //TODO Come back and re-write this
+    private fun getUserDetails(userID: String) {
+        viewModelScope.launch {
+            _loadingStatus.value = LoadingStatus.Loading(resourceProvider.getString(R.string.retrieving_account_details))
+            val response = databaseRepository.getUserDetails(userID)
+            if (response?.isSuccessful == true) {
+                val userDetails: UserDetails? = Gson().fromJson(response.body(), UserDetails::class.java)
+                _signInSuccessful.value = if (userDetails == null) UserDetailsFlow.PROFILE else UserDetailsFlow.DASHBOARD
+                _loadingStatus.value = LoadingStatus.Success
+            } else {
+                _loadingStatus.value = LoadingStatus.Error(GENERIC_ERROR_CODE, GENERIC_ERROR_MESSAGE)
+            }
+        }
+    }
+
     fun signInSuccessfulCompleted() {
-        _signInSuccessful.value = false
+        _signInSuccessful.value = null
     }
 
     override fun addAllLiveDataToObservablesList() {

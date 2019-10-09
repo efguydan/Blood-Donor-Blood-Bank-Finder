@@ -55,6 +55,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/muli_light"
                     android:hint="@string/email_address"
+                    android:maxLength="30"
                     android:singleLine="true"
                     android:textSize="16sp" />
 
@@ -78,6 +79,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/muli_light"
                     android:hint="@string/password"
+                    android:maxLength="20"
                     android:singleLine="true"
                     android:inputType="textPassword"
                     android:textSize="16sp" />
@@ -102,6 +104,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/muli_light"
                     android:hint="@string/confirm_password"
+                    android:maxLength="20"
                     android:singleLine="true"
                     android:inputType="textPassword"
                     android:textSize="16sp" />

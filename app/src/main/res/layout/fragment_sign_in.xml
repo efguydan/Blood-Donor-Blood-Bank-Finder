@@ -63,6 +63,7 @@
                 android:drawableStart="@drawable/ic_email_black_24dp"
                 android:drawablePadding="@dimen/normal_margin"
                 android:singleLine="true"
+                android:maxLength="30"
                 android:fontFamily="@font/muli_light"
                 android:hint="@string/email_address"
                 android:textSize="16sp" />
@@ -90,6 +91,7 @@
                 android:drawableStart="@drawable/ic_lock_open_black_24dp"
                 android:drawablePadding="@dimen/normal_margin"
                 android:singleLine="true"
+                android:maxLength="20"
                 android:fontFamily="@font/muli_light"
                 android:hint="@string/password"
                 android:inputType="textPassword"

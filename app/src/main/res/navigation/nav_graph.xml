@@ -52,7 +52,13 @@
         android:id="@+id/dashboardFragment"
         android:name="com.efedaniel.bloodfinder.bloodfinder.home.dashboard.DashboardFragment"
         android:label="fragment_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_dashboard" >
+        <action
+            android:id="@+id/action_dashboardFragment_to_signInFragment"
+            app:destination="@id/signInFragment"
+            app:enterAnim="@anim/slide_in_from_left"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+    </fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.efedaniel.bloodfinder.bloodfinder.home.profile.ProfileFragment"

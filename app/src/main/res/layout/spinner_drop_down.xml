@@ -13,6 +13,7 @@
         android:layout_marginStart="6dp"
         android:gravity="center_horizontal"
         tools:text="Input Type"
+        android:fontFamily="@font/muli_light"
         android:textColor="@android:color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"

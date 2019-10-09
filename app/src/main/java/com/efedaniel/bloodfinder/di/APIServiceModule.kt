@@ -7,6 +7,7 @@ import com.efedaniel.bloodfinder.auth.AccessTokenProvider
 import com.efedaniel.bloodfinder.bloodfinder.apis.AccessTokenProviderImpl
 import com.efedaniel.bloodfinder.bloodfinder.apis.ExampleAPIAuthService
 import com.efedaniel.bloodfinder.bloodfinder.apis.AuthApiService
+import com.efedaniel.bloodfinder.bloodfinder.apis.DatabaseApiService
 import com.efedaniel.bloodfinder.utils.ApiKeys
 import com.google.gson.Gson
 import dagger.Lazy
@@ -61,6 +62,20 @@ class APIServiceModule {
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
             .create(AuthApiService::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun providesDataApiService(
+        @Named("ExampleService") client: Lazy<OkHttpClient>,
+        gson: Gson
+    ): DatabaseApiService {
+        return Retrofit.Builder()
+            .baseUrl(ApiKeys.DATABASE_BASE_URL)
+            .client(client.get())
+            .addConverterFactory(GsonConverterFactory.create(gson))
+            .build()
+            .create(DatabaseApiService::class.java)
     }
 
     @Provides

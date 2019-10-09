@@ -43,8 +43,16 @@ class SignInFragment : BaseFragment() {
             findNavController().navigate(SignInFragmentDirections.actionSignInFragmentToSignUpFragment())
         }
         binding.signInButton.setOnClickListener {
+            if (binding.idEditText.text.toString().trim().isEmpty()) {
+                showSnackbar(R.string.email_cant_be_empty)
+                return@setOnClickListener
+            }
+            if (binding.passwordEditText.text.toString().length < 6) {
+                showSnackbar(R.string.password_must_be_at_least_chars)
+                return@setOnClickListener
+            }
             viewModel.signInUser(
-                binding.idEditText.text.toString(),
+                binding.idEditText.text.toString().trim(),
                 binding.passwordEditText.text.toString()
             )
         }
@@ -52,8 +60,11 @@ class SignInFragment : BaseFragment() {
             findNavController().navigate(SignInFragmentDirections.actionSignInFragmentToForgotPasswordFragment())
         }
         viewModel.signInSuccessful.observe(this, Observer {
-            if (it == false) return@Observer
-            findNavController().navigate(SignInFragmentDirections.actionSignInFragmentToProfileFragment())
+            if (it == null) return@Observer
+            findNavController().navigate(when(it) {
+                SignInViewModel.UserDetailsFlow.PROFILE -> SignInFragmentDirections.actionSignInFragmentToProfileFragment()
+                else -> SignInFragmentDirections.actionSignInFragmentToDashboardFragment()
+            })
             viewModel.signInSuccessfulCompleted()
         })
     }

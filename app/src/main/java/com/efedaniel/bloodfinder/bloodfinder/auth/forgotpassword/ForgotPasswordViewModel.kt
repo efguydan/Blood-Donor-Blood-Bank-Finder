@@ -26,11 +26,11 @@ class ForgotPasswordViewModel @Inject constructor(
 
     fun resetUserPassword(email: String) {
         viewModelScope.launch {
-            _loadingStatus.value = LoadingStatus.Loading(resourceProvider.getString(R.string.signing_up))
+            _loadingStatus.value = LoadingStatus.Loading(resourceProvider.getString(R.string.please_wait))
             when (val result = authRepository.resetUserPassword(email)) {
                 is Result.Success -> {
-                    _loadingStatus.value = LoadingStatus.Success
                     _resetSentToMail.value = true
+                    _loadingStatus.value = LoadingStatus.Success
                 }
                 is Result.Error -> {
                     if (result.errorCode.toInt() == APIDataKeys.INPUT_ERROR_CODE) {

@@ -55,7 +55,6 @@ fun NestedScrollView.onScrollChanged(scrollListener: (Int) -> Unit) {
 fun Spinner.registerTextViewLabel(labelTextView: TextView) {
     this.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
         override fun onNothingSelected(parent: AdapterView<*>?) {
-
         }
 
         override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {

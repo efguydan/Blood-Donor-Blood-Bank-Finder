@@ -12,6 +12,7 @@
     </data>
 
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/layoutNestedScrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@android:color/white">
@@ -41,56 +42,52 @@
                 android:layout_width="match_parent"
                 android:layout_height="52dp"
                 android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
                 android:layout_marginTop="24dp"
-                android:spinnerMode="dropdown"
+                android:layout_marginEnd="16dp"
                 android:background="@drawable/spinner_background"
+                android:spinnerMode="dropdown"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView" />
 
             <TextView
                 android:id="@+id/userTypeLabelTextView"
+                style="@style/AppTheme.TextAppearance.SpinnerLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="23dp"
                 android:layout_marginTop="17dp"
-                android:background="@android:color/white"
-                android:fontFamily="@font/muli"
-                android:paddingStart="4dp"
-                android:paddingEnd="4dp"
                 android:text="@string/user_type"
-                android:textSize="11sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView"
-                tools:ignore="SmallSp"
-                android:visibility="gone"
                 tools:visibility="visible" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/titleLayout"
-                style="@style/AppTheme.EditText.OutlinedBox"
+            <Spinner
+                android:id="@+id/titleSpinner"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="52dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="24dp"
-                android:layout_marginEnd="@dimen/normal_margin"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/spinner_background"
+                android:spinnerMode="dropdown"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/userTypeSpinner">
+                app:layout_constraintTop_toBottomOf="@+id/userTypeSpinner" />
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/titleEditText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/muli_light"
-                    android:hint="@string/title"
-                    android:singleLine="true"
-                    android:textSize="16sp" />
-
-            </com.google.android.material.textfield.TextInputLayout>
+            <TextView
+                android:id="@+id/titleLabelTextView"
+                style="@style/AppTheme.TextAppearance.SpinnerLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="17dp"
+                android:text="@string/title"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/userTypeSpinner"
+                tools:visibility="visible" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/firstNameLayout"
@@ -102,7 +99,9 @@
                 android:layout_marginEnd="@dimen/normal_margin"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/titleLayout">
+                app:layout_constraintTop_toBottomOf="@+id/titleSpinner"
+                android:visibility="gone"
+                tools:visibility="visible">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/firstNameEditText"
@@ -111,7 +110,6 @@
                     android:fontFamily="@font/muli_light"
                     android:hint="@string/first_name"
                     android:singleLine="true"
-                    android:inputType="textPassword"
                     android:textSize="16sp" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -135,13 +133,90 @@
                     android:fontFamily="@font/muli_light"
                     android:hint="@string/last_name"
                     android:singleLine="true"
-                    android:inputType="textPassword"
                     android:textSize="16sp" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
+            <Spinner
+                android:id="@+id/genderSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/spinner_background"
+                android:spinnerMode="dropdown"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lastNameLayout" />
+
+            <TextView
+                android:id="@+id/genderLabelTextView"
+                style="@style/AppTheme.TextAppearance.SpinnerLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="17dp"
+                android:text="@string/gender"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lastNameLayout"
+                tools:visibility="visible" />
+
+            <Spinner
+                android:id="@+id/religionSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/spinner_background"
+                android:spinnerMode="dropdown"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/genderSpinner" />
+
+            <TextView
+                android:id="@+id/religionLabelTextView"
+                style="@style/AppTheme.TextAppearance.SpinnerLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="17dp"
+                android:text="@string/religion"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/genderSpinner"
+                tools:visibility="visible" />
+
+            <Spinner
+                android:id="@+id/maritalStatusSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/spinner_background"
+                android:spinnerMode="dropdown"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/religionSpinner" />
+
+            <TextView
+                android:id="@+id/maritalStatusTextView"
+                style="@style/AppTheme.TextAppearance.SpinnerLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="17dp"
+                android:text="@string/marital_status"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/religionSpinner"
+                tools:visibility="visible" />
+
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/genderLayout"
+                android:id="@+id/phoneNumberLayout"
                 style="@style/AppTheme.EditText.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -150,22 +225,23 @@
                 android:layout_marginEnd="@dimen/normal_margin"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/lastNameLayout">
+                app:layout_constraintTop_toBottomOf="@+id/maritalStatusSpinner">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/genderEditText"
+                    android:id="@+id/phoneNumberEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/muli_light"
-                    android:hint="@string/gender"
+                    android:hint="@string/phone_number"
+                    android:inputType="phone"
+                    android:maxLength="11"
                     android:singleLine="true"
-                    android:inputType="textPassword"
                     android:textSize="16sp" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/religionLayout"
+                android:id="@+id/addressLayout"
                 style="@style/AppTheme.EditText.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -174,16 +250,15 @@
                 android:layout_marginEnd="@dimen/normal_margin"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/genderLayout">
+                app:layout_constraintTop_toBottomOf="@+id/phoneNumberLayout">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/religionEditText"
+                    android:id="@+id/addressEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/muli_light"
-                    android:hint="@string/religion"
+                    android:hint="@string/address"
                     android:singleLine="true"
-                    android:inputType="textPassword"
                     android:textSize="16sp" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -200,8 +275,16 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/religionLayout"
+                app:layout_constraintTop_toBottomOf="@+id/addressLayout"
                 app:layout_constraintVertical_bias="0.0" />
+
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/bloodDonorGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                tools:visibility="visible"
+                app:constraint_referenced_ids="titleSpinner,titleLabelTextView,lastNameLayout,genderSpinner,genderLabelTextView,religionSpinner,religionLabelTextView,maritalStatusSpinner,maritalStatusTextView"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
