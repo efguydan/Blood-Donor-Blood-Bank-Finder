@@ -4,10 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import com.efedaniel.bloodfinder.App
+import com.efedaniel.bloodfinder.R
 
 import com.efedaniel.bloodfinder.base.BaseFragment
 import com.efedaniel.bloodfinder.base.BaseViewModel
@@ -49,6 +51,11 @@ class SignInFragment : BaseFragment() {
         binding.forgotPasswordTextView.setOnClickListener {
             findNavController().navigate(SignInFragmentDirections.actionSignInFragmentToForgotPasswordFragment())
         }
+        viewModel.signInSuccessful.observe(this, Observer {
+            if (it == false) return@Observer
+            findNavController().navigate(SignInFragmentDirections.actionSignInFragmentToProfileFragment())
+            viewModel.signInSuccessfulCompleted()
+        })
     }
 
     private fun setUpToolbar() = mainActivity.run {

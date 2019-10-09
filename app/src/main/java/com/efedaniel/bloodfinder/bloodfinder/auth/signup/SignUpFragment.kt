@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
@@ -14,6 +15,7 @@ import com.efedaniel.bloodfinder.App
 import com.efedaniel.bloodfinder.R
 import com.efedaniel.bloodfinder.base.BaseFragment
 import com.efedaniel.bloodfinder.base.BaseViewModel
+import com.efedaniel.bloodfinder.bloodfinder.auth.signin.SignInFragmentDirections
 import com.efedaniel.bloodfinder.databinding.FragmentSignUpBinding
 import com.efedaniel.bloodfinder.extensions.onScrollChanged
 import javax.inject.Inject
@@ -50,6 +52,18 @@ class SignUpFragment : BaseFragment() {
                 binding.passwordEditText.text.toString()
             )
         }
+        viewModel.signUpSuccessful.observe(this, Observer {
+            if (it == false) return@Observer
+            showDialogWithAction(
+                title = getString(R.string.success),
+                body = getString(R.string.account_successfully_created),
+                positiveRes = R.string.proceed,
+                positiveAction = {
+                    findNavController().navigate(SignUpFragmentDirections.actionSignUpFragmentToSignInFragment())
+                }
+            )
+            viewModel.signUpSuccessfulCompleted()
+        })
     }
 
     private fun setUpToolbar() = mainActivity.run {

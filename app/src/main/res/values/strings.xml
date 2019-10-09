@@ -22,9 +22,17 @@
     <string name="gender">Gender</string>
     <string name="religion">Religion</string>
     <string name="signing_up">Please Wait, Signing Up...</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="reset_password">Reset Password</string>
     <string name="please_enter_your_registered_email_address_to_continue">Please enter your registered email address to continue</string>
+    <string name="success">Success</string>
+    <string name="reset_sent_to_mail">An email with a password reset link has been sent to %s. Please follow the steps there to continue your password reset</string>
+    <string name="email_does_not_exist_in_db">This email address has not been registered on the platform. Please check the email address and try again</string>
+    <string name="email_cant_be_empty">Please input your email address</string>
+    <string name="email_is_invalid">The email address imputed is invalid. Please check the email address and try again</string>
+    <string name="email_exists">THe email address imputed is already in use by another account. Please proceed to log in or try with another email address</string>
+    <string name="account_successfully_created">Your Account has been successfully created. Please proceed to sign in</string>
+    <string name="account_hasnt_been_registered">The email address imputed hasn\'t been registered on the platform. Please check the email address or proceed to registration</string>
+    <string name="password_in_invalid">Your password is incorrect. Please try again</string>
+    <string name="account_has_been_disabled">Your account has been disabled by an administrator. Please contact the system administrator</string>
+    <string name="too_many_sign_in_attempts">There have been too many unsuccessful attempts and your account has been temporarily disabled. Please try again later</string>
 </resources>
