@@ -37,6 +37,7 @@ class SignInViewModel @Inject constructor(
                             ErrorCodes.INVALID_EMAIL -> resourceProvider.getString(R.string.email_is_invalid)
                             ErrorCodes.INVALID_PASSWORD -> resourceProvider.getString(R.string.password_in_invalid)
                             ErrorCodes.USER_DISABLED -> resourceProvider.getString(R.string.account_has_been_disabled)
+                            ErrorCodes.TOO_MANY_ATTEMPTS -> resourceProvider.getString(R.string.too_many_sign_in_attempts)
                             else -> result.errorMessage
                         })
                     } else {

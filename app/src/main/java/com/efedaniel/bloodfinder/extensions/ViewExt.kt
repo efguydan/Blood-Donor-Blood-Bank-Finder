@@ -4,6 +4,9 @@ import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.Spinner
+import android.widget.TextView
 import androidx.annotation.DimenRes
 import androidx.core.view.children
 import androidx.core.widget.NestedScrollView
@@ -47,4 +50,16 @@ fun NestedScrollView.onScrollChanged(scrollListener: (Int) -> Unit) {
     setOnScrollChangeListener(NestedScrollView.OnScrollChangeListener { _, _, scrollY, _, _ ->
         scrollListener(scrollY)
     })
+}
+
+fun Spinner.registerTextViewLabel(labelTextView: TextView) {
+    this.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+        override fun onNothingSelected(parent: AdapterView<*>?) {
+
+        }
+
+        override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+            if (position > 0) labelTextView.show()
+        }
+    }
 }

@@ -35,4 +35,5 @@
     <string name="password_in_invalid">Your password is incorrect. Please try again</string>
     <string name="account_has_been_disabled">Your account has been disabled by an administrator. Please contact the system administrator</string>
     <string name="too_many_sign_in_attempts">There have been too many unsuccessful attempts and your account has been temporarily disabled. Please try again later</string>
+    <string name="user_type">User Type</string>
 </resources>
