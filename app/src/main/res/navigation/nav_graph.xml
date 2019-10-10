@@ -57,7 +57,8 @@
             android:id="@+id/action_dashboardFragment_to_signInFragment"
             app:destination="@id/signInFragment"
             app:enterAnim="@anim/slide_in_from_left"
-            app:exitAnim="@anim/nav_default_exit_anim" />
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popUpTo="@+id/nav_graph" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
