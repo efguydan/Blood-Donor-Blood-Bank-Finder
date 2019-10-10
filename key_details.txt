@@ -1,0 +1,2 @@
+alias: key0
+password: BLOOD-blood-4321

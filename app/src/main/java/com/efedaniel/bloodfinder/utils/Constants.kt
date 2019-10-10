@@ -3,6 +3,7 @@ package com.efedaniel.bloodfinder.utils
 class PrefKeys {
     companion object {
         const val LOGGED_IN_FIREBASE_AUTH_USER = "LOGGED_IN_FIREBASE_AUTH_USER"
+        const val LOGGED_IN_USER_DATA = "LOGGED_IN_USER_DATA"
     }
 }
 

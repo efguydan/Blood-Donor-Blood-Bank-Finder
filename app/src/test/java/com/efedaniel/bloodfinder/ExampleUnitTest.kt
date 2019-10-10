@@ -1,4 +1,4 @@
-package com.efedaniel.android.androidbaseprojectkt
+package com.efedaniel.bloodfinder
 
 import org.junit.Test
 

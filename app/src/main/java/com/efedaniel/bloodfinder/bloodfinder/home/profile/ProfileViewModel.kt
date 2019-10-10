@@ -32,6 +32,7 @@ class ProfileViewModel @Inject constructor(
             _loadingStatus.value = LoadingStatus.Loading(resourceProvider.getString(R.string.saving_user_details))
             when (val result = databaseRepository.saveUserDetails(loggedInAuthUser.localId, userDetails)) {
                 is Result.Success -> {
+                    prefsUtils.putObject(PrefKeys.LOGGED_IN_USER_DATA, result.data)
                     _profileSavedAction.value = true
                     _loadingStatus.value = LoadingStatus.Success
                 }

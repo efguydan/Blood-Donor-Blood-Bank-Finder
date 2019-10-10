@@ -65,6 +65,7 @@ class SignInViewModel @Inject constructor(
             val response = databaseRepository.getUserDetails(userID)
             if (response?.isSuccessful == true) {
                 val userDetails: UserDetails? = Gson().fromJson(response.body(), UserDetails::class.java)
+                if (userDetails != null) prefsUtils.putObject(PrefKeys.LOGGED_IN_USER_DATA, userDetails)
                 _signInSuccessful.value = if (userDetails == null) UserDetailsFlow.PROFILE else UserDetailsFlow.DASHBOARD
                 _loadingStatus.value = LoadingStatus.Success
             } else {

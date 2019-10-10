@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "1068576890050-k14cvvguqo43spldg5d6nvc2cu460cgt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.efedaniel.bloodfinder",
+            "certificate_hash": "0456ebd30532a00bb01408e698bb1923f0639280"
+          }
+        },
+        {
           "client_id": "1068576890050-lelfrm0l0rkcifo9i3jn3e1uqh570j6r.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

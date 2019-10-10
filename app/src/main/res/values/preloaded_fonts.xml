@@ -5,5 +5,6 @@
         <item>@font/muli_bold</item>
         <item>@font/muli_extrabold</item>
         <item>@font/muli_light</item>
+        <item>@font/muli_light_italic</item>
     </array>
 </resources>

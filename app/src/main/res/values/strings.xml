@@ -53,4 +53,5 @@
     <string name="retrieving_account_details">Retrieving Account Details...</string>
     <string name="password_must_be_at_least_chars">Password must be at least 6 characters</string>
     <string name="passwords_dont_match">Passwords don\'t match</string>
+    <string name="in_progress_check_back_shortly">In Progress, Check Back Shortly</string>
 </resources>

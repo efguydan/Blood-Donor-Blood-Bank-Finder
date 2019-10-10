@@ -1,4 +1,4 @@
-package com.efedaniel.android.androidbaseprojectkt
+package com.efedaniel.bloodfinder
 
 import androidx.test.InstrumentationRegistry
 import androidx.test.runner.AndroidJUnit4
