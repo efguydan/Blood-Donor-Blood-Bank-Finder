@@ -26,7 +26,7 @@ class Data {
         val religionTypes = listOf(
             "Select Religion",
             "Christianity",
-            "Muslic",
+            "Muslim",
             "Traditional",
             "Prefer Not To Say"
         )
