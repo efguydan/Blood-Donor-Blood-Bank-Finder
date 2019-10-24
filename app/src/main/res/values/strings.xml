@@ -54,4 +54,9 @@
     <string name="password_must_be_at_least_chars">Password must be at least 6 characters</string>
     <string name="passwords_dont_match">Passwords don\'t match</string>
     <string name="in_progress_check_back_shortly">In Progress, Check Back Shortly</string>
+    <string name="welcome_back_format">Welcome back,\n%s</string>
+    <string name="what_would_you_like_to_do_today">What would you like to do today?</string>
+    <string name="invalid_user_type">User type invalid / not found</string>
+    <string name="enter">Enter</string>
+    <string name="logout_from_the_app">Logout from the application</string>
 </resources>

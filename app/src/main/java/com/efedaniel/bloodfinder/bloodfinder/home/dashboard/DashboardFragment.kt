@@ -38,6 +38,12 @@ class DashboardFragment : BaseFragment() {
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(DashboardViewModel::class.java)
         binding.viewModel = viewModel
         setHasOptionsMenu(true)
+        binding.actionsRecyclerView.adapter = DashboardAdapter {
+            when(it) {
+                "Logout" -> logout()
+                else -> showSnackbar(it)
+            }
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
@@ -48,12 +54,14 @@ class DashboardFragment : BaseFragment() {
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         return when(item?.itemId) {
             R.id.action_logout -> {
-                findNavController().navigate(DashboardFragmentDirections.actionDashboardFragmentToSignInFragment())
+                logout()
                 true
             }
             else -> super.onOptionsItemSelected(item)
         }
     }
+
+    private fun logout() = findNavController().navigate(DashboardFragmentDirections.actionDashboardFragmentToSignInFragment())
 
     private fun setUpToolbar() = mainActivity.run {
         setUpToolBar(getString(R.string.dashboard), true)

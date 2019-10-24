@@ -38,6 +38,26 @@ class Data {
             "Widowed",
             "Prefer Not To Say"
         )
+        val bloodDonorActionList = listOf(
+            "Upload Blood Availability",
+            "View Profile",
+            "View Donation History",
+            "Logout"
+        )
+        val hospitalActionList = listOf(
+            "Find Blood Donors",
+            "View Profile",
+            "View Request History",
+            "Logout"
+        )
+        val bloodBankActionList = listOf(
+            "Upload Blood Availability",
+            "Find Blood Donors",
+            "View Profile",
+            "View Request History",
+            "View Donation History",
+            "Logout"
+        )
     }
 
 }
