@@ -1,6 +1,5 @@
 package com.efedaniel.bloodfinder.bloodfinder.home.dashboard
 
-
 import android.os.Bundle
 import android.view.*
 import androidx.lifecycle.ViewModelProvider
