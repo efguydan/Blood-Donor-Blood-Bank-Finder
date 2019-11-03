@@ -13,4 +13,8 @@ data class UserDetails(
     var title: String? = null,
     var userType: String? = null,
     var bloodType: String? = null
-)
+) {
+
+    fun isBloodDonor() = userType == "Blood Donor"
+
+}

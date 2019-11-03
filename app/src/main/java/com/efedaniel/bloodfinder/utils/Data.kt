@@ -59,6 +59,7 @@ class Data {
             "Logout"
         )
         val bloodTypes = listOf(
+            "Select Blood Type",
             "A+",
             "A-",
             "B+",
@@ -69,6 +70,7 @@ class Data {
             "O-"
         )
         val billingType = listOf(
+            "Select Billing Type",
             "Free",
             "Paid"
         )
