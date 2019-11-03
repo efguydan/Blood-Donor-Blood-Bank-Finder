@@ -69,4 +69,5 @@
     <string name="billing_type">Billing Type</string>
     <string name="upload">Upload</string>
     <string name="form_was_not_completed">Form was not completed</string>
+    <string name="uplading_blood_availability">Uploading Blood Availability...</string>
 </resources>

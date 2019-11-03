@@ -15,6 +15,7 @@ import com.efedaniel.bloodfinder.App
 import com.efedaniel.bloodfinder.R
 import com.efedaniel.bloodfinder.base.BaseFragment
 import com.efedaniel.bloodfinder.base.BaseViewModel
+import com.efedaniel.bloodfinder.bloodfinder.models.request.UploadBloodAvailabilityRequest
 import com.efedaniel.bloodfinder.bloodfinder.models.request.UserDetails
 import com.efedaniel.bloodfinder.bloodfinder.reusables.SpinnerAdapter
 import com.efedaniel.bloodfinder.databinding.FragmentBloodAvailabiltyBinding
@@ -35,6 +36,7 @@ class BloodAvailabilityFragment : BaseFragment() {
 
     private lateinit var binding: FragmentBloodAvailabiltyBinding
     private lateinit var viewModel: BloodAvailabilityViewModel
+    private lateinit var user: UserDetails
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -60,14 +62,18 @@ class BloodAvailabilityFragment : BaseFragment() {
             customView(R.layout.bottomsheet_upload_blood_availability)
             bindCustomView(this)
             positiveButton(R.string.upload) {
-                if (isInputVerified(this)) uploadSingleBloodAvailability()
+                if (isInputVerified(this)) uploadSingleBloodAvailability(
+                    bloodTypeSpinner.selectedItem as String,
+                    billingTypeSpinner.selectedItem as String
+                )
             }
             negativeButton(R.string.cancel)
         }
     }
 
-    private fun uploadSingleBloodAvailability() {
-        //TODO What and how do we upload
+    private fun uploadSingleBloodAvailability(bloodType: String, billingType: String) {
+        viewModel.uploadBloodAvailability(UploadBloodAvailabilityRequest(bloodType, billingType,
+            user.localID!!, user.phoneNumber!!, user.fullName(), user.religion ?: "Prefer Not To Say"))
     }
 
     private fun isInputVerified(bottomSheet: MaterialDialog): Boolean {
@@ -90,7 +96,7 @@ class BloodAvailabilityFragment : BaseFragment() {
             billingTypeSpinner.registerTextViewLabel(billingTypeLabelTextView)
 
             //Pre-filling Stuff
-            val user = prefsUtils.getPrefAsObject(PrefKeys.LOGGED_IN_USER_DATA, UserDetails::class.java)
+            user = prefsUtils.getPrefAsObject(PrefKeys.LOGGED_IN_USER_DATA, UserDetails::class.java)
             if (user.isBloodDonor()) {
                 bloodTypeSpinner.setSelection(Data.bloodTypes.indexOf(user.bloodType))
                 bloodTypeSpinner.isEnabled = false
