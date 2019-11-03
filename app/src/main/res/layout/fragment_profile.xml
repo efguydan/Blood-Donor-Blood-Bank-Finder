@@ -164,7 +164,7 @@
                 tools:visibility="visible" />
 
             <Spinner
-                android:id="@+id/religionSpinner"
+                android:id="@+id/bloodTypeSpinner"
                 android:layout_width="match_parent"
                 android:layout_height="52dp"
                 android:layout_marginStart="16dp"
@@ -177,6 +177,32 @@
                 app:layout_constraintTop_toBottomOf="@+id/genderSpinner" />
 
             <TextView
+                android:id="@+id/bloodTypeLabelTextView"
+                style="@style/AppTheme.TextAppearance.SpinnerLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="17dp"
+                android:text="@string/blood_type"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/genderSpinner"
+                tools:visibility="visible" />
+
+            <Spinner
+                android:id="@+id/religionSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/spinner_background"
+                android:spinnerMode="dropdown"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/bloodTypeSpinner" />
+
+            <TextView
                 android:id="@+id/religionLabelTextView"
                 style="@style/AppTheme.TextAppearance.SpinnerLabel"
                 android:layout_width="wrap_content"
@@ -186,7 +212,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/genderSpinner"
+                app:layout_constraintTop_toBottomOf="@+id/bloodTypeSpinner"
                 tools:visibility="visible" />
 
             <Spinner

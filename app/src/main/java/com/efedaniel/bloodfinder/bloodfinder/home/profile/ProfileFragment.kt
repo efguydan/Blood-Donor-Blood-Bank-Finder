@@ -74,6 +74,7 @@ class ProfileFragment : BaseFragment() {
                 userDetails.maritalStatus = binding.maritalStatusSpinner.selectedItem as String
                 userDetails.religion = binding.religionSpinner.selectedItem as String
                 userDetails.title = binding.titleSpinner.selectedItem as String
+                userDetails.bloodType = binding.bloodTypeSpinner.selectedItem as String
             }
             else -> {
                 userDetails.institutionName = binding.firstNameEditText.text.toString().trim()
@@ -122,6 +123,10 @@ class ProfileFragment : BaseFragment() {
         binding.genderSpinner.adapter = SpinnerAdapter(context!!, Data.genderTypes)
         binding.genderSpinner.registerTextViewLabel(binding.genderLabelTextView)
 
+        //Blood Type
+        binding.bloodTypeSpinner.adapter = SpinnerAdapter(context!!, Data.bloodTypes)
+        binding.bloodTypeSpinner.registerTextViewLabel(binding.bloodTypeLabelTextView)
+
         //Religion
         binding.religionSpinner.adapter = SpinnerAdapter(context!!, Data.religionTypes)
         binding.religionSpinner.registerTextViewLabel(binding.religionLabelTextView)
@@ -148,6 +153,10 @@ class ProfileFragment : BaseFragment() {
                 }
                 if (binding.genderSpinner.selectedItemPosition == 0) {
                     showSnackbar(getString(R.string.please_select_gender))
+                    return false
+                }
+                if (binding.bloodTypeSpinner.selectedItemPosition == 0) {
+                    showSnackbar(getString(R.string.please_select_blood_type))
                     return false
                 }
                 if (binding.maritalStatusSpinner.selectedItemPosition == 0) {
@@ -178,7 +187,7 @@ class ProfileFragment : BaseFragment() {
     }
 
     private fun setUpToolbar() = mainActivity.run {
-        setUpToolBar(getString(R.string.profile), true)
+        setUpToolBar(getString(R.string.profile), false)
         invalidateToolbarElevation(0)
     }
 

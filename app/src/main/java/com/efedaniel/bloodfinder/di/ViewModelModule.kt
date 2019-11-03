@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.efedaniel.bloodfinder.bloodfinder.auth.forgotpassword.ForgotPasswordViewModel
 import com.efedaniel.bloodfinder.bloodfinder.auth.signin.SignInViewModel
 import com.efedaniel.bloodfinder.bloodfinder.auth.signup.SignUpViewModel
+import com.efedaniel.bloodfinder.bloodfinder.home.bloodavailabilty.BloodAvailabilityViewModel
 import com.efedaniel.bloodfinder.bloodfinder.home.dashboard.DashboardViewModel
 import com.efedaniel.bloodfinder.bloodfinder.home.profile.ProfileViewModel
 import dagger.Binds
@@ -42,6 +43,11 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(ProfileViewModel::class)
     abstract fun bindsProfileViewModel(viewModel: ProfileViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(BloodAvailabilityViewModel::class)
+    abstract fun bindsBloodAvailabilityViewModel(viewModel: BloodAvailabilityViewModel): ViewModel
 
     // TODO Add other ViewModels.
 }

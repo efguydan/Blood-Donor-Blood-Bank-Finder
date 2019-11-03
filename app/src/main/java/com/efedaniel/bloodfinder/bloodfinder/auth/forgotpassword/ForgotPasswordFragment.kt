@@ -61,7 +61,7 @@ class ForgotPasswordFragment : BaseFragment() {
     }
 
     private fun setUpToolbar() = mainActivity.run {
-        setUpToolBar(getString(R.string.reset_password), false)
+        setUpToolBar(getString(R.string.reset_password))
         invalidateToolbarElevation(0)
     }
 

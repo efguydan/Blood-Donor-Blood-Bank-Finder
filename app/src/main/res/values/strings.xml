@@ -47,6 +47,7 @@
     <string name="field_cant_be_empty">Field Can\'t be Empty</string>
     <string name="please_select_title">Please select your title</string>
     <string name="please_select_gender">Please select your gender</string>
+    <string name="please_select_blood_type">Please select your blood type to continue</string>
     <string name="please_select_marital_status">Please select your marital status to continue</string>
     <string name="incomplete_phone_number">Incomplete phone number</string>
     <string name="logout">Logout</string>
@@ -59,4 +60,8 @@
     <string name="invalid_user_type">User type invalid / not found</string>
     <string name="enter">Enter</string>
     <string name="logout_from_the_app">Logout from the application</string>
+    <string name="blood_availability">Blood Availability</string>
+    <string name="view_list_or_add_new">View list or create new entry</string>
+    <string name="cancel">Cancel</string>
+    <string name="blood_type">Blood Type</string>
 </resources>

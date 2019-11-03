@@ -48,8 +48,10 @@ class DashboardAdapter(
 
         fun bind(action: String) {
             binding.actionTextView.text = action
-            if (action == "Logout") {
-                binding.inProgressTextView.text = itemView.context.getString(R.string.logout_from_the_app)
+            binding.inProgressTextView.text = when(action) {
+                "Logout" -> itemView.context.getString(R.string.logout_from_the_app)
+                "Upload Blood Availability" -> itemView.context.getString(R.string.view_list_or_add_new)
+                else -> itemView.context.getString(R.string.in_progress_check_back_shortly)
             }
         }
 

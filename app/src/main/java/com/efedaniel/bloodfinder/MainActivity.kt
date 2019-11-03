@@ -3,7 +3,6 @@ package com.efedaniel.bloodfinder
 import android.os.Bundle
 import androidx.annotation.DrawableRes
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -37,12 +36,12 @@ class MainActivity : AppCompatActivity(), LoadingCallback {
         appBarConfiguration = AppBarConfiguration(navController.graph)
     }
 
-    fun setUpToolBar(toolbarTitle: String, isRootPage: Boolean = false) {
+    fun setUpToolBar(toolbarTitle: String, showUpIcon: Boolean = true) {
         supportActionBar!!.run {
-            setDisplayHomeAsUpEnabled(!isRootPage)
-            setHomeAsUpIndicator(if (!isRootPage) R.drawable.ic_arrow_back_white_24dp else 0)
+            setDisplayHomeAsUpEnabled(showUpIcon)
+            setHomeAsUpIndicator(if (showUpIcon) R.drawable.ic_arrow_back_white_24dp else 0)
             toolbarTitleTextView.text = toolbarTitle
-            val leftRightPaddingRes = if (isRootPage) R.dimen.toolbar_left_right_padding_root else R.dimen.toolbar_left_right_padding
+            val leftRightPaddingRes = if (!showUpIcon) R.dimen.toolbar_left_right_padding_root else R.dimen.toolbar_left_right_padding
             toolbarTitleTextView.setViewPadding(R.dimen.toolbar_top_bottom_padding, leftRightPaddingRes)
         }
     }

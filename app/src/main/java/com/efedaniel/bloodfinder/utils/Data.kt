@@ -58,6 +58,20 @@ class Data {
             "View Donation History",
             "Logout"
         )
+        val bloodTypes = listOf(
+            "A+",
+            "A-",
+            "B+",
+            "B-",
+            "AB+",
+            "AB-",
+            "O+",
+            "O-"
+        )
+        val billingType = listOf(
+            "Free",
+            "Paid"
+        )
     }
 
 }

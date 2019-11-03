@@ -79,7 +79,7 @@ class SignUpFragment : BaseFragment() {
     }
 
     private fun setUpToolbar() = mainActivity.run {
-        setUpToolBar(getString(R.string.sign_up), false)
+        setUpToolBar(getString(R.string.sign_up))
         invalidateToolbarElevation(0)
     }
 

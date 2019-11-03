@@ -11,5 +11,6 @@ data class UserDetails(
     var phoneNumber: String? = null,
     var religion: String? = null,
     var title: String? = null,
-    var userType: String? = null
+    var userType: String? = null,
+    var bloodType: String? = null
 )

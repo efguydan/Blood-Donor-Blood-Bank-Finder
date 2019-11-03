@@ -59,6 +59,13 @@
             app:enterAnim="@anim/slide_in_from_left"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popUpTo="@+id/nav_graph" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_bloodAvailabilityFragment"
+            app:destination="@id/bloodAvailabilityFragment"
+            app:enterAnim="@anim/slide_in_from_right"
+            app:exitAnim="@anim/slide_out_to_left"
+            app:popEnterAnim="@anim/slide_in_from_left"
+            app:popExitAnim="@anim/slide_out_to_right" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -77,4 +84,9 @@
         android:name="com.efedaniel.bloodfinder.bloodfinder.auth.forgotpassword.ForgotPasswordFragment"
         android:label="fragment_forgot_password"
         tools:layout="@layout/fragment_forgot_password" />
+    <fragment
+        android:id="@+id/bloodAvailabilityFragment"
+        android:name="com.efedaniel.bloodfinder.bloodfinder.home.bloodavailabilty.BloodAvailabilityFragment"
+        android:label="fragment_blood_availabilty"
+        tools:layout="@layout/fragment_blood_availabilty" />
 </navigation>

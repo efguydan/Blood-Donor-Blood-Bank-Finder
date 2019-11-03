@@ -11,6 +11,7 @@ import com.efedaniel.bloodfinder.R
 import com.efedaniel.bloodfinder.base.BaseFragment
 import com.efedaniel.bloodfinder.base.BaseViewModel
 import com.efedaniel.bloodfinder.databinding.FragmentDashboardBinding
+import com.efedaniel.bloodfinder.extensions.onScrollChanged
 import javax.inject.Inject
 
 class DashboardFragment : BaseFragment() {
@@ -40,8 +41,12 @@ class DashboardFragment : BaseFragment() {
         binding.actionsRecyclerView.adapter = DashboardAdapter {
             when(it) {
                 "Logout" -> logout()
+                "Upload Blood Availability" -> navigateToBloodAvailability()
                 else -> showSnackbar(it)
             }
+        }
+        binding.parentNestedScrollView.onScrollChanged {
+            mainActivity.invalidateToolbarElevation(it)
         }
     }
 
@@ -62,8 +67,10 @@ class DashboardFragment : BaseFragment() {
 
     private fun logout() = findNavController().navigate(DashboardFragmentDirections.actionDashboardFragmentToSignInFragment())
 
+    private fun navigateToBloodAvailability() = findNavController().navigate(DashboardFragmentDirections.actionDashboardFragmentToBloodAvailabilityFragment())
+
     private fun setUpToolbar() = mainActivity.run {
-        setUpToolBar(getString(R.string.dashboard), true)
+        setUpToolBar(getString(R.string.dashboard), false)
         invalidateToolbarElevation(0)
     }
 
