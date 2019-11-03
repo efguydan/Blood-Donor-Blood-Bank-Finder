@@ -44,4 +44,12 @@ class DatabaseRepository @Inject constructor(private val databaseApiService: Dat
             null
         }
     }
+
+    suspend fun getFilteredBloodAvailability(key: String, value: String): Response<JsonElement>? {
+        return try {
+            databaseApiService.getFilteredBloodAvailability("\"$key\"", "\"$value\"")
+        } catch (e: java.lang.Exception) {
+            null
+        }
+    }
 }

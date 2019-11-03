@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import com.afollestad.materialdialogs.LayoutMode
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.bottomsheets.BottomSheet
 import com.afollestad.materialdialogs.customview.customView
@@ -53,11 +54,12 @@ class BloodAvailabilityFragment : BaseFragment() {
         (mainActivity.applicationContext as App).component.inject(this)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(BloodAvailabilityViewModel::class.java)
         binding.viewModel = viewModel
+        viewModel.getUserBloodAvailability()
         binding.addAvailabilityFab.setOnClickListener { setupNewEntryDialog() }
     }
 
     private fun setupNewEntryDialog() {
-        MaterialDialog(mainActivity, BottomSheet()).show {
+        MaterialDialog(mainActivity, BottomSheet(LayoutMode.WRAP_CONTENT)).show {
             title(R.string.upload_blood_availability)
             customView(R.layout.bottomsheet_upload_blood_availability)
             bindCustomView(this)

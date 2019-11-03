@@ -4,11 +4,7 @@ import com.efedaniel.bloodfinder.bloodfinder.models.request.UploadBloodAvailabil
 import com.efedaniel.bloodfinder.bloodfinder.models.request.UserDetails
 import com.google.gson.JsonElement
 import retrofit2.Response
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.PUT
-import retrofit2.http.Path
-import retrofit2.http.Body
+import retrofit2.http.*
 
 interface DatabaseApiService {
 
@@ -26,8 +22,5 @@ interface DatabaseApiService {
                                           @Body body: String): Response<JsonElement>
 
     @GET("/bloodAvailability.json")
-    suspend fun getAllBloodPostings(): Response<JsonElement>
-
-    @GET("/bloodAvailability/{blood_availability_id}.json")
-    suspend fun getBloodPosting(): Response<JsonElement>
+    suspend fun getFilteredBloodAvailability(@Query("orderBy") filterKey: String, @Query("equalTo") filterValue: String): Response<JsonElement>
 }
