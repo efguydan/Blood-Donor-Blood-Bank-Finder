@@ -310,7 +310,7 @@
                 android:layout_height="wrap_content"
                 android:visibility="gone"
                 tools:visibility="visible"
-                app:constraint_referenced_ids="titleSpinner,titleLabelTextView,lastNameLayout,genderSpinner,genderLabelTextView,religionSpinner,religionLabelTextView,maritalStatusSpinner,maritalStatusTextView"/>
+                app:constraint_referenced_ids="titleSpinner,titleLabelTextView,lastNameLayout,genderSpinner,genderLabelTextView,bloodTypeSpinner,bloodTypeLabelTextView,religionSpinner,religionLabelTextView,maritalStatusSpinner,maritalStatusTextView"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
