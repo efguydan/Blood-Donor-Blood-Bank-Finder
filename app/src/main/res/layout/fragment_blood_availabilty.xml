@@ -38,7 +38,9 @@
                     android:textColor="@color/colorAccent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:visibility="gone"
+                    tools:visibility="visible"/>
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/postingsRecyclerView"
@@ -78,9 +80,17 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
 
-                        <include layout="@layout/item_blood_availability"/>
-                        <include layout="@layout/item_blood_availability"/>
-                        <include layout="@layout/item_blood_availability"/>
+                        <TextView
+                            android:layout_width="250dp"
+                            android:layout_height="18dp"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginBottom="16dp"
+                            android:background="@color/shimmer_placeholder" />
+                        <include layout="@layout/item_blood_availability_shimmer" />
+                        <include layout="@layout/item_blood_availability_shimmer"/>
+                        <include layout="@layout/item_blood_availability_shimmer"/>
 
                     </LinearLayout>
 

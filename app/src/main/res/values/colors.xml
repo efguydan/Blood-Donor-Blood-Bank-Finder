@@ -7,4 +7,5 @@
     <color name="design_snackbar_background_color" tools:override="true">@color/colorAccent</color>
     <color name="green">#297702</color>
     <color name="yellow">#9B9205</color>
+    <color name="shimmer_placeholder">#6F6D6D</color>
 </resources>

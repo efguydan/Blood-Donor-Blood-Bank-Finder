@@ -71,4 +71,5 @@
     <string name="form_was_not_completed">Form was not completed</string>
     <string name="uplading_blood_availability">Uploading Blood Availability...</string>
     <string name="here_are_your_active_blood_availability_postings">Here are your active blood availability postings</string>
+    <string name="delete_blood_availability_posting">Delete blood availability posting</string>
 </resources>

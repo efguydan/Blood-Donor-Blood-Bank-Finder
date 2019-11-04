@@ -69,10 +69,10 @@ class BloodAvailabilityViewModel @Inject constructor(
             if (response?.isSuccessful == true) {
                 val bloodPostings = GsonUtils.fromJson<HashMap<String, UploadBloodAvailabilityRequest>>(response.body())
                 _bloodPostingList.value = ArrayList(bloodPostings.values).sortedWith(compareByDescending{it.creationTime})
-                _hideShimmer.value = true
             } else {
                 _loadingStatus.value = LoadingStatus.Error(GENERIC_ERROR_CODE, GENERIC_ERROR_MESSAGE)
             }
+            _hideShimmer.value = true
         }
     }
 

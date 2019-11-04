@@ -24,7 +24,6 @@ class BloodAvailabilityAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) = holder.bind(getItem(position))
 
-
     companion object DiffCallback : DiffUtil.ItemCallback<UploadBloodAvailabilityRequest>() {
 
         override fun areItemsTheSame(oldItem: UploadBloodAvailabilityRequest, newItem: UploadBloodAvailabilityRequest): Boolean = oldItem === newItem

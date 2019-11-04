@@ -3,12 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data>
-        <variable
-            name="bloodPosting"
-            type="com.efedaniel.bloodfinder.bloodfinder.models.request.UploadBloodAvailabilityRequest" />
-    </data>
-
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -24,53 +18,40 @@
 
             <TextView
                 android:id="@+id/donorNameTextView"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_width="200dp"
+                android:layout_height="20dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="8dp"
                 android:ellipsize="end"
-                android:fontFamily="@font/muli_bold"
                 android:maxLines="1"
-                android:text="@{bloodPosting.donorName}"
-                android:textColor="@color/colorAccent"
-                android:textSize="20sp"
+                android:background="@color/shimmer_placeholder"
                 app:layout_constraintEnd_toStartOf="@+id/textView4"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="Chief Efe" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/textView4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="70dp"
+                android:layout_height="20dp"
                 android:layout_marginEnd="16dp"
-                android:background="@color/yellow"
-                android:fontFamily="@font/muli_bold"
+                android:background="@color/shimmer_placeholder"
                 android:paddingStart="12dp"
                 android:paddingTop="2dp"
                 android:paddingEnd="12dp"
                 android:paddingBottom="2dp"
-                android:text="@{bloodPosting.status}"
-                android:textAllCaps="true"
-                android:textColor="@android:color/white"
-                android:textSize="10sp"
                 app:layout_constraintBaseline_toBaselineOf="@+id/donorNameTextView"
-                app:layout_constraintEnd_toEndOf="parent"
-                tools:ignore="SmallSp"
-                tools:text="pending" />
+                app:layout_constraintEnd_toEndOf="parent" />
 
             <TextView
                 android:id="@+id/bloodTypeLabelTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="70dp"
+                android:layout_height="14dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
-                android:fontFamily="@font/muli_light"
-                android:text="@string/blood_type"
-                android:textColor="@color/colorAccent"
-                android:textSize="12sp"
+                android:background="@color/shimmer_placeholder"
                 app:layout_constraintEnd_toStartOf="@+id/guideline2"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -78,14 +59,11 @@
 
             <TextView
                 android:id="@+id/billingTypeLabelTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="80dp"
+                android:layout_height="14dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
-                android:fontFamily="@font/muli_light"
-                android:text="@string/billing_type"
-                android:textColor="@color/colorAccent"
-                android:textSize="12sp"
+                android:background="@color/shimmer_placeholder"
                 app:layout_constraintBaseline_toBaselineOf="@+id/bloodTypeLabelTextView"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -93,57 +71,46 @@
 
             <TextView
                 android:id="@+id/bloodTypeTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="25dp"
+                android:layout_height="22dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="2dp"
-                android:fontFamily="@font/muli_bold"
-                android:text="@{bloodPosting.bloodType}"
-                android:textColor="@color/colorAccent"
-                android:textSize="18sp"
+                android:background="@color/shimmer_placeholder"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/bloodTypeLabelTextView"
-                tools:text="O+" />
+                app:layout_constraintTop_toBottomOf="@+id/bloodTypeLabelTextView" />
 
             <TextView
                 android:id="@+id/billingTypeTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="40dp"
+                android:layout_height="22dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="2dp"
                 android:layout_marginEnd="16dp"
-                android:fontFamily="@font/muli_bold"
-                android:text="@{bloodPosting.billingType}"
-                android:textColor="@color/colorAccent"
-                android:textSize="18sp"
+                android:background="@color/shimmer_placeholder"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/guideline2"
-                app:layout_constraintTop_toBottomOf="@+id/billingTypeLabelTextView"
-                tools:text="Paid" />
+                app:layout_constraintTop_toBottomOf="@+id/billingTypeLabelTextView" />
 
             <TextView
                 android:id="@+id/creationTimeTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="100dp"
+                android:layout_height="14dp"
                 android:layout_marginStart="16dp"
-                android:fontFamily="@font/muli_light_italic"
-                android:textColor="@color/colorAccent"
-                android:textSize="11sp"
+                android:layout_marginTop="4dp"
+                android:background="@color/shimmer_placeholder"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/donorNameTextView"
-                tools:ignore="SmallSp"
-                tools:text="Today at 12:00pm" />
+                app:layout_constraintTop_toBottomOf="@+id/donorNameTextView" />
 
             <ImageView
                 android:id="@+id/imageView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="8dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
                 android:contentDescription="@string/delete_blood_availability_posting"
-                android:padding="8dp"
-                android:src="@drawable/ic_delete_24dp"
+                android:background="@color/shimmer_placeholder"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/billingTypeTextView"
