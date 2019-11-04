@@ -55,6 +55,7 @@ class BloodAvailabilityViewModel @Inject constructor(
                 //TODO Come and collect the response
                 //TODO What happens afterwards
                 //TODO Refresh blood postings
+                //TODO Come and handle all these todos
                 _loadingStatus.value = LoadingStatus.Success
             } else {
                 _loadingStatus.value = LoadingStatus.Error(GENERIC_ERROR_CODE, GENERIC_ERROR_MESSAGE)
