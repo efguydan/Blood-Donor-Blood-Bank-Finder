@@ -74,7 +74,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/guideline2"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/donorNameTextView" />
+                app:layout_constraintTop_toBottomOf="@+id/creationTimeTextView" />
 
             <TextView
                 android:id="@+id/billingTypeLabelTextView"
@@ -131,6 +131,19 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 app:layout_constraintGuide_percent="0.50" />
+
+            <TextView
+                android:id="@+id/creationTimeTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:fontFamily="@font/muli_light_italic"
+                android:textColor="@color/colorAccent"
+                android:textSize="10sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/donorNameTextView"
+                tools:text="Today at 12:00pm"
+                tools:ignore="SmallSp" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

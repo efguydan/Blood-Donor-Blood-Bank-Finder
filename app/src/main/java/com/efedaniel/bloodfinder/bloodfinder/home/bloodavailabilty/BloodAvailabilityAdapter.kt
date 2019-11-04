@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.efedaniel.bloodfinder.R
 import com.efedaniel.bloodfinder.bloodfinder.models.request.UploadBloodAvailabilityRequest
 import com.efedaniel.bloodfinder.databinding.ItemBloodAvailabilityBinding
+import com.efedaniel.bloodfinder.extensions.getTime
 
 class BloodAvailabilityAdapter(
 
@@ -35,8 +36,9 @@ class BloodAvailabilityAdapter(
         private var binding: ItemBloodAvailabilityBinding
     ): RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(availabilityRequest: UploadBloodAvailabilityRequest?) {
+        fun bind(availabilityRequest: UploadBloodAvailabilityRequest) {
             binding.bloodPosting = availabilityRequest
+            binding.creationTimeTextView.text = availabilityRequest.creationTime.getTime()
         }
     }
 

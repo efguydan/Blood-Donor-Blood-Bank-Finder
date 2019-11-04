@@ -7,12 +7,6 @@ class PrefKeys {
     }
 }
 
-class Utils{
-    companion object{
-        const val LIMIT = 40
-    }
-}
-
 class APIDataKeys {
     companion object {
         const val INPUT_ERROR_CODE = 400
@@ -37,5 +31,14 @@ class ErrorCodes {
         const val INVALID_PASSWORD = "INVALID_PASSWORD"
         const val USER_DISABLED = "USER_DISABLED"
         const val TOO_MANY_ATTEMPTS = "TOO_MANY_ATTEMPTS_TRY_LATER : Too many unsuccessful login attempts.  Please include reCaptcha verification or try again later"
+    }
+}
+
+class Misc {
+    companion object {
+        const val MYSQL_FORMAT = "yyyy-MM-dd hh:mm:ss"
+        const val DAY_MONTH_YEAR_AND_TIME = "dd MMMM yyyy 'by' hh:mma"
+        const val DAY_MONTH_AND_TIME = "dd MMMM 'at' hh:mma"
+        const val TIME = "hh:mma"
     }
 }
