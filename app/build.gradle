@@ -77,11 +77,6 @@ dependencies {
     implementation 'com.google.dagger:dagger:' + versions.dagger
     compileOnly 'org.glassfish:javax.annotation:' + versions.glassfish
 
-    implementation 'com.google.android.material:material:' + versions.androidxMaterial
-    implementation 'com.jakewharton.timber:timber:' + versions.timber
-    implementation 'com.afollestad.material-dialogs:core:' + versions.materialDialogs
-    implementation 'com.afollestad.material-dialogs:bottomsheets:' + versions.materialDialogs
-
     //Network
     implementation 'com.squareup.retrofit2:retrofit:' + versions.retrofit
     implementation 'com.squareup.retrofit2:converter-gson:' + versions.retrofit
@@ -92,6 +87,14 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics:' + versions.analytics
     implementation 'com.google.firebase:firebase-auth:' + versions.auth
     implementation 'com.crashlytics.sdk.android:crashlytics:' + versions.crashlytics
+
+    //Affolestad
+    implementation 'com.afollestad.material-dialogs:core:' + versions.materialDialogs
+    implementation 'com.afollestad.material-dialogs:bottomsheets:' + versions.materialDialogs
+
+    implementation 'com.google.android.material:material:' + versions.androidxMaterial
+    implementation 'com.jakewharton.timber:timber:' + versions.timber
+    implementation 'com.facebook.shimmer:shimmer:' + versions.shimmer
 }
 
 apply from: '../spotless.gradle'

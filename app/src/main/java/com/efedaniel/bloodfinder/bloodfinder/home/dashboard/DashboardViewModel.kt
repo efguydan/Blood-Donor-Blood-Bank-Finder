@@ -35,7 +35,6 @@ class DashboardViewModel @Inject constructor(
     }
 
     override fun addAllLiveDataToObservablesList() {
-
     }
 
 }

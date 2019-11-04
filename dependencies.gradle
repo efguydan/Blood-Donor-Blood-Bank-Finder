@@ -35,9 +35,6 @@ ext.versions = [
         dagger              : '2.21',
         glassfish           : '10.0-b28',
 
-        materialDialogs     : '3.1.1',
-        timber              : '4.7.1',
-
         //Network
         retrofit            : "2.6.0",
         okhttp              : "4.0.1",
@@ -51,6 +48,11 @@ ext.versions = [
         //firebase
         analytics           : '17.2.0',
         auth                : '19.1.0',
-        crashlytics         : '2.10.1'
+        crashlytics         : '2.10.1',
+
+        //misc
+        materialDialogs     : '3.1.1',
+        timber              : '4.7.1',
+        shimmer             : '0.5.0'
 ]
 

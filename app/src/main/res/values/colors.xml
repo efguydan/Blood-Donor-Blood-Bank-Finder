@@ -5,4 +5,6 @@
     <color name="colorAccent">#800000</color>
     <color name="line_separator_color">#a7d4d3d3</color>
     <color name="design_snackbar_background_color" tools:override="true">@color/colorAccent</color>
+    <color name="green">#297702</color>
+    <color name="yellow">#9B9205</color>
 </resources>

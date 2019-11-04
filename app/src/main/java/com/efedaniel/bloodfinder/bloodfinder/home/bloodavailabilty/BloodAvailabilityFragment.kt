@@ -5,11 +5,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.afollestad.materialdialogs.LayoutMode
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.bottomsheets.BottomSheet
+import com.afollestad.materialdialogs.bottomsheets.setPeekHeight
 import com.afollestad.materialdialogs.customview.customView
 import com.efedaniel.bloodfinder.App
 
@@ -20,6 +22,8 @@ import com.efedaniel.bloodfinder.bloodfinder.models.request.UploadBloodAvailabil
 import com.efedaniel.bloodfinder.bloodfinder.models.request.UserDetails
 import com.efedaniel.bloodfinder.bloodfinder.reusables.SpinnerAdapter
 import com.efedaniel.bloodfinder.databinding.FragmentBloodAvailabiltyBinding
+import com.efedaniel.bloodfinder.extensions.hide
+import com.efedaniel.bloodfinder.extensions.onScrollChanged
 import com.efedaniel.bloodfinder.extensions.registerTextViewLabel
 import com.efedaniel.bloodfinder.utils.Data
 import com.efedaniel.bloodfinder.utils.PrefKeys
@@ -56,20 +60,28 @@ class BloodAvailabilityFragment : BaseFragment() {
         binding.viewModel = viewModel
         viewModel.getUserBloodAvailability()
         binding.addAvailabilityFab.setOnClickListener { setupNewEntryDialog() }
+        binding.postingsRecyclerView.adapter = BloodAvailabilityAdapter()
+        binding.parentLayout.onScrollChanged { mainActivity.invalidateToolbarElevation(it) }
+        observe()
     }
 
     private fun setupNewEntryDialog() {
-        MaterialDialog(mainActivity, BottomSheet(LayoutMode.WRAP_CONTENT)).show {
+        MaterialDialog(mainActivity, BottomSheet()).show {
             title(R.string.upload_blood_availability)
             customView(R.layout.bottomsheet_upload_blood_availability)
             bindCustomView(this)
+            cornerRadius(20f)
             positiveButton(R.string.upload) {
-                if (isInputVerified(this)) uploadSingleBloodAvailability(
-                    bloodTypeSpinner.selectedItem as String,
-                    billingTypeSpinner.selectedItem as String
-                )
+                if (isInputVerified(this)) {
+                    uploadSingleBloodAvailability(
+                        bloodTypeSpinner.selectedItem as String,
+                        billingTypeSpinner.selectedItem as String
+                    )
+                    dismiss()
+                }
             }
-            negativeButton(R.string.cancel)
+            negativeButton(R.string.cancel) { dismiss() }
+            noAutoDismiss()
         }
     }
 
@@ -81,6 +93,7 @@ class BloodAvailabilityFragment : BaseFragment() {
     private fun isInputVerified(bottomSheet: MaterialDialog): Boolean {
         bottomSheet.run {
             return if (bloodTypeSpinner.selectedItemPosition == 0 || billingTypeSpinner.selectedItemPosition == 0) {
+                //TODO Show Error instead of snackbar
                 showSnackbar(R.string.form_was_not_completed)
                 false
             } else true
@@ -104,6 +117,15 @@ class BloodAvailabilityFragment : BaseFragment() {
                 bloodTypeSpinner.isEnabled = false
             }
         }
+    }
+
+    private fun observe() {
+        viewModel.hideShimmer.observe(this, Observer {
+            if (it == true) {
+                binding.shimmerLayout.hide()
+                viewModel.hideShimmerDone()
+            }
+        })
     }
 
     private fun setUpToolbar() = mainActivity.run {

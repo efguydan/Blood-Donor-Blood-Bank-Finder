@@ -1,5 +1,7 @@
 package com.efedaniel.bloodfinder.bloodfinder.home.bloodavailabilty
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.efedaniel.bloodfinder.R
 import com.efedaniel.bloodfinder.base.BaseViewModel
@@ -10,12 +12,12 @@ import com.efedaniel.bloodfinder.bloodfinder.repositories.DatabaseRepository
 import com.efedaniel.bloodfinder.networkutils.GENERIC_ERROR_CODE
 import com.efedaniel.bloodfinder.networkutils.GENERIC_ERROR_MESSAGE
 import com.efedaniel.bloodfinder.networkutils.LoadingStatus
-import com.efedaniel.bloodfinder.utils.ApiKeys
-import com.efedaniel.bloodfinder.utils.PrefKeys
-import com.efedaniel.bloodfinder.utils.PrefsUtils
-import com.efedaniel.bloodfinder.utils.ResourceProvider
+import com.efedaniel.bloodfinder.utils.*
 import com.google.gson.Gson
+import com.google.gson.JsonElement
+import com.google.gson.reflect.TypeToken
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import javax.inject.Inject
 
 class BloodAvailabilityViewModel @Inject constructor(
@@ -24,7 +26,15 @@ class BloodAvailabilityViewModel @Inject constructor(
     private val prefsUtils: PrefsUtils
 ): BaseViewModel() {
 
-    val user = prefsUtils.getPrefAsObject(PrefKeys.LOGGED_IN_USER_DATA, UserDetails::class.java)
+    private val user = prefsUtils.getPrefAsObject(PrefKeys.LOGGED_IN_USER_DATA, UserDetails::class.java)
+
+    private val _bloodPostingList = MutableLiveData<List<UploadBloodAvailabilityRequest>>()
+
+    val bloodPostingList: LiveData<List<UploadBloodAvailabilityRequest>> get() = _bloodPostingList
+
+    private val _hideShimmer = MutableLiveData(false)
+
+    val hideShimmer: LiveData<Boolean> get() = _hideShimmer
 
     fun uploadBloodAvailability(requestBody: UploadBloodAvailabilityRequest) {
         viewModelScope.launch {
@@ -45,6 +55,7 @@ class BloodAvailabilityViewModel @Inject constructor(
             val response = databaseRepository.uploadBloodAvailabilityID(bloodAvailabilityID)
             if (response?.isSuccessful == true) {
                 //TODO Come and collect the response
+                //TODO What happens afterwards
                 _loadingStatus.value = LoadingStatus.Success
             } else {
                 _loadingStatus.value = LoadingStatus.Error(GENERIC_ERROR_CODE, GENERIC_ERROR_MESSAGE)
@@ -56,16 +67,18 @@ class BloodAvailabilityViewModel @Inject constructor(
         viewModelScope.launch {
             val response = databaseRepository.getFilteredBloodAvailability(ApiKeys.DONOR_ID, user.localID!!)
             if (response?.isSuccessful == true) {
-//                val type = object : TypeToken<HashMap<String, UploadBloodAvailabilityRequest>>() {}.type
-//                val bloodPostings = Gson().fromJson(response.body(), type)
+                val bloodPostings = GsonUtils.fromJson<HashMap<String, UploadBloodAvailabilityRequest>>(response.body())
+                _bloodPostingList.value = ArrayList(bloodPostings.values)
+                _hideShimmer.value = true
             } else {
                 _loadingStatus.value = LoadingStatus.Error(GENERIC_ERROR_CODE, GENERIC_ERROR_MESSAGE)
             }
         }
     }
 
+    fun hideShimmerDone() { _hideShimmer.value = false }
+
     override fun addAllLiveDataToObservablesList() {
-
+        observablesList.add(hideShimmer)
     }
-
 }

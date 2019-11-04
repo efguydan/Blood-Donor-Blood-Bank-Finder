@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="bloodPosting"
+            type="com.efedaniel.bloodfinder.bloodfinder.models.request.UploadBloodAvailabilityRequest" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        android:background="@android:color/white">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/donorNameTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/muli_bold"
+                android:maxLines="1"
+                android:text="@{bloodPosting.donorName}"
+                android:textColor="@color/colorAccent"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toStartOf="@+id/textView4"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Chief Efe" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:background="@color/yellow"
+                android:fontFamily="@font/muli_bold"
+                android:paddingStart="12dp"
+                android:paddingTop="2dp"
+                android:paddingEnd="12dp"
+                android:paddingBottom="2dp"
+                android:text="@{bloodPosting.status}"
+                android:textAllCaps="true"
+                android:textColor="@android:color/white"
+                android:textSize="10sp"
+                app:layout_constraintBaseline_toBaselineOf="@+id/donorNameTextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:ignore="SmallSp"
+                tools:text="pending" />
+
+            <TextView
+                android:id="@+id/bloodTypeLabelTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/muli_light"
+                android:text="@string/blood_type"
+                android:textColor="@color/colorAccent"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toStartOf="@+id/guideline2"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/donorNameTextView" />
+
+            <TextView
+                android:id="@+id/billingTypeLabelTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/muli_light"
+                android:text="@string/billing_type"
+                android:textColor="@color/colorAccent"
+                android:textSize="12sp"
+                app:layout_constraintBaseline_toBaselineOf="@+id/bloodTypeLabelTextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/guideline2" />
+
+            <TextView
+                android:id="@+id/bloodTypeTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="16dp"
+                android:fontFamily="@font/muli_bold"
+                android:text="@{bloodPosting.bloodType}"
+                android:textColor="@color/colorAccent"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/bloodTypeLabelTextView"
+                app:layout_constraintVertical_bias="0.0"
+                tools:text="O+" />
+
+            <TextView
+                android:id="@+id/billingTypeTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/muli_bold"
+                android:text="@{bloodPosting.billingType}"
+                android:textColor="@color/colorAccent"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/guideline2"
+                app:layout_constraintTop_toBottomOf="@+id/billingTypeLabelTextView"
+                tools:text="Paid" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.50" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</layout>
