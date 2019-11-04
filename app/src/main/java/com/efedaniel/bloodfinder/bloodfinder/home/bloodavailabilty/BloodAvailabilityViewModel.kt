@@ -34,6 +34,9 @@ class BloodAvailabilityViewModel @Inject constructor(
     private val _hideShimmer = MutableLiveData(false)
     val hideShimmer: LiveData<Boolean> get() = _hideShimmer
 
+    private val _showSingleShimmer = MutableLiveData(false)
+    val showSingleShimmer: LiveData<Boolean> get() = _showSingleShimmer
+
     fun uploadBloodAvailability(requestBody: UploadBloodAvailabilityRequest) {
         viewModelScope.launch {
             _loadingStatus.value = LoadingStatus.Loading(resourceProvider.getString(R.string.uplading_blood_availability))
@@ -55,8 +58,20 @@ class BloodAvailabilityViewModel @Inject constructor(
                 //TODO Come and collect the response
                 //TODO What happens afterwards
                 //TODO Refresh blood postings
-                //TODO Come and handle all these todos
+                //TODO Show Single Shimmer and hide when done
                 _loadingStatus.value = LoadingStatus.Success
+            } else {
+                _loadingStatus.value = LoadingStatus.Error(GENERIC_ERROR_CODE, GENERIC_ERROR_MESSAGE)
+            }
+        }
+    }
+
+    fun deleteBloodAvailability(bloodAvailabilityID: String) {
+        viewModelScope.launch {
+            val response = databaseRepository.deleteBloodAvailability(bloodAvailabilityID)
+            if (response?.isSuccessful == true) {
+                //TODO Update the UI onDelete
+                //TODO Replace the stuff to delete with shimmer
             } else {
                 _loadingStatus.value = LoadingStatus.Error(GENERIC_ERROR_CODE, GENERIC_ERROR_MESSAGE)
             }
@@ -80,5 +95,6 @@ class BloodAvailabilityViewModel @Inject constructor(
 
     override fun addAllLiveDataToObservablesList() {
         observablesList.add(hideShimmer)
+        observablesList.add(showSingleShimmer)
     }
 }

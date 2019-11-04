@@ -11,7 +11,7 @@ import com.efedaniel.bloodfinder.databinding.ItemBloodAvailabilityBinding
 import com.efedaniel.bloodfinder.extensions.getTime
 
 class BloodAvailabilityAdapter(
-
+    private val deleteListener: (String) -> Unit
 ): ListAdapter<UploadBloodAvailabilityRequest, BloodAvailabilityAdapter.ViewHolder>(DiffCallback)  {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -38,6 +38,7 @@ class BloodAvailabilityAdapter(
         fun bind(availabilityRequest: UploadBloodAvailabilityRequest) {
             binding.bloodPosting = availabilityRequest
             binding.creationTimeTextView.text = availabilityRequest.creationTime.getTime()
+            binding.deleteImageView.setOnClickListener { deleteListener(availabilityRequest.bloodAvailabilityID ?: "") }
         }
     }
 

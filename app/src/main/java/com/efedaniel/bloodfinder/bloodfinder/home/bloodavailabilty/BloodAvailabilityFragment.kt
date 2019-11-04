@@ -60,7 +60,15 @@ class BloodAvailabilityFragment : BaseFragment() {
         binding.viewModel = viewModel
         viewModel.getUserBloodAvailability()
         binding.addAvailabilityFab.setOnClickListener { setupNewEntryDialog() }
-        binding.postingsRecyclerView.adapter = BloodAvailabilityAdapter()
+        binding.postingsRecyclerView.adapter = BloodAvailabilityAdapter {
+            showDialogWithAction(
+                title = getString(R.string.delete_posting),
+                body = getString(R.string.are_you_sure_you_want_to_delete),
+                positiveRes = R.string.delete,
+                negativeRes = R.string.cancel,
+                positiveAction = { viewModel.deleteBloodAvailability(it) }
+            )
+        }
         binding.parentLayout.onScrollChanged { mainActivity.invalidateToolbarElevation(it) }
         observe()
     }

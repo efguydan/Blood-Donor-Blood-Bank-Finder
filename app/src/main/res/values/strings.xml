@@ -72,4 +72,7 @@
     <string name="uplading_blood_availability">Uploading Blood Availability...</string>
     <string name="here_are_your_active_blood_availability_postings">Here are your active blood availability postings</string>
     <string name="delete_blood_availability_posting">Delete blood availability posting</string>
+    <string name="delete">Delete</string>
+    <string name="are_you_sure_you_want_to_delete">Are you sure you want to delete this blood availability posting?</string>
+    <string name="delete_posting">Delete Blood Posting</string>
 </resources>

@@ -21,6 +21,9 @@ interface DatabaseApiService {
     suspend fun uploadBloodAvailabilityID(@Path("blood_availability_id") bloodAvailabilityID: String,
                                           @Body body: String): Response<JsonElement>
 
+    @DELETE("/bloodAvailability/{blood_availability_id}.json")
+    suspend fun deleteBloodAvailability(@Path("blood_availability_id") bloodAvailabilityID: String): Response<JsonElement>
+
     @GET("/bloodAvailability.json")
     suspend fun getFilteredBloodAvailability(@Query("orderBy") filterKey: String, @Query("equalTo") filterValue: String): Response<JsonElement>
 }

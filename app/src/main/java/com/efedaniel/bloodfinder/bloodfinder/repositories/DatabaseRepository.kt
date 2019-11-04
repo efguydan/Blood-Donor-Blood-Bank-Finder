@@ -37,6 +37,14 @@ class DatabaseRepository @Inject constructor(private val databaseApiService: Dat
         }
     }
 
+    suspend fun deleteBloodAvailability(bloodAvailabilityID: String): Response<JsonElement>? {
+        return try {
+            databaseApiService.deleteBloodAvailability(bloodAvailabilityID)
+        } catch (e: java.lang.Exception) {
+            null
+        }
+    }
+
     suspend fun uploadBloodAvailabilityID(bloodAvailabilityID: String): Response<JsonElement>? {
         return try {
             databaseApiService.uploadBloodAvailabilityID(bloodAvailabilityID, bloodAvailabilityID)
