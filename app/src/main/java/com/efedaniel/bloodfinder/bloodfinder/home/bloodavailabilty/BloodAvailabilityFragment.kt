@@ -104,6 +104,8 @@ class BloodAvailabilityFragment : BaseFragment() {
 
     private fun isInputVerified(bottomSheet: MaterialDialog): Boolean {
         bottomSheet.run {
+            bloodErrorTextView.visibility = View.GONE
+            billingErrorTextView.visibility = View.GONE
             return when {
                 bloodTypeSpinner.selectedItemPosition == 0 -> {
                     bloodErrorTextView.visibility = View.VISIBLE
@@ -151,6 +153,9 @@ class BloodAvailabilityFragment : BaseFragment() {
                         BloodAvailabilityAdapter.ViewHolder).triggerDeletingProgress(false)
                 viewModel.deletingProgressHidden()
             }
+        })
+        viewModel.fabVisibility.observe(this, Observer {
+            if (it == true) binding.addAvailabilityFab.show() else if (it == false) binding.addAvailabilityFab.hide()
         })
     }
 

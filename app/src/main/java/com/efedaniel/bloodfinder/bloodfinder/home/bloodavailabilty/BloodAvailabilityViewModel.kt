@@ -2,6 +2,7 @@ package com.efedaniel.bloodfinder.bloodfinder.home.bloodavailabilty
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
 import androidx.lifecycle.viewModelScope
 import com.efedaniel.bloodfinder.R
 import com.efedaniel.bloodfinder.base.BaseViewModel
@@ -36,6 +37,10 @@ class BloodAvailabilityViewModel @Inject constructor(
 
     private val _hideDeletingProgress = MutableLiveData(false)
     val hideDeletingProgress: LiveData<Boolean> get() = _hideDeletingProgress
+
+    val fabVisibility = Transformations.map(_bloodPostingList) {
+        !(it.size > 0 && user.isBloodDonor())
+    }
 
     fun uploadBloodAvailability(requestBody: UploadBloodAvailabilityRequest) {
         viewModelScope.launch {
@@ -92,6 +97,7 @@ class BloodAvailabilityViewModel @Inject constructor(
     override fun addAllLiveDataToObservablesList() {
         observablesList.add(hideShimmer)
         observablesList.add(hideDeletingProgress)
+        observablesList.add(fabVisibility)
     }
 
     fun deletingProgressHidden() { _hideDeletingProgress.value = false }
