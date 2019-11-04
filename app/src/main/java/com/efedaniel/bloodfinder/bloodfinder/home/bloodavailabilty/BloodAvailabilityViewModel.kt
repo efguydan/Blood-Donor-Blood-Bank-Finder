@@ -34,6 +34,9 @@ class BloodAvailabilityViewModel @Inject constructor(
     private val _hideShimmer = MutableLiveData(false)
     val hideShimmer: LiveData<Boolean> get() = _hideShimmer
 
+    private val _hideDeletingProgress = MutableLiveData(false)
+    val hideDeletingProgress: LiveData<Boolean> get() = _hideDeletingProgress
+
     fun uploadBloodAvailability(requestBody: UploadBloodAvailabilityRequest) {
         viewModelScope.launch {
             _loadingStatus.value = LoadingStatus.Loading(resourceProvider.getString(R.string.uplading_blood_availability))
@@ -64,6 +67,7 @@ class BloodAvailabilityViewModel @Inject constructor(
             if (response?.isSuccessful == true) {
                 getUserBloodAvailability()
             } else {
+                _hideDeletingProgress.value = true
                 _loadingStatus.value = LoadingStatus.Error(GENERIC_ERROR_CODE, GENERIC_ERROR_MESSAGE)
             }
         }
@@ -87,5 +91,8 @@ class BloodAvailabilityViewModel @Inject constructor(
 
     override fun addAllLiveDataToObservablesList() {
         observablesList.add(hideShimmer)
+        observablesList.add(hideDeletingProgress)
     }
+
+    fun deletingProgressHidden() { _hideDeletingProgress.value = false }
 }

@@ -8,10 +8,8 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
-import com.afollestad.materialdialogs.LayoutMode
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.bottomsheets.BottomSheet
-import com.afollestad.materialdialogs.bottomsheets.setPeekHeight
 import com.afollestad.materialdialogs.customview.customView
 import com.efedaniel.bloodfinder.App
 
@@ -42,7 +40,7 @@ class BloodAvailabilityFragment : BaseFragment() {
     private lateinit var binding: FragmentBloodAvailabiltyBinding
     private lateinit var viewModel: BloodAvailabilityViewModel
     private lateinit var user: UserDetails
-    private lateinit var adapter: BloodAvailabilityAdapter
+    private var currentPosition = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -61,7 +59,8 @@ class BloodAvailabilityFragment : BaseFragment() {
         binding.viewModel = viewModel
         viewModel.getUserBloodAvailability()
         binding.addAvailabilityFab.setOnClickListener { setupNewEntryDialog() }
-        adapter = BloodAvailabilityAdapter { id: String, pos: Int ->
+        binding.postingsRecyclerView.adapter = BloodAvailabilityAdapter { id: String, pos: Int ->
+            currentPosition = pos
             showDialogWithAction(
                 title = getString(R.string.delete_posting),
                 body = getString(R.string.are_you_sure_you_want_to_delete),
@@ -74,7 +73,6 @@ class BloodAvailabilityFragment : BaseFragment() {
                 }
             )
         }
-        binding.postingsRecyclerView.adapter = adapter
         binding.parentLayout.onScrollChanged { mainActivity.invalidateToolbarElevation(it) }
         observe()
     }
@@ -139,6 +137,13 @@ class BloodAvailabilityFragment : BaseFragment() {
                 binding.shimmerLayout.hide()
                 binding.textView2.visibility = View.VISIBLE
                 viewModel.hideShimmerDone()
+            }
+        })
+        viewModel.hideDeletingProgress.observe(this, Observer {
+            if (it == true) {
+                (binding.postingsRecyclerView.findViewHolderForLayoutPosition(currentPosition) as
+                        BloodAvailabilityAdapter.ViewHolder).triggerDeletingProgress(false)
+                viewModel.deletingProgressHidden()
             }
         })
     }
