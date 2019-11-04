@@ -42,6 +42,7 @@ class BloodAvailabilityFragment : BaseFragment() {
     private lateinit var binding: FragmentBloodAvailabiltyBinding
     private lateinit var viewModel: BloodAvailabilityViewModel
     private lateinit var user: UserDetails
+    private lateinit var adapter: BloodAvailabilityAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -60,15 +61,20 @@ class BloodAvailabilityFragment : BaseFragment() {
         binding.viewModel = viewModel
         viewModel.getUserBloodAvailability()
         binding.addAvailabilityFab.setOnClickListener { setupNewEntryDialog() }
-        binding.postingsRecyclerView.adapter = BloodAvailabilityAdapter {
+        adapter = BloodAvailabilityAdapter { id: String, pos: Int ->
             showDialogWithAction(
                 title = getString(R.string.delete_posting),
                 body = getString(R.string.are_you_sure_you_want_to_delete),
                 positiveRes = R.string.delete,
                 negativeRes = R.string.cancel,
-                positiveAction = { viewModel.deleteBloodAvailability(it) }
+                positiveAction = {
+                    viewModel.deleteBloodAvailability(id)
+                    (binding.postingsRecyclerView.findViewHolderForLayoutPosition(pos) as
+                            BloodAvailabilityAdapter.ViewHolder).triggerDeletingProgress(true)
+                }
             )
         }
+        binding.postingsRecyclerView.adapter = adapter
         binding.parentLayout.onScrollChanged { mainActivity.invalidateToolbarElevation(it) }
         observe()
     }
@@ -131,6 +137,7 @@ class BloodAvailabilityFragment : BaseFragment() {
         viewModel.hideShimmer.observe(this, Observer {
             if (it == true) {
                 binding.shimmerLayout.hide()
+                binding.textView2.visibility = View.VISIBLE
                 viewModel.hideShimmerDone()
             }
         })

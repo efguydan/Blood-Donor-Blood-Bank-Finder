@@ -28,14 +28,11 @@ class BloodAvailabilityViewModel @Inject constructor(
 
     private val user = prefsUtils.getPrefAsObject(PrefKeys.LOGGED_IN_USER_DATA, UserDetails::class.java)
 
-    private val _bloodPostingList = MutableLiveData<List<UploadBloodAvailabilityRequest>>()
-    val bloodPostingList: LiveData<List<UploadBloodAvailabilityRequest>> get() = _bloodPostingList
+    private val _bloodPostingList = MutableLiveData<MutableList<UploadBloodAvailabilityRequest>>()
+    val bloodPostingList: LiveData<MutableList<UploadBloodAvailabilityRequest>> get() = _bloodPostingList
 
     private val _hideShimmer = MutableLiveData(false)
     val hideShimmer: LiveData<Boolean> get() = _hideShimmer
-
-    private val _showSingleShimmer = MutableLiveData(false)
-    val showSingleShimmer: LiveData<Boolean> get() = _showSingleShimmer
 
     fun uploadBloodAvailability(requestBody: UploadBloodAvailabilityRequest) {
         viewModelScope.launch {
@@ -44,7 +41,6 @@ class BloodAvailabilityViewModel @Inject constructor(
             if (response?.isSuccessful == true) {
                 val postResponse = Gson().fromJson(response.body(), PostResponse::class.java)
                 uploadBloodAvailabilityID(postResponse.name)
-                _loadingStatus.value = LoadingStatus.Success
             } else {
                 _loadingStatus.value = LoadingStatus.Error(GENERIC_ERROR_CODE, GENERIC_ERROR_MESSAGE)
             }
@@ -55,11 +51,7 @@ class BloodAvailabilityViewModel @Inject constructor(
         viewModelScope.launch {
             val response = databaseRepository.uploadBloodAvailabilityID(bloodAvailabilityID)
             if (response?.isSuccessful == true) {
-                //TODO Come and collect the response
-                //TODO What happens afterwards
-                //TODO Refresh blood postings
-                //TODO Show Single Shimmer and hide when done
-                _loadingStatus.value = LoadingStatus.Success
+                getUserBloodAvailability()
             } else {
                 _loadingStatus.value = LoadingStatus.Error(GENERIC_ERROR_CODE, GENERIC_ERROR_MESSAGE)
             }
@@ -70,8 +62,7 @@ class BloodAvailabilityViewModel @Inject constructor(
         viewModelScope.launch {
             val response = databaseRepository.deleteBloodAvailability(bloodAvailabilityID)
             if (response?.isSuccessful == true) {
-                //TODO Update the UI onDelete
-                //TODO Replace the stuff to delete with shimmer
+                getUserBloodAvailability()
             } else {
                 _loadingStatus.value = LoadingStatus.Error(GENERIC_ERROR_CODE, GENERIC_ERROR_MESSAGE)
             }
@@ -83,7 +74,8 @@ class BloodAvailabilityViewModel @Inject constructor(
             val response = databaseRepository.getFilteredBloodAvailability(ApiKeys.DONOR_ID, user.localID!!)
             if (response?.isSuccessful == true) {
                 val bloodPostings = GsonUtils.fromJson<HashMap<String, UploadBloodAvailabilityRequest>>(response.body())
-                _bloodPostingList.value = ArrayList(bloodPostings.values).sortedWith(compareByDescending{it.creationTime})
+                _bloodPostingList.value = ArrayList(bloodPostings.values).sortedWith(compareByDescending{it.creationTime}).toMutableList()
+                _loadingStatus.value = LoadingStatus.Success
             } else {
                 _loadingStatus.value = LoadingStatus.Error(GENERIC_ERROR_CODE, GENERIC_ERROR_MESSAGE)
             }
@@ -95,6 +87,5 @@ class BloodAvailabilityViewModel @Inject constructor(
 
     override fun addAllLiveDataToObservablesList() {
         observablesList.add(hideShimmer)
-        observablesList.add(showSingleShimmer)
     }
 }
