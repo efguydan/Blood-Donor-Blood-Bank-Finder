@@ -75,4 +75,5 @@
     <string name="delete">Delete</string>
     <string name="are_you_sure_you_want_to_delete">Are you sure you want to delete this blood availability posting?</string>
     <string name="delete_posting">Delete Blood Posting</string>
+    <string name="this_field_is_required">This field is required</string>
 </resources>

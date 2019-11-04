@@ -104,11 +104,17 @@ class BloodAvailabilityFragment : BaseFragment() {
 
     private fun isInputVerified(bottomSheet: MaterialDialog): Boolean {
         bottomSheet.run {
-            return if (bloodTypeSpinner.selectedItemPosition == 0 || billingTypeSpinner.selectedItemPosition == 0) {
-                //TODO Show Error instead of snackbar
-                showSnackbar(R.string.form_was_not_completed)
-                false
-            } else true
+            return when {
+                bloodTypeSpinner.selectedItemPosition == 0 -> {
+                    bloodErrorTextView.visibility = View.VISIBLE
+                    false
+                }
+                billingTypeSpinner.selectedItemPosition == 0 -> {
+                    billingErrorTextView.visibility = View.VISIBLE
+                    false
+                }
+                else -> true
+            }
         }
     }
 
