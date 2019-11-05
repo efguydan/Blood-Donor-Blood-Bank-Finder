@@ -157,6 +157,9 @@ class BloodAvailabilityFragment : BaseFragment() {
         viewModel.fabVisibility.observe(this, Observer {
             if (it == true) binding.addAvailabilityFab.show() else if (it == false) binding.addAvailabilityFab.hide()
         })
+        viewModel.loading.observe(this, Observer {
+            if (it) binding.addAvailabilityFab.show() else binding.addAvailabilityFab.hide()
+        })
     }
 
     private fun setUpToolbar() = mainActivity.run {

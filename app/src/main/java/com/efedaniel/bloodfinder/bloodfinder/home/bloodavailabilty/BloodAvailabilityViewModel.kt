@@ -38,6 +38,9 @@ class BloodAvailabilityViewModel @Inject constructor(
     private val _hideDeletingProgress = MutableLiveData(false)
     val hideDeletingProgress: LiveData<Boolean> get() = _hideDeletingProgress
 
+    private val _loading = MutableLiveData(false)
+    val loading: LiveData<Boolean> get() = _loading
+
     val fabVisibility = Transformations.map(_bloodPostingList) {
         !(it.size > 0 && user.isBloodDonor())
     }
@@ -98,6 +101,7 @@ class BloodAvailabilityViewModel @Inject constructor(
         observablesList.add(hideShimmer)
         observablesList.add(hideDeletingProgress)
         observablesList.add(fabVisibility)
+        observablesList.add(loading)
     }
 
     fun deletingProgressHidden() { _hideDeletingProgress.value = false }
