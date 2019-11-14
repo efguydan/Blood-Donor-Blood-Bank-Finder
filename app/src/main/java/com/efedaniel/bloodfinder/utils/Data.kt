@@ -45,14 +45,14 @@ class Data {
             "Logout"
         )
         val hospitalActionList = listOf(
-            "Find Blood Donors",
+            "Request For Blood",
             "View Profile",
             "View Request History",
             "Logout"
         )
         val bloodBankActionList = listOf(
             "Upload Blood Availability",
-            "Find Blood Donors",
+            "Request For Blood",
             "View Profile",
             "View Request History",
             "View Donation History",
