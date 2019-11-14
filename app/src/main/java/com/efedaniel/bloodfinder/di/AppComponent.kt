@@ -6,6 +6,7 @@ import com.efedaniel.bloodfinder.bloodfinder.auth.signin.SignInFragment
 import com.efedaniel.bloodfinder.bloodfinder.auth.signup.SignUpFragment
 import com.efedaniel.bloodfinder.bloodfinder.home.bloodavailabilty.BloodAvailabilityFragment
 import com.efedaniel.bloodfinder.bloodfinder.home.bloodrequest.BloodRequestFragment
+import com.efedaniel.bloodfinder.bloodfinder.home.bloodrequestresults.BloodResultsFragment
 import com.efedaniel.bloodfinder.bloodfinder.home.dashboard.DashboardFragment
 import com.efedaniel.bloodfinder.bloodfinder.home.profile.ProfileFragment
 import dagger.BindsInstance
@@ -23,6 +24,7 @@ interface AppComponent {
     fun inject(target: DashboardFragment)
     fun inject(target: BloodAvailabilityFragment)
     fun inject(target: BloodRequestFragment)
+    fun inject(target: BloodResultsFragment)
 
     @Component.Builder
     interface Builder {

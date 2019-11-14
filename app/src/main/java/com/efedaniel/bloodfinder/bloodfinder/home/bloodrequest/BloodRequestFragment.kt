@@ -1,6 +1,5 @@
 package com.efedaniel.bloodfinder.bloodfinder.home.bloodrequest
 
-
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,14 +7,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 import com.efedaniel.bloodfinder.App
 
 import com.efedaniel.bloodfinder.R
 import com.efedaniel.bloodfinder.base.BaseFragment
 import com.efedaniel.bloodfinder.base.BaseViewModel
+import com.efedaniel.bloodfinder.bloodfinder.reusables.SpinnerAdapter
 import com.efedaniel.bloodfinder.databinding.FragmentBloodRequestBinding
+import com.efedaniel.bloodfinder.extensions.registerTextViewLabel
+import com.efedaniel.bloodfinder.utils.Data
 import javax.inject.Inject
-
 
 class BloodRequestFragment : BaseFragment() {
 
@@ -40,6 +42,20 @@ class BloodRequestFragment : BaseFragment() {
         (mainActivity.applicationContext as App).component.inject(this)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(BloodRequestViewModel::class.java)
         binding.viewModel = viewModel
+        setupSpinners()
+        binding.searchButton.setOnClickListener {
+            findNavController().navigate(BloodRequestFragmentDirections.actionBloodRequestFragmentToBloodResultsFragment())
+        }
+    }
+
+    fun setupSpinners() {
+        //Blood Type
+        binding.bloodTypeSpinner.adapter = SpinnerAdapter(context!!, Data.bloodTypes)
+        binding.bloodTypeSpinner.registerTextViewLabel(binding.bloodTypeLabelTextView)
+
+        //Billing Type
+        binding.billingTypeSpinner.registerTextViewLabel(binding.billingTypeLabelTextView)
+        binding.billingTypeSpinner.adapter = SpinnerAdapter(context!!, Data.billingTypeWithAny)
     }
 
     private fun setUpToolbar() = mainActivity.run {

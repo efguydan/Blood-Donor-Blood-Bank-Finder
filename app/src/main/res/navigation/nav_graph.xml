@@ -100,5 +100,18 @@
         android:id="@+id/bloodRequestFragment"
         android:name="com.efedaniel.bloodfinder.bloodfinder.home.bloodrequest.BloodRequestFragment"
         android:label="BloodRequestFragment"
-        tools:layout="@layout/fragment_blood_request" />
+        tools:layout="@layout/fragment_blood_request" >
+        <action
+            android:id="@+id/action_bloodRequestFragment_to_bloodResultsFragment"
+            app:destination="@id/bloodResultsFragment"
+            app:enterAnim="@anim/slide_in_from_right"
+            app:exitAnim="@anim/slide_out_to_left"
+            app:popEnterAnim="@anim/slide_in_from_left"
+            app:popExitAnim="@anim/slide_out_to_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/bloodResultsFragment"
+        android:name="com.efedaniel.bloodfinder.bloodfinder.home.bloodrequestresults.BloodResultsFragment"
+        android:label="fragment_blood_results"
+        tools:layout="@layout/fragment_blood_results" />
 </navigation>

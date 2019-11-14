@@ -7,6 +7,7 @@ import com.efedaniel.bloodfinder.bloodfinder.auth.signin.SignInViewModel
 import com.efedaniel.bloodfinder.bloodfinder.auth.signup.SignUpViewModel
 import com.efedaniel.bloodfinder.bloodfinder.home.bloodavailabilty.BloodAvailabilityViewModel
 import com.efedaniel.bloodfinder.bloodfinder.home.bloodrequest.BloodRequestViewModel
+import com.efedaniel.bloodfinder.bloodfinder.home.bloodrequestresults.BloodResultsViewModel
 import com.efedaniel.bloodfinder.bloodfinder.home.dashboard.DashboardViewModel
 import com.efedaniel.bloodfinder.bloodfinder.home.profile.ProfileViewModel
 import dagger.Binds
@@ -54,6 +55,11 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(BloodRequestViewModel::class)
     abstract fun bindsBloodRequestViewModel(viewModel: BloodRequestViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(BloodResultsViewModel::class)
+    abstract fun bindsBloodResultsViewModel(viewModel: BloodResultsViewModel): ViewModel
 
     // TODO Add other ViewModels.
 }

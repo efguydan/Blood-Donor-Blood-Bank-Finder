@@ -78,4 +78,9 @@
     <string name="this_field_is_required">This field is required</string>
     <string name="blood_request">Blood Request</string>
     <string name="find_nearest_blood_donor_or_private_blood_bank">Find nearest Blood Donor or Private Blood Bank</string>
+    <string name="search">Search</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="blood_search_results">Blood Search Results</string>
 </resources>

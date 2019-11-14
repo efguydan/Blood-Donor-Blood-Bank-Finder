@@ -74,6 +74,12 @@ class Data {
             "Free",
             "Paid"
         )
+        val billingTypeWithAny = listOf(
+            "Select Billing Type",
+            "Free",
+            "Paid",
+            "Any"
+        )
     }
 
 }
