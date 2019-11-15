@@ -113,5 +113,9 @@
         android:id="@+id/bloodResultsFragment"
         android:name="com.efedaniel.bloodfinder.bloodfinder.home.bloodrequestresults.BloodResultsFragment"
         android:label="fragment_blood_results"
-        tools:layout="@layout/fragment_blood_results" />
+        tools:layout="@layout/fragment_blood_results" >
+        <argument
+            android:name="bloodResultsList"
+            app:argType="com.efedaniel.bloodfinder.bloodfinder.models.request.UploadBloodAvailabilityRequest[]" />
+    </fragment>
 </navigation>

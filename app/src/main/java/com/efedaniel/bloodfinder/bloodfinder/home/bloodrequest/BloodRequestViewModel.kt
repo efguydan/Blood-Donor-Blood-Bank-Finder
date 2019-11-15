@@ -1,5 +1,7 @@
 package com.efedaniel.bloodfinder.bloodfinder.home.bloodrequest
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.efedaniel.bloodfinder.R
 import com.efedaniel.bloodfinder.base.BaseViewModel
@@ -26,9 +28,15 @@ class BloodRequestViewModel @Inject constructor(
 
     val donorList = mutableListOf<UploadBloodAvailabilityRequest>()
     private var numOfRequests = 0
+    private var billingType = ""
+
+    private val _moveToBloodResults = MutableLiveData(false)
+    val moveToBloodResults: LiveData<Boolean> get() = _moveToBloodResults
+
 
     fun getCompatibleBloods(bloodType: String, billingType: String) {
         _loadingStatus.value = LoadingStatus.Loading(resourceProvider.getString(R.string.searching))
+        this.billingType = billingType
         donorList.clear()
         numOfRequests = Data.bloodCompatibilityMapping.getValue(bloodType).size
         for (type in Data.bloodCompatibilityMapping.getValue(bloodType)) {
@@ -60,11 +68,22 @@ class BloodRequestViewModel @Inject constructor(
     private fun triggerNextStep() {
         //TODO Come and filter the result using the algorithm.
         Timber.d(donorList.size.toString())
-        _loadingStatus.value = LoadingStatus.Success
+
+
+
+        //After all filters, if the list is not empty, then we move!!!!
+        if (donorList.isNotEmpty()) {
+            _moveToBloodResults.value = true
+            _loadingStatus.value = LoadingStatus.Success
+        } else {
+            _loadingStatus.value = LoadingStatus.Error(GENERIC_ERROR_CODE, resourceProvider.getString(R.string.blood_provider_not_found))
+        }
     }
 
     override fun addAllLiveDataToObservablesList() {
-
+        observablesList.add(moveToBloodResults)
     }
+
+    fun moveToBloodResultsDone() { _moveToBloodResults.value = false }
 
 }

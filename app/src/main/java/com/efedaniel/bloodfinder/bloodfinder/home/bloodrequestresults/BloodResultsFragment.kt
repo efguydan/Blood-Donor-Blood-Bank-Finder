@@ -39,6 +39,8 @@ class BloodResultsFragment : BaseFragment() {
         (mainActivity.applicationContext as App).component.inject(this)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(BloodResultsViewModel::class.java)
         binding.viewModel = viewModel
+        binding.numberOfResultTextView.text = String.format(getString(R.string.amount_of_blood_results_found_format),
+            BloodResultsFragmentArgs.fromBundle(arguments!!).bloodResultsList.size)
     }
 
     private fun setUpToolbar() = mainActivity.run {
