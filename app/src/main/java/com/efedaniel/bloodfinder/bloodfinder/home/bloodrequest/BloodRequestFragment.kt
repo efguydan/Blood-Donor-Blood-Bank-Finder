@@ -1,15 +1,12 @@
 package com.efedaniel.bloodfinder.bloodfinder.home.bloodrequest
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
-import androidx.navigation.fragment.findNavController
 import com.efedaniel.bloodfinder.App
-
 import com.efedaniel.bloodfinder.R
 import com.efedaniel.bloodfinder.base.BaseFragment
 import com.efedaniel.bloodfinder.base.BaseViewModel
@@ -44,8 +41,25 @@ class BloodRequestFragment : BaseFragment() {
         binding.viewModel = viewModel
         setupSpinners()
         binding.searchButton.setOnClickListener {
-            findNavController().navigate(BloodRequestFragmentDirections.actionBloodRequestFragmentToBloodResultsFragment())
+            if (isInputVerified()) {
+                viewModel.getCompatibleBloods(
+                    binding.bloodTypeSpinner.selectedItem as String,
+                    binding.billingTypeSpinner.selectedItem as String
+                )
+            }
         }
+    }
+
+    private fun isInputVerified(): Boolean {
+        if (binding.bloodTypeSpinner.selectedItemPosition == 0) {
+            showSnackbar(R.string.please_select_blood_type)
+            return false
+        }
+        if (binding.billingTypeSpinner.selectedItemPosition == 0) {
+            showSnackbar(R.string.please_select_billing_type)
+            return false
+        }
+        return true
     }
 
     fun setupSpinners() {

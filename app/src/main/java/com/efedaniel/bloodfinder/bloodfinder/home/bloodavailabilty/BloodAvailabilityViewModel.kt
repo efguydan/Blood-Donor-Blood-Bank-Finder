@@ -97,12 +97,12 @@ class BloodAvailabilityViewModel @Inject constructor(
 
     fun hideShimmerDone() { _hideShimmer.value = false }
 
+    fun deletingProgressHidden() { _hideDeletingProgress.value = false }
+
     override fun addAllLiveDataToObservablesList() {
         observablesList.add(hideShimmer)
         observablesList.add(hideDeletingProgress)
         observablesList.add(fabVisibility)
         observablesList.add(loading)
     }
-
-    fun deletingProgressHidden() { _hideDeletingProgress.value = false }
 }

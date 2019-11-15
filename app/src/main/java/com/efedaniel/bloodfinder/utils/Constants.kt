@@ -19,6 +19,7 @@ class ApiKeys{
         const val DATABASE_BASE_URL = "https://blooddonorbankfinder-h4373.firebaseio.com/"
         const val WEB_API_KEY = "AIzaSyA4PDmmaafAasb2l33XrprsH05DDVz4HEU"
         const val DONOR_ID = "donorID"
+        const val BLOOD_TYPE = "bloodType"
     }
 }
 

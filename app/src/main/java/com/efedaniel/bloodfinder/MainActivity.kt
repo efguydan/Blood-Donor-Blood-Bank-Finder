@@ -21,6 +21,7 @@ class MainActivity : AppCompatActivity(), LoadingCallback {
     private lateinit var navController: NavController
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var currentFragment: BaseFragment
+    private var dialog: MaterialDialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -85,7 +86,8 @@ class MainActivity : AppCompatActivity(), LoadingCallback {
     override fun showError(message: String) {
         hideKeyBoard()
         dismissLoading()
-        MaterialDialog(this).show {
+        dialog?.dismiss()
+        dialog = MaterialDialog(this).show {
             message(text = message)
             positiveButton(R.string.ok)
         }
