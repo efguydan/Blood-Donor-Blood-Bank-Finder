@@ -1,7 +1,6 @@
 package com.efedaniel.bloodfinder.utils
 
 class Data {
-
     companion object {
         val userTypes = listOf(
             "Select User Type",
@@ -80,6 +79,15 @@ class Data {
             "Paid",
             "Any"
         )
+        val bloodCompatibilityMapping = mapOf(
+            "A+" to listOf("A+", "A-", "O+", "O-"),
+            "A-" to listOf("A-", "O-"),
+            "B+" to listOf("B+", "B-", "O+", "O-"),
+            "B-" to listOf("B-", "O-"),
+            "AB+" to listOf("A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"),
+            "AB-" to listOf("A-", "B-", "AB-", "O-"),
+            "O+" to listOf("O+", "O-"),
+            "O-" to listOf("O-")
+        )
     }
-
 }
