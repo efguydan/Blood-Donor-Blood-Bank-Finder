@@ -11,22 +11,6 @@
         android:background="?android:colorBackground"
         android:orientation="vertical">
 
-<!--    <ProgressBar-->
-<!--        android:id="@+id/progressBar"-->
-<!--        style="?android:attr/progressBarStyleLarge"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginStart="16dp"-->
-<!--        android:layout_marginTop="16dp"-->
-<!--        android:layout_marginEnd="16dp"-->
-<!--        app:layout_constraintBottom_toTopOf="@+id/progressMessage"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.5"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent"-->
-<!--        app:layout_constraintVertical_bias="0.43"-->
-<!--        app:layout_constraintVertical_chainStyle="packed" />-->
-
     <TextView
         android:id="@+id/progressMessage"
         android:layout_width="0dp"
@@ -38,12 +22,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         tools:text="Loading, Please wait. We are currently fetching your contacts"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/progressBar"
+        app:layout_constraintTop_toBottomOf="@+id/heartRateAnimation"
         android:layout_marginTop="16dp" android:layout_marginStart="30dp"
         app:layout_constraintStart_toStartOf="parent" android:layout_marginBottom="16dp"/>
 
     <ImageView
-        android:id="@+id/progressBar"
+        android:id="@+id/heartRateAnimation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/heart_rate_anim"

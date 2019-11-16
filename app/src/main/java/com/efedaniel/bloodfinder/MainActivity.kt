@@ -85,7 +85,7 @@ class MainActivity : AppCompatActivity(), LoadingCallback {
 
     @SuppressLint("NewApi")
     private fun toggleAnimation(state: Boolean) {
-        val drawable = progressBar.drawable
+        val drawable = heartRateAnimation.drawable
         if (drawable is AnimatedVectorDrawableCompat) {
             val callback = object: Animatable2Compat.AnimationCallback() {
                 override fun onAnimationEnd(drawab: Drawable?) {
