@@ -1,5 +1,11 @@
 package com.efedaniel.bloodfinder
 
+import android.annotation.SuppressLint
+import android.annotation.TargetApi
+import android.graphics.drawable.Animatable2
+import android.graphics.drawable.AnimatedVectorDrawable
+import android.graphics.drawable.Drawable
+import android.os.Build
 import android.os.Bundle
 import androidx.annotation.DrawableRes
 import androidx.appcompat.app.AppCompatActivity
@@ -7,6 +13,8 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
+import androidx.vectordrawable.graphics.drawable.Animatable2Compat
+import androidx.vectordrawable.graphics.drawable.AnimatedVectorDrawableCompat
 import com.afollestad.materialdialogs.MaterialDialog
 import com.efedaniel.bloodfinder.base.BaseFragment
 import com.efedaniel.bloodfinder.base.LoadingCallback
@@ -71,10 +79,39 @@ class MainActivity : AppCompatActivity(), LoadingCallback {
         hideKeyBoard()
         progressMessage.text = message
         loading_layout_container.showViewWithChildren()
+        toggleAnimation(true)
         disableTouch()
     }
 
+    @SuppressLint("NewApi")
+    private fun toggleAnimation(state: Boolean) {
+        val drawable = progressBar.drawable
+        if (drawable is AnimatedVectorDrawableCompat) {
+            val callback = object: Animatable2Compat.AnimationCallback() {
+                override fun onAnimationEnd(drawab: Drawable?) {
+                    drawable.start()
+                }
+            }
+            if (state) drawable.registerAnimationCallback(callback) else drawable.unregisterAnimationCallback(callback)
+            if (state) drawable.start() else drawable.stop()
+        } else if (drawable is AnimatedVectorDrawable) {
+            val callback = @TargetApi(Build.VERSION_CODES.M) object: Animatable2.AnimationCallback() {
+                override fun onAnimationEnd(drawa: Drawable?) {
+                    drawable.start()
+                }
+            }
+            if (state) {
+                drawable.registerAnimationCallback(callback)
+                drawable.start()
+            } else {
+                drawable.unregisterAnimationCallback(callback)
+                drawable.stop()
+            }
+        }
+    }
+
     override fun dismissLoading() {
+        toggleAnimation(false)
         loading_layout_container.hide()
         enableTouch()
     }
