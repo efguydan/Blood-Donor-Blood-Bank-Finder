@@ -84,4 +84,6 @@
     <string name="please_select_billing_type">Please select billing type to continue</string>
     <string name="blood_provider_not_found">Sorry, We couldn\'t find any blood provider that satisfies your request</string>
     <string name="amount_of_blood_results_found_format">We found %d blood providers that satisfies your request</string>
+    <string name="call">Call</string>
+    <string name="select">Select</string>
 </resources>

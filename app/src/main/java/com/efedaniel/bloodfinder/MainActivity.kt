@@ -89,11 +89,11 @@ class MainActivity : AppCompatActivity(), LoadingCallback {
         if (drawable is AnimatedVectorDrawableCompat) {
             val callback = object: Animatable2Compat.AnimationCallback() {
                 override fun onAnimationEnd(drawab: Drawable?) {
-                    drawable.start()
+                    heartRateAnimation.post { drawable.start() }
                 }
             }
             if (state) drawable.registerAnimationCallback(callback) else drawable.unregisterAnimationCallback(callback)
-            if (state) drawable.start() else drawable.stop()
+            heartRateAnimation.post { if (state) drawable.start() else drawable.stop() }
         } else if (drawable is AnimatedVectorDrawable) {
             val callback = @TargetApi(Build.VERSION_CODES.M) object: Animatable2.AnimationCallback() {
                 override fun onAnimationEnd(drawa: Drawable?) {
@@ -102,10 +102,10 @@ class MainActivity : AppCompatActivity(), LoadingCallback {
             }
             if (state) {
                 drawable.registerAnimationCallback(callback)
-                drawable.start()
+                heartRateAnimation.post { drawable.start() }
             } else {
                 drawable.unregisterAnimationCallback(callback)
-                drawable.stop()
+                heartRateAnimation.post { drawable.stop() }
             }
         }
     }

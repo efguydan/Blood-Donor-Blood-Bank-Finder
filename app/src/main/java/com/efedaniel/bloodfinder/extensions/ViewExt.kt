@@ -22,9 +22,7 @@ fun View.hide() {
 
 fun ViewGroup.showViewWithChildren() {
     show()
-    for (view in children) {
-        view.show()
-    }
+    for (view in children) { view.show() }
 }
 
 fun View.setViewPadding(@DimenRes topButtomPaddingRes: Int, @DimenRes leftRightPaddingRes: Int) {

@@ -1,8 +1,6 @@
 package com.efedaniel.bloodfinder.bloodfinder.home.bloodrequestresults
 
-
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,9 +12,10 @@ import com.efedaniel.bloodfinder.R
 import com.efedaniel.bloodfinder.base.BaseFragment
 import com.efedaniel.bloodfinder.base.BaseViewModel
 import com.efedaniel.bloodfinder.databinding.FragmentBloodResultsBinding
+import com.efedaniel.bloodfinder.extensions.onScrollChanged
 import javax.inject.Inject
 
-class BloodResultsFragment : BaseFragment() {
+class BloodResultsFragment : BaseFragment(), BloodResultsAdapter.ClickHandler {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -41,6 +40,9 @@ class BloodResultsFragment : BaseFragment() {
         binding.viewModel = viewModel
         binding.numberOfResultTextView.text = String.format(getString(R.string.amount_of_blood_results_found_format),
             BloodResultsFragmentArgs.fromBundle(arguments!!).bloodResultsList.size)
+        binding.resultsRecyclerView.adapter = BloodResultsAdapter(this)
+        viewModel.setBloodResults(BloodResultsFragmentArgs.fromBundle(arguments!!).bloodResultsList.toList())
+        binding.parentLayout.onScrollChanged { mainActivity.invalidateToolbarElevation(it) }
     }
 
     private fun setUpToolbar() = mainActivity.run {

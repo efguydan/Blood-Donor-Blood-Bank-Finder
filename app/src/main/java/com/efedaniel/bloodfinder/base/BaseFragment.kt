@@ -1,5 +1,6 @@
 package com.efedaniel.bloodfinder.base
 
+import android.content.res.Resources
 import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -46,7 +47,11 @@ abstract class BaseFragment : Fragment() {
         negativeAction: (() -> Unit)? = null
     ) = mainActivity.showDialogWithAction(title, body, positiveRes, positiveAction, negativeRes, negativeAction)
 
-    fun showSnackbar(@StringRes stringRes: Int) = mainActivity.showSnackBar(getString(stringRes))
+    fun showSnackbar(@StringRes stringRes: Int) = try {
+        mainActivity.showSnackBar(getString(stringRes))
+    } catch (e: Resources.NotFoundException) {
+        showSnackbar(stringRes.toString())
+    }
 
     fun showSnackbar(message: String) {
         mainActivity.showSnackBar(message)
