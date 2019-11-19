@@ -144,16 +144,16 @@
                 app:layout_constraintGuide_percent="0.50" />
 
             <ImageView
-                android:id="@+id/phone"
+                android:id="@+id/phoneButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="16dp"
-                app:layout_constraintEnd_toStartOf="@+id/select"
+                app:layout_constraintEnd_toStartOf="@+id/selectButton"
                 app:layout_constraintTop_toBottomOf="@+id/billingTypeTextView"
                 app:srcCompat="@drawable/ic_call" />
 
             <ImageView
-                android:id="@+id/select"
+                android:id="@+id/selectButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="16dp"

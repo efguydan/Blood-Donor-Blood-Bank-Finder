@@ -1,5 +1,7 @@
 package com.efedaniel.bloodfinder.bloodfinder.home.bloodrequestresults
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -43,6 +45,12 @@ class BloodResultsFragment : BaseFragment(), BloodResultsAdapter.ClickHandler {
         binding.resultsRecyclerView.adapter = BloodResultsAdapter(this)
         viewModel.setBloodResults(BloodResultsFragmentArgs.fromBundle(arguments!!).bloodResultsList.toList())
         binding.parentLayout.onScrollChanged { mainActivity.invalidateToolbarElevation(it) }
+    }
+
+    override fun call(phoneNUmber: String) {
+        val phoneIntent = Intent(Intent.ACTION_CALL)
+        phoneIntent.data = Uri.parse("tel:$phoneNUmber")
+        startActivity(phoneIntent)
     }
 
     private fun setUpToolbar() = mainActivity.run {

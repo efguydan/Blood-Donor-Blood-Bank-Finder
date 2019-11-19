@@ -11,7 +11,7 @@ import com.efedaniel.bloodfinder.databinding.ItemBloodResultBinding
 import com.efedaniel.bloodfinder.extensions.getTime
 
 class BloodResultsAdapter(
-    private val clickhandler: ClickHandler
+    private val clickHandler: ClickHandler
 ): ListAdapter<UploadBloodAvailabilityRequest, BloodResultsAdapter.ViewHolder>(DiffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -38,11 +38,12 @@ class BloodResultsAdapter(
         fun bind(result: UploadBloodAvailabilityRequest) {
             binding.bloodPosting = result
             binding.creationTimeTextView.text = result.creationTime.getTime()
+            binding.phoneButton.setOnClickListener { clickHandler.call(getItem(adapterPosition).donorPhoneNumber) }
         }
     }
 
     interface ClickHandler {
-        //TODO Add Callback methods
+        fun call(phoneNUmber: String)
     }
 
 }
