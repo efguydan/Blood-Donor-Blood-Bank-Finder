@@ -99,9 +99,7 @@ class MainActivity : AppCompatActivity(), LoadingCallback {
             drawable.stop()
         } else if (drawable is AnimatedVectorDrawable) {
             val callback = @TargetApi(Build.VERSION_CODES.M) object: Animatable2.AnimationCallback() {
-                override fun onAnimationEnd(drawa: Drawable?) {
-                    if (loadingState) drawable.start()
-                }
+                override fun onAnimationEnd(drawa: Drawable?) { if (loadingState) drawable.start() }
             }
             if (state) {
                 drawable.registerAnimationCallback(callback)
