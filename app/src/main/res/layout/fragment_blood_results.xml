@@ -34,7 +34,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:visibility="visible"
-                tools:text="We found 4 blood providers that satisfies your request" />
+                tools:text="We found 4 blood postings that are compatible with your request" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/resultsRecyclerView"

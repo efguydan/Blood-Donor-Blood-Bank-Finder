@@ -69,7 +69,15 @@ class BloodRequestViewModel @Inject constructor(
         //TODO Come and filter the result using the algorithm.
         Timber.d(donorList.size.toString())
 
+        for (bloodPosting in donorList) {
 
+            //Remove blood postings created by the current user
+            if (bloodPosting.donorName == user.fullName()) donorList.remove(bloodPosting)
+
+            //Remove the billing types that weren't asked for by the user
+            else if (this.billingType.toLowerCase() != "any" && bloodPosting.billingType != this.billingType) donorList.remove(bloodPosting)
+
+        }
 
         //After all filters, if the list is not empty, then we move!!!!
         if (donorList.isNotEmpty()) {
