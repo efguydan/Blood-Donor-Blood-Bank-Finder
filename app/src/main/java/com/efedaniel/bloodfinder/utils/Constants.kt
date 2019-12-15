@@ -4,6 +4,7 @@ class PrefKeys {
     companion object {
         const val LOGGED_IN_FIREBASE_AUTH_USER = "LOGGED_IN_FIREBASE_AUTH_USER"
         const val LOGGED_IN_USER_DATA = "LOGGED_IN_USER_DATA"
+        const val PREVIOUSLY_USED_EMAIL_ADDRESS = "PREVIOUSLY_USED_EMAIL_ADDRESS"
     }
 }
 

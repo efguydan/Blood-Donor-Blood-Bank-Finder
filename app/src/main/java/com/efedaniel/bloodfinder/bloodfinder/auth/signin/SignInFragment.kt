@@ -14,12 +14,17 @@ import com.efedaniel.bloodfinder.R
 import com.efedaniel.bloodfinder.base.BaseFragment
 import com.efedaniel.bloodfinder.base.BaseViewModel
 import com.efedaniel.bloodfinder.databinding.FragmentSignInBinding
+import com.efedaniel.bloodfinder.utils.PrefKeys
+import com.efedaniel.bloodfinder.utils.PrefsUtils
 import javax.inject.Inject
 
 class SignInFragment : BaseFragment() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
+
+    @Inject
+    lateinit var prefsUtils: PrefsUtils
 
     private lateinit var binding: FragmentSignInBinding
     private lateinit var viewModel: SignInViewModel
@@ -39,6 +44,7 @@ class SignInFragment : BaseFragment() {
         (mainActivity.applicationContext as App).component.inject(this)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(SignInViewModel::class.java)
         binding.viewModel = viewModel
+        prefillLastUsedEmailAddress()
         binding.signUpTextView.setOnClickListener {
             findNavController().navigate(SignInFragmentDirections.actionSignInFragmentToSignUpFragment())
         }
@@ -67,6 +73,12 @@ class SignInFragment : BaseFragment() {
             })
             viewModel.signInSuccessfulCompleted()
         })
+    }
+
+    private fun prefillLastUsedEmailAddress() {
+        if (prefsUtils.doesContain(PrefKeys.PREVIOUSLY_USED_EMAIL_ADDRESS)) {
+            binding.idEditText.setText(prefsUtils.getString(PrefKeys.PREVIOUSLY_USED_EMAIL_ADDRESS, "") ?: "")
+        }
     }
 
     private fun setUpToolbar() = mainActivity.run {

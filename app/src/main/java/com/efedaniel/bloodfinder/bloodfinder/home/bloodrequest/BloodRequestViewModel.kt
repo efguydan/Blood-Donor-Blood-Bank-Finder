@@ -66,7 +66,7 @@ class BloodRequestViewModel @Inject constructor(
     }
 
     private fun triggerNextStep() {
-        //TODO Come and filter the result using the algorithm.
+        //TODO Come and finish filtering the result using the algorithm.
         Timber.d(donorList.size.toString())
 
         val donorsToRemove = mutableListOf<UploadBloodAvailabilityRequest>()
@@ -77,11 +77,10 @@ class BloodRequestViewModel @Inject constructor(
 
             //Remove the billing types that weren't asked for by the user
             else if (this.billingType.toLowerCase() != "any" && bloodPosting.billingType != this.billingType) donorsToRemove.add(bloodPosting)
-
         }
         donorList.removeAll(donorsToRemove)
 
-        //After all filters, if the list is not empty, then we move!!!!
+        //After all filters, if the list is not empty, then we move to result fragment
         if (donorList.isNotEmpty()) {
             _moveToBloodResults.value = true
             _loadingStatus.value = LoadingStatus.Success
