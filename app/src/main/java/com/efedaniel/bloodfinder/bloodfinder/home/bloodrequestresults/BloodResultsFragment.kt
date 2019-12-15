@@ -1,11 +1,13 @@
 package com.efedaniel.bloodfinder.bloodfinder.home.bloodrequestresults
 
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.app.ActivityCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.efedaniel.bloodfinder.App
@@ -15,6 +17,7 @@ import com.efedaniel.bloodfinder.base.BaseFragment
 import com.efedaniel.bloodfinder.base.BaseViewModel
 import com.efedaniel.bloodfinder.databinding.FragmentBloodResultsBinding
 import com.efedaniel.bloodfinder.extensions.onScrollChanged
+import com.efedaniel.bloodfinder.utils.Misc
 import javax.inject.Inject
 
 class BloodResultsFragment : BaseFragment(), BloodResultsAdapter.ClickHandler {
@@ -50,7 +53,11 @@ class BloodResultsFragment : BaseFragment(), BloodResultsAdapter.ClickHandler {
     override fun call(phoneNUmber: String) {
         val phoneIntent = Intent(Intent.ACTION_CALL)
         phoneIntent.data = Uri.parse("tel:$phoneNUmber")
-        startActivity(phoneIntent)
+        if (ActivityCompat.checkSelfPermission(context!!, android.Manifest.permission.CALL_PHONE) == PackageManager.PERMISSION_GRANTED) {
+            startActivity(phoneIntent)
+        } else {
+            requestPermissions(arrayOf(android.Manifest.permission.CALL_PHONE), Misc.CALL_PERMISSION_REQUEST)
+        }
     }
 
     private fun setUpToolbar() = mainActivity.run {

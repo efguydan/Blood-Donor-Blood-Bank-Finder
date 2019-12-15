@@ -75,8 +75,11 @@ class MainActivity : AppCompatActivity(), LoadingCallback {
         showLoading(getString(resId))
     }
 
+    private var loadingState = false
+
     override fun showLoading(message: String) {
         hideKeyBoard()
+        loadingState = true
         progressMessage.text = message
         loading_layout_container.showViewWithChildren()
         toggleAnimation(true)
@@ -89,15 +92,15 @@ class MainActivity : AppCompatActivity(), LoadingCallback {
         if (drawable is AnimatedVectorDrawableCompat) {
             val callback = object: Animatable2Compat.AnimationCallback() {
                 override fun onAnimationEnd(drawab: Drawable?) {
-                    heartRateAnimation.post { drawable.start() }
+                    heartRateAnimation.post { if (loadingState) drawable.start() }
                 }
             }
             if (state) drawable.registerAnimationCallback(callback) else drawable.unregisterAnimationCallback(callback)
-            heartRateAnimation.post { if (state) drawable.start() else drawable.stop() }
+            drawable.stop()
         } else if (drawable is AnimatedVectorDrawable) {
             val callback = @TargetApi(Build.VERSION_CODES.M) object: Animatable2.AnimationCallback() {
                 override fun onAnimationEnd(drawa: Drawable?) {
-                    drawable.start()
+                    if (loadingState) drawable.start()
                 }
             }
             if (state) {
@@ -105,13 +108,14 @@ class MainActivity : AppCompatActivity(), LoadingCallback {
                 heartRateAnimation.post { drawable.start() }
             } else {
                 drawable.unregisterAnimationCallback(callback)
-                heartRateAnimation.post { drawable.stop() }
+                drawable.stop()
             }
         }
     }
 
     override fun dismissLoading() {
         toggleAnimation(false)
+        loadingState = false
         loading_layout_container.hide()
         enableTouch()
     }

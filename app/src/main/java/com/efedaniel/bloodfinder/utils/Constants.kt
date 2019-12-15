@@ -41,5 +41,6 @@ class Misc {
         const val DAY_MONTH_YEAR_AND_TIME = "dd MMMM yyyy 'by' hh:mma"
         const val DAY_MONTH_AND_TIME = "dd MMMM 'at' hh:mma"
         const val TIME = "hh:mma"
+        const val CALL_PERMISSION_REQUEST = 200
     }
 }
