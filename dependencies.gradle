@@ -50,6 +50,9 @@ ext.versions = [
         auth                : '19.1.0',
         crashlytics         : '2.10.1',
 
+        //maps
+        maps                : '17.0.0',
+
         //misc
         materialDialogs     : '3.1.1',
         timber              : '4.7.1',

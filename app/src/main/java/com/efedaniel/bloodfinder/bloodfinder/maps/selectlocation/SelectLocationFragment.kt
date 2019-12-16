@@ -13,15 +13,19 @@ import com.efedaniel.bloodfinder.R
 import com.efedaniel.bloodfinder.base.BaseFragment
 import com.efedaniel.bloodfinder.base.BaseViewModel
 import com.efedaniel.bloodfinder.databinding.FragmentSelectLocationBinding
+import com.google.android.gms.maps.*
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
 import javax.inject.Inject
 
-class SelectLocationFragment : BaseFragment() {
+class SelectLocationFragment : BaseFragment(), OnMapReadyCallback {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
     private lateinit var binding: FragmentSelectLocationBinding
     private lateinit var viewModel: SelectLocationViewModel
+    private lateinit var map: GoogleMap
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,15 +42,30 @@ class SelectLocationFragment : BaseFragment() {
         (mainActivity.applicationContext as App).component.inject(this)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(SelectLocationViewModel::class.java)
         binding.viewModel = viewModel
+        (childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment).getMapAsync(this)
 
         binding.selectLocationButton.setOnClickListener {
             findNavController().navigate(SelectLocationFragmentDirections.actionSelectLocationFragmentToDashboardFragment())
         }
     }
 
+    override fun onMapReady(googleMap: GoogleMap) {
+        map = googleMap
+
+        //Show Dialog to alert users to select their location
+        showDialogWithAction(body = getString(R.string.move_map_around_message), positiveRes = R.string.close, cancelOnTouchOutside = true)
+
+        //TODO move map to users current location by default
+
+        // Add a marker in Sydney and move the camera
+        val sydney = LatLng(-34.0, 151.0)
+        map.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
+        map.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+    }
+
     private fun setUpToolbar() = mainActivity.run {
         setUpToolBar(getString(R.string.select_location), false)
-        invalidateToolbarElevation(0)
+        invalidateToolbarElevation(4)
     }
 
     override fun getViewModel(): BaseViewModel = viewModel

@@ -88,4 +88,7 @@
     <string name="select">Select</string>
     <string name="select_location">Select Location</string>
     <string name="select_this_location">Select This Location</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="close">Close</string>
+    <string name="move_map_around_message">Please move the map around so the red marker is on your home location</string>
 </resources>

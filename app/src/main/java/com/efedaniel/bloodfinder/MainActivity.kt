@@ -138,14 +138,15 @@ class MainActivity : AppCompatActivity(), LoadingCallback {
         positiveRes: Int,
         positiveAction: (() -> Unit)?,
         negativeRes: Int?,
-        negativeAction: (() -> Unit)?
+        negativeAction: (() -> Unit)?,
+        cancelOnTouchOutside: Boolean
     ) {
         MaterialDialog(this).show {
             if (title != null) title(text = title)
             if (body != null) message(text = body)
             if (negativeRes != null) negativeButton(negativeRes) { negativeAction?.invoke() }
             positiveButton(positiveRes) { positiveAction?.invoke() }
-            cancelOnTouchOutside(false)
+            cancelOnTouchOutside(cancelOnTouchOutside)
         }
     }
 

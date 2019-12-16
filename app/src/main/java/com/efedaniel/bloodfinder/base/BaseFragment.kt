@@ -44,8 +44,9 @@ abstract class BaseFragment : Fragment() {
         @StringRes positiveRes: Int = R.string.ok,
         positiveAction: (() -> Unit)? = null,
         @StringRes negativeRes: Int? = null,
-        negativeAction: (() -> Unit)? = null
-    ) = mainActivity.showDialogWithAction(title, body, positiveRes, positiveAction, negativeRes, negativeAction)
+        negativeAction: (() -> Unit)? = null,
+        cancelOnTouchOutside: Boolean = false
+    ) = mainActivity.showDialogWithAction(title, body, positiveRes, positiveAction, negativeRes, negativeAction, cancelOnTouchOutside)
 
     fun showSnackbar(@StringRes stringRes: Int) = try {
         mainActivity.showSnackBar(getString(stringRes))
