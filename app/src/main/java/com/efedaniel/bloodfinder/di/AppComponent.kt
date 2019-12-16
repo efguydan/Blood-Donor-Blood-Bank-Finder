@@ -9,6 +9,7 @@ import com.efedaniel.bloodfinder.bloodfinder.home.bloodrequest.BloodRequestFragm
 import com.efedaniel.bloodfinder.bloodfinder.home.bloodrequestresults.BloodResultsFragment
 import com.efedaniel.bloodfinder.bloodfinder.home.dashboard.DashboardFragment
 import com.efedaniel.bloodfinder.bloodfinder.home.profile.ProfileFragment
+import com.efedaniel.bloodfinder.bloodfinder.maps.selectlocation.SelectLocationFragment
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
@@ -25,6 +26,7 @@ interface AppComponent {
     fun inject(target: BloodAvailabilityFragment)
     fun inject(target: BloodRequestFragment)
     fun inject(target: BloodResultsFragment)
+    fun inject(target: SelectLocationFragment)
 
     @Component.Builder
     interface Builder {

@@ -35,6 +35,12 @@
             app:exitAnim="@anim/slide_out_to_left"
             app:popEnterAnim="@anim/slide_in_from_left"
             app:popExitAnim="@anim/slide_out_to_right" />
+        <action
+            android:id="@+id/action_signInFragment_to_selectLocationFragment"
+            app:destination="@id/selectLocationFragment"
+            app:enterAnim="@anim/slide_in_from_left"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popUpTo="@+id/nav_graph" />
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"
@@ -85,6 +91,12 @@
             app:enterAnim="@anim/slide_in_from_left"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popUpTo="@+id/nav_graph" />
+        <action
+            android:id="@+id/action_profileFragment_to_selectLocationFragment2"
+            app:destination="@id/selectLocationFragment"
+            app:enterAnim="@anim/slide_in_from_left"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popUpTo="@+id/nav_graph" />
     </fragment>
     <fragment
         android:id="@+id/forgotPasswordFragment"
@@ -117,5 +129,17 @@
         <argument
             android:name="bloodResultsList"
             app:argType="com.efedaniel.bloodfinder.bloodfinder.models.request.UploadBloodAvailabilityRequest[]" />
+    </fragment>
+    <fragment
+        android:id="@+id/selectLocationFragment"
+        android:name="com.efedaniel.bloodfinder.bloodfinder.maps.selectlocation.SelectLocationFragment"
+        android:label="SelectLocationFragment"
+        tools:layout="@layout/fragment_select_location" >
+        <action
+            android:id="@+id/action_selectLocationFragment_to_dashboardFragment2"
+            app:destination="@id/dashboardFragment"
+            app:enterAnim="@anim/slide_in_from_left"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popUpTo="@+id/nav_graph" />
     </fragment>
 </navigation>

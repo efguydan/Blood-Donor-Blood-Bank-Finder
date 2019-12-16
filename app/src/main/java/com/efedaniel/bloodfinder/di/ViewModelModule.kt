@@ -10,6 +10,7 @@ import com.efedaniel.bloodfinder.bloodfinder.home.bloodrequest.BloodRequestViewM
 import com.efedaniel.bloodfinder.bloodfinder.home.bloodrequestresults.BloodResultsViewModel
 import com.efedaniel.bloodfinder.bloodfinder.home.dashboard.DashboardViewModel
 import com.efedaniel.bloodfinder.bloodfinder.home.profile.ProfileViewModel
+import com.efedaniel.bloodfinder.bloodfinder.maps.selectlocation.SelectLocationViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -61,5 +62,8 @@ abstract class ViewModelModule {
     @ViewModelKey(BloodResultsViewModel::class)
     abstract fun bindsBloodResultsViewModel(viewModel: BloodResultsViewModel): ViewModel
 
-    // TODO Add other ViewModels.
+    @Binds
+    @IntoMap
+    @ViewModelKey(SelectLocationViewModel::class)
+    abstract fun bindsSelectLocationViewModel(viewModel: SelectLocationViewModel): ViewModel
 }
