@@ -79,7 +79,6 @@ class MainActivity : AppCompatActivity(), LoadingCallback {
 
     override fun showLoading(message: String) {
         hideKeyBoard()
-        loadingState = true
         progressMessage.text = message
         loading_layout_container.showViewWithChildren()
         toggleAnimation(true)
@@ -88,32 +87,25 @@ class MainActivity : AppCompatActivity(), LoadingCallback {
 
     @SuppressLint("NewApi")
     private fun toggleAnimation(state: Boolean) {
+        loadingState = state
         val drawable = heartRateAnimation.drawable
         if (drawable is AnimatedVectorDrawableCompat) {
             val callback = object: Animatable2Compat.AnimationCallback() {
-                override fun onAnimationEnd(drawab: Drawable?) {
-                    heartRateAnimation.post { if (loadingState) drawable.start() }
-                }
+                override fun onAnimationEnd(drawab: Drawable?) { if (loadingState) drawable.start() }
             }
-            if (state) drawable.registerAnimationCallback(callback) else drawable.unregisterAnimationCallback(callback)
-            drawable.stop()
+            drawable.registerAnimationCallback(callback)
+            if (state) drawable.start() else drawable.stop()
         } else if (drawable is AnimatedVectorDrawable) {
             val callback = @TargetApi(Build.VERSION_CODES.M) object: Animatable2.AnimationCallback() {
                 override fun onAnimationEnd(drawa: Drawable?) { if (loadingState) drawable.start() }
             }
-            if (state) {
-                drawable.registerAnimationCallback(callback)
-                heartRateAnimation.post { drawable.start() }
-            } else {
-                drawable.unregisterAnimationCallback(callback)
-                drawable.stop()
-            }
+            drawable.registerAnimationCallback(callback)
+            if (state) drawable.start() else drawable.stop()
         }
     }
 
     override fun dismissLoading() {
         toggleAnimation(false)
-        loadingState = false
         loading_layout_container.hide()
         enableTouch()
     }
