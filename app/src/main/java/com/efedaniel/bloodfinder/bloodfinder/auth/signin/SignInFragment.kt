@@ -45,9 +45,14 @@ class SignInFragment : BaseFragment() {
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(SignInViewModel::class.java)
         binding.viewModel = viewModel
         prefillLastUsedEmailAddress()
+
         binding.signUpTextView.setOnClickListener {
             findNavController().navigate(SignInFragmentDirections.actionSignInFragmentToSignUpFragment())
         }
+        binding.forgotPasswordTextView.setOnClickListener {
+            findNavController().navigate(SignInFragmentDirections.actionSignInFragmentToForgotPasswordFragment())
+        }
+
         binding.signInButton.setOnClickListener {
             if (binding.idEditText.text.toString().trim().isEmpty()) {
                 showSnackbar(R.string.email_cant_be_empty)
@@ -62,13 +67,11 @@ class SignInFragment : BaseFragment() {
                 binding.passwordEditText.text.toString()
             )
         }
-        binding.forgotPasswordTextView.setOnClickListener {
-            findNavController().navigate(SignInFragmentDirections.actionSignInFragmentToForgotPasswordFragment())
-        }
         viewModel.signInSuccessful.observe(this, Observer {
             if (it == null) return@Observer
             findNavController().navigate(when(it) {
                 SignInViewModel.UserDetailsFlow.PROFILE -> SignInFragmentDirections.actionSignInFragmentToProfileFragment()
+                SignInViewModel.UserDetailsFlow.LOCATION -> SignInFragmentDirections.actionSignInFragmentToSelectLocationFragment()
                 else -> SignInFragmentDirections.actionSignInFragmentToDashboardFragment()
             })
             viewModel.signInSuccessfulCompleted()

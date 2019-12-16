@@ -1,5 +1,7 @@
 package com.efedaniel.bloodfinder.bloodfinder.models.request
 
+import com.efedaniel.bloodfinder.bloodfinder.models.Location
+
 data class UserDetails(
     var address: String? = null,
     var firstName: String? = null,
@@ -12,11 +14,11 @@ data class UserDetails(
     var religion: String? = null,
     var title: String? = null,
     var userType: String? = null,
-    var bloodType: String? = null
+    var bloodType: String? = null,
+    var location: Location? = null
 ) {
 
     fun isBloodDonor() = userType == "Blood Donor"
 
     fun fullName() = if (isBloodDonor()) "$title $firstName $lastName" else institutionName ?: ""
-
 }

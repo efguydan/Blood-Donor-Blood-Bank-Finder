@@ -92,7 +92,7 @@
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popUpTo="@+id/nav_graph" />
         <action
-            android:id="@+id/action_profileFragment_to_selectLocationFragment2"
+            android:id="@+id/action_profileFragment_to_selectLocationFragment"
             app:destination="@id/selectLocationFragment"
             app:enterAnim="@anim/slide_in_from_left"
             app:exitAnim="@anim/nav_default_exit_anim"
@@ -136,7 +136,7 @@
         android:label="SelectLocationFragment"
         tools:layout="@layout/fragment_select_location" >
         <action
-            android:id="@+id/action_selectLocationFragment_to_dashboardFragment2"
+            android:id="@+id/action_selectLocationFragment_to_dashboardFragment"
             app:destination="@id/dashboardFragment"
             app:enterAnim="@anim/slide_in_from_left"
             app:exitAnim="@anim/nav_default_exit_anim"

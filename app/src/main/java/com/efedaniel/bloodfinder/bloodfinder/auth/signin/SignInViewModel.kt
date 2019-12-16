@@ -25,6 +25,7 @@ class SignInViewModel @Inject constructor(
 
     enum class UserDetailsFlow {
         PROFILE,
+        LOCATION,
         DASHBOARD
     }
 
@@ -67,7 +68,11 @@ class SignInViewModel @Inject constructor(
             if (response?.isSuccessful == true) {
                 val userDetails: UserDetails? = Gson().fromJson(response.body(), UserDetails::class.java)
                 if (userDetails != null) prefsUtils.putObject(PrefKeys.LOGGED_IN_USER_DATA, userDetails)
-                _signInSuccessful.value = if (userDetails == null) UserDetailsFlow.PROFILE else UserDetailsFlow.DASHBOARD
+                _signInSuccessful.value = when {
+                    userDetails == null -> UserDetailsFlow.PROFILE
+                    userDetails.location == null -> UserDetailsFlow.LOCATION
+                    else -> UserDetailsFlow.DASHBOARD
+                }
                 _loadingStatus.value = LoadingStatus.Success
             } else {
                 _loadingStatus.value = LoadingStatus.Error(GENERIC_ERROR_CODE, GENERIC_ERROR_MESSAGE)

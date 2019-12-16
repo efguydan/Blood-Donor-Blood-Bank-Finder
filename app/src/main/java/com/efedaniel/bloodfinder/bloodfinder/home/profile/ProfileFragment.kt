@@ -57,7 +57,7 @@ class ProfileFragment : BaseFragment() {
         }
         viewModel.profileSavedAction.observe(this, Observer {
             if (it == true) {
-                findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToDashboardFragment())
+                findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToSelectLocationFragment())
                 viewModel.profileSavedActionCompleted()
             }
         })
