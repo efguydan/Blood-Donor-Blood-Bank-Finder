@@ -2,9 +2,7 @@ package com.efedaniel.bloodfinder.bloodfinder.maps.selectlocation
 
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
@@ -15,7 +13,6 @@ import com.efedaniel.bloodfinder.base.BaseViewModel
 import com.efedaniel.bloodfinder.databinding.FragmentSelectLocationBinding
 import com.google.android.gms.maps.*
 import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MarkerOptions
 import javax.inject.Inject
 
 class SelectLocationFragment : BaseFragment(), OnMapReadyCallback {
@@ -42,11 +39,17 @@ class SelectLocationFragment : BaseFragment(), OnMapReadyCallback {
         (mainActivity.applicationContext as App).component.inject(this)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(SelectLocationViewModel::class.java)
         binding.viewModel = viewModel
+        setHasOptionsMenu(true)
         (childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment).getMapAsync(this)
 
         binding.selectLocationButton.setOnClickListener {
             findNavController().navigate(SelectLocationFragmentDirections.actionSelectLocationFragmentToDashboardFragment())
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater!!.inflate(R.menu.select_location_menu, menu)
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
