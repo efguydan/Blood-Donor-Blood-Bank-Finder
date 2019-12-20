@@ -17,8 +17,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <include layout="@layout/toolbar_layout"
-            android:id="@+id/includeToolbar"/>
+        <include
+            layout="@layout/toolbar_layout"
+            android:id="@+id/includeToolbar" />
 
     </FrameLayout>
 
