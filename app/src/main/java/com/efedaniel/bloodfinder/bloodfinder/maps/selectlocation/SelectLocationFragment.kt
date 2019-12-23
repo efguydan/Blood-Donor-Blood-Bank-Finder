@@ -73,10 +73,7 @@ class SelectLocationFragment : BaseFragment(), OnMapReadyCallback {
             Timber.d("Longitude: %s", map.cameraPosition.target.longitude.toString())
             showDialogWithAction(
                 title = getString(R.string.save_selected_location),
-                body = String.format("%s\nLatitude: %s\nLongitude: %s",
-                    getString(R.string.save_selected_location_message),
-                    map.cameraPosition.target.latitude.toString(),
-                    map.cameraPosition.target.longitude.toString()),
+                body = getString(R.string.save_selected_location_message),
                 positiveRes = R.string.proceed,
                 positiveAction = {
                     viewModel.saveUserLocation(
