@@ -30,6 +30,7 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -74,8 +75,9 @@ class SelectLocationFragment : BaseFragment(), OnMapReadyCallback {
         binding.selectLocationButton.setOnClickListener {
             findNavController().navigate(SelectLocationFragmentDirections.actionSelectLocationFragmentToDashboardFragment())
         }
-
-        mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(context!!)
+        binding.selectLocationButton.setOnClickListener {
+            showSnackbar(String.format("%s, %s", map.cameraPosition.target.latitude.toString(), map.cameraPosition.target.longitude.toString()))
+        }
     }
 
     private fun initiateGettingLocation() {
@@ -111,7 +113,7 @@ class SelectLocationFragment : BaseFragment(), OnMapReadyCallback {
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         return when(item!!.itemId) {
             R.id.action_my_location -> {
-                getCurrentLocation()
+                getLocationPermission()
                 true
             }
             else -> super.onOptionsItemSelected(item)
@@ -128,6 +130,7 @@ class SelectLocationFragment : BaseFragment(), OnMapReadyCallback {
             return
         }
         try {
+            mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(context!!)
             val lastLocation = mFusedLocationProviderClient.lastLocation
             lastLocation.addOnCompleteListener { task ->
                 if (task.isSuccessful && task.result != null) {
@@ -160,11 +163,15 @@ class SelectLocationFragment : BaseFragment(), OnMapReadyCallback {
 
     private fun getLocationPermission() {
         locationPermissionGranted = false
-        if (ContextCompat.checkSelfPermission(context!!, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+        if (ContextCompat.checkSelfPermission(context!!, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
+            ContextCompat.checkSelfPermission(context!!, android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             locationPermissionGranted = true
             getCurrentLocation()
         } else {
-            requestPermissions(arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION), Misc.LOCATION_PERMISSION_REQUEST)
+            requestPermissions(arrayOf(
+                android.Manifest.permission.ACCESS_FINE_LOCATION,
+                android.Manifest.permission.ACCESS_COARSE_LOCATION
+            ), Misc.LOCATION_PERMISSION_REQUEST)
         }
     }
 
@@ -176,7 +183,9 @@ class SelectLocationFragment : BaseFragment(), OnMapReadyCallback {
         locationPermissionGranted = false
         when(requestCode) {
             Misc.LOCATION_PERMISSION_REQUEST -> {
-                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                if (grantResults.isNotEmpty() &&
+                    grantResults[0] == PackageManager.PERMISSION_GRANTED &&
+                    grantResults[1] == PackageManager.PERMISSION_GRANTED) {
                     locationPermissionGranted = true
                     getCurrentLocation()
                 }
@@ -193,6 +202,9 @@ class SelectLocationFragment : BaseFragment(), OnMapReadyCallback {
         // Add a marker in Nigeria and move the camera
         val nigeria = LatLng(9.08, 8.67)
         map.moveCamera(CameraUpdateFactory.newLatLng(nigeria))
+
+        //Enable Selecting Location Button
+        binding.selectLocationButton.isEnabled = true
     }
 
     private fun setUpToolbar() = mainActivity.run {
