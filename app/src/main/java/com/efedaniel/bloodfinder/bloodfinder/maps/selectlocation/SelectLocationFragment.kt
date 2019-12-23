@@ -1,16 +1,13 @@
 package com.efedaniel.bloodfinder.bloodfinder.maps.selectlocation
 
 
-import android.content.Context
-import android.content.Intent
 import android.content.IntentSender
 import android.content.pm.PackageManager
 import android.location.Location
-import android.location.LocationManager
 import android.os.Bundle
-import android.provider.Settings
 import android.view.*
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
@@ -30,7 +27,6 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MarkerOptions
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -73,11 +69,29 @@ class SelectLocationFragment : BaseFragment(), OnMapReadyCallback {
         (childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment).getMapAsync(this)
 
         binding.selectLocationButton.setOnClickListener {
-            findNavController().navigate(SelectLocationFragmentDirections.actionSelectLocationFragmentToDashboardFragment())
+            Timber.d("Latitude: %s", map.cameraPosition.target.latitude.toString())
+            Timber.d("Longitude: %s", map.cameraPosition.target.longitude.toString())
+            showDialogWithAction(
+                title = getString(R.string.save_selected_location),
+                body = String.format("%s\nLatitude: %s\nLongitude: %s",
+                    getString(R.string.save_selected_location_message),
+                    map.cameraPosition.target.latitude.toString(),
+                    map.cameraPosition.target.longitude.toString()),
+                positiveRes = R.string.proceed,
+                positiveAction = {
+                    viewModel.saveUserLocation(
+                        map.cameraPosition.target.latitude.toString(),
+                        map.cameraPosition.target.longitude.toString())
+                },
+                negativeRes = R.string.cancel
+            )
         }
-        binding.selectLocationButton.setOnClickListener {
-            showSnackbar(String.format("%s, %s", map.cameraPosition.target.latitude.toString(), map.cameraPosition.target.longitude.toString()))
-        }
+        viewModel.locationSavedAction.observe(this, Observer {
+            if (it) {
+                findNavController().navigate(SelectLocationFragmentDirections.actionSelectLocationFragmentToDashboardFragment())
+                viewModel.locationSavedActionCompleted()
+            }
+        })
     }
 
     private fun initiateGettingLocation() {

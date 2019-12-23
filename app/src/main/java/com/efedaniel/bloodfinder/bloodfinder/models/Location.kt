@@ -1,6 +1,7 @@
 package com.efedaniel.bloodfinder.bloodfinder.models
 
 data class Location(
-    val longitude: Long,
-    val latitude: Long
+    val latitude: String,
+    val longitude: String,
+    val address: String = ""
 )

@@ -1,5 +1,6 @@
 package com.efedaniel.bloodfinder.bloodfinder.apis
 
+import com.efedaniel.bloodfinder.bloodfinder.models.Location
 import com.efedaniel.bloodfinder.bloodfinder.models.request.UploadBloodAvailabilityRequest
 import com.efedaniel.bloodfinder.bloodfinder.models.request.UserDetails
 import com.google.gson.JsonElement
@@ -10,6 +11,9 @@ interface DatabaseApiService {
 
     @PUT("/users/{user_id}.json")
     suspend fun saveUserDetails(@Path("user_id") userID: String, @Body body: UserDetails): Response<UserDetails>
+
+    @PUT("/users/{user_id}/location.json")
+    suspend fun saveUserLocation(@Path("user_id") userID: String, @Body body: Location): Response<Location>
 
     @GET("/users/{user_id}.json")
     suspend fun getUserDetails(@Path("user_id") userID: String): Response<JsonElement>

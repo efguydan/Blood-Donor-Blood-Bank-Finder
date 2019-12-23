@@ -1,6 +1,7 @@
 package com.efedaniel.bloodfinder.bloodfinder.repositories
 
 import com.efedaniel.bloodfinder.bloodfinder.apis.DatabaseApiService
+import com.efedaniel.bloodfinder.bloodfinder.models.Location
 import com.efedaniel.bloodfinder.bloodfinder.models.request.UploadBloodAvailabilityRequest
 import com.efedaniel.bloodfinder.bloodfinder.models.request.UserDetails
 import com.efedaniel.bloodfinder.networkutils.GENERIC_ERROR_CODE
@@ -21,10 +22,20 @@ class DatabaseRepository @Inject constructor(private val databaseApiService: Dat
         }
     }
 
+    suspend fun saveUserLocation(userID: String, location: Location): Result<Location> {
+        return try {
+            getAPIResult(databaseApiService.saveUserLocation(userID, location))
+        } catch (e: Exception) {
+            e.printStackTrace()
+            Result.Error(GENERIC_ERROR_CODE, GENERIC_ERROR_MESSAGE)
+        }
+    }
+
     suspend fun getUserDetails(userID: String): Response<JsonElement>? {
         return try {
             databaseApiService.getUserDetails(userID)
         } catch (e: Exception) {
+            e.printStackTrace()
             null
         }
     }
@@ -33,6 +44,7 @@ class DatabaseRepository @Inject constructor(private val databaseApiService: Dat
         return try {
             databaseApiService.uploadBloodAvailability(body)
         } catch (e: java.lang.Exception) {
+            e.printStackTrace()
             null
         }
     }
@@ -41,6 +53,7 @@ class DatabaseRepository @Inject constructor(private val databaseApiService: Dat
         return try {
             databaseApiService.deleteBloodAvailability(bloodAvailabilityID)
         } catch (e: java.lang.Exception) {
+            e.printStackTrace()
             null
         }
     }
@@ -49,6 +62,7 @@ class DatabaseRepository @Inject constructor(private val databaseApiService: Dat
         return try {
             databaseApiService.uploadBloodAvailabilityID(bloodAvailabilityID, bloodAvailabilityID)
         } catch (e: java.lang.Exception) {
+            e.printStackTrace()
             null
         }
     }
@@ -57,6 +71,7 @@ class DatabaseRepository @Inject constructor(private val databaseApiService: Dat
         return try {
             databaseApiService.getFilteredBloodAvailability("\"$key\"", "\"$value\"")
         } catch (e: java.lang.Exception) {
+            e.printStackTrace()
             null
         }
     }

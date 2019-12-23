@@ -18,7 +18,6 @@ class BloodResultsViewModel @Inject constructor(
     }
 
     override fun addAllLiveDataToObservablesList() {
-
     }
 
 }

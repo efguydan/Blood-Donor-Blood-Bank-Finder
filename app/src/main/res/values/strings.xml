@@ -95,4 +95,7 @@
     <string name="location_permission_not_given_error">Hi!\nTo get your current location, we need your permission. Kindly click on proceed to give us your permission.</string>
     <string name="current_location_getting_error">An error was encountered while trying to get your location. Please try again later</string>
     <string name="try_again">Try Again</string>
+    <string name="saving_user_location">Saving User Location...</string>
+    <string name="save_selected_location">Save Selected Location</string>
+    <string name="save_selected_location_message">Are you sure you want to save the selected location?</string>
 </resources>
