@@ -145,7 +145,7 @@ class SelectLocationFragment : BaseFragment(), OnMapReadyCallback {
             mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(context!!)
             val lastLocation = mFusedLocationProviderClient.lastLocation
             lastLocation.addOnCompleteListener { task ->
-                if (task.isSuccessful) {
+                if (task.isSuccessful && task.result != null) {
                     // Set the map's camera position to the current location of the device
 
                     lastKnownLocation = task.result!!
