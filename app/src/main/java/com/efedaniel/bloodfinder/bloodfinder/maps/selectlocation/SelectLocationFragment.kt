@@ -125,6 +125,7 @@ class SelectLocationFragment : BaseFragment(), OnMapReadyCallback {
         return when(item!!.itemId) {
             R.id.action_my_location -> {
 //                getLocationPermission()
+                initiateGettingLocation()
                 mapsLocationButton?.callOnClick()
                 true
             }
