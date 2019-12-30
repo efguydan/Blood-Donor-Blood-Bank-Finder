@@ -44,9 +44,7 @@ class SelectLocationFragment : BaseFragment(), OnMapReadyCallback {
     private lateinit var map: GoogleMap
     private var mapsLocationButton : View? = null
 
-    private lateinit var mFusedLocationProviderClient: FusedLocationProviderClient
-    // The geographical location where the device is currently located. That is, the last-known
-    // location retrieved by the Fused Location Provider.
+    private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
     private lateinit var lastKnownLocation: Location
     private var locationPermissionGranted = false
 
@@ -143,8 +141,8 @@ class SelectLocationFragment : BaseFragment(), OnMapReadyCallback {
             return
         }
         try {
-            mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(context!!)
-            val lastLocation = mFusedLocationProviderClient.lastLocation
+            fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(context!!)
+            val lastLocation = fusedLocationProviderClient.lastLocation
             lastLocation.addOnCompleteListener { task ->
                 if (task.isSuccessful && task.result != null) {
                     // Set the map's camera position to the current location of the device
