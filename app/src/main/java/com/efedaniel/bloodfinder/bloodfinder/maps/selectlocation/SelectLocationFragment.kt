@@ -42,6 +42,7 @@ class SelectLocationFragment : BaseFragment(), OnMapReadyCallback {
     private lateinit var binding: FragmentSelectLocationBinding
     private lateinit var viewModel: SelectLocationViewModel
     private lateinit var map: GoogleMap
+    private var mapsLocationButton : View? = null
 
     private lateinit var mFusedLocationProviderClient: FusedLocationProviderClient
     // The geographical location where the device is currently located. That is, the last-known
@@ -65,7 +66,6 @@ class SelectLocationFragment : BaseFragment(), OnMapReadyCallback {
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(SelectLocationViewModel::class.java)
         binding.viewModel = viewModel
         setHasOptionsMenu(true)
-        initiateGettingLocation()
         (childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment).getMapAsync(this)
 
         binding.selectLocationButton.setOnClickListener {
@@ -124,7 +124,8 @@ class SelectLocationFragment : BaseFragment(), OnMapReadyCallback {
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         return when(item!!.itemId) {
             R.id.action_my_location -> {
-                getLocationPermission()
+//                getLocationPermission()
+                mapsLocationButton?.callOnClick()
                 true
             }
             else -> super.onOptionsItemSelected(item)
@@ -144,8 +145,9 @@ class SelectLocationFragment : BaseFragment(), OnMapReadyCallback {
             mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(context!!)
             val lastLocation = mFusedLocationProviderClient.lastLocation
             lastLocation.addOnCompleteListener { task ->
-                if (task.isSuccessful && task.result != null) {
+                if (task.isSuccessful) {
                     // Set the map's camera position to the current location of the device
+
                     lastKnownLocation = task.result!!
                     Timber.d("Latitude: %s", lastKnownLocation.latitude)
                     Timber.d("Longitude: %s", lastKnownLocation.longitude)
@@ -216,11 +218,20 @@ class SelectLocationFragment : BaseFragment(), OnMapReadyCallback {
 
         //Enable Selecting Location Button
         binding.selectLocationButton.isEnabled = true
+
+        //Send a current Location Request
+        initiateGettingLocation()
+
+        //Setup current location shii
+        map.isMyLocationEnabled = true
+        val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
+        mapsLocationButton = (mapFragment.view!!.findViewById<View>(Integer.parseInt("1")).parent as View).findViewById<View>(Integer.parseInt("2"))
+        mapsLocationButton?.visibility = View.GONE
     }
 
     private fun setUpToolbar() = mainActivity.run {
         setUpToolBar(getString(R.string.select_location), false)
-        invalidateToolbarElevation(4)
+        invalidateToolbarElevation(100)
     }
 
     override fun getViewModel(): BaseViewModel = viewModel
