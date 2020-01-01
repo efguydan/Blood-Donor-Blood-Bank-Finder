@@ -20,5 +20,5 @@ data class UserDetails(
 
     fun isBloodDonor() = userType == "Blood Donor"
 
-    fun fullName() = if (isBloodDonor()) "$title $firstName $lastName" else institutionName ?: ""
+    fun fullName() = if (isBloodDonor()) "$title $firstName $lastName" else institutionName ?: "User"
 }

@@ -33,7 +33,7 @@ class SelectLocationViewModel @Inject constructor(
         val user = prefsUtils.getPrefAsObject(PrefKeys.LOGGED_IN_USER_DATA, UserDetails::class.java)
         viewModelScope.launch {
             _loadingStatus.value = LoadingStatus.Loading(resourceProvider.getString(R.string.saving_user_location))
-            when (val result = databaseRepository.saveUserLocation(user.localID!!, Location(latitude, longitude))) {
+            when (val result = databaseRepository.saveUserLocation(user.localID!!, Location(latitude, longitude, user.address))) {
                 is Result.Success -> {
                     user.location = result.data
                     prefsUtils.putObject(PrefKeys.LOGGED_IN_USER_DATA, user)

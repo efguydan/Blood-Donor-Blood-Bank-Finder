@@ -1,7 +1,11 @@
 package com.efedaniel.bloodfinder.bloodfinder.models
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
 data class Location(
     val latitude: String,
     val longitude: String,
-    val address: String = ""
-)
+    var address: String? = ""
+) : Parcelable

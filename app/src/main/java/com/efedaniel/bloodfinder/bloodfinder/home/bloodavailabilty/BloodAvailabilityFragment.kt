@@ -99,7 +99,8 @@ class BloodAvailabilityFragment : BaseFragment() {
 
     private fun uploadSingleBloodAvailability(bloodType: String, billingType: String) {
         viewModel.uploadBloodAvailability(UploadBloodAvailabilityRequest(bloodType, billingType,
-            user.localID!!, user.phoneNumber!!, user.fullName(), user.religion ?: "Prefer Not To Say"))
+            user.localID!!, user.phoneNumber!!, user.fullName(), user.religion ?: "Prefer Not To Say",
+            user.location!!))
     }
 
     private fun isInputVerified(bottomSheet: MaterialDialog): Boolean {
