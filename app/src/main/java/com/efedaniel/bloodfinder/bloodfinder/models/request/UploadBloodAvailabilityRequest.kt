@@ -14,5 +14,6 @@ data class UploadBloodAvailabilityRequest(
     val donorReligion: String,
     val location: MiniLocation,
     val creationTime: String = System.currentTimeMillis().toString(),
-    val bloodAvailabilityID: String? = null
+    val bloodAvailabilityID: String? = null,
+    val status: String = "pending"
 ) : Parcelable

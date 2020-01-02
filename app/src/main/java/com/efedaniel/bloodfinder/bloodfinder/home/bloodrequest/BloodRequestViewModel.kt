@@ -78,6 +78,8 @@ class BloodRequestViewModel @Inject constructor(
 
             //Remove the billing types that weren't asked for by the user
             else if (this.billingType.toLowerCase() != "any" && bloodPosting.billingType != this.billingType) donorsToRemove.add(bloodPosting)
+
+            //TODO Add Religion Filter
         }
         donorList.removeAll(donorsToRemove)
 
