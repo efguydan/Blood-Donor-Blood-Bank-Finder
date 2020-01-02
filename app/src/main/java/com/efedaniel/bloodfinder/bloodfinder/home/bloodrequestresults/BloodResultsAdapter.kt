@@ -6,11 +6,15 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.efedaniel.bloodfinder.R
+import com.efedaniel.bloodfinder.bloodfinder.models.MiniLocation
 import com.efedaniel.bloodfinder.bloodfinder.models.request.UploadBloodAvailabilityRequest
+import com.efedaniel.bloodfinder.bloodfinder.models.request.UserDetails
 import com.efedaniel.bloodfinder.databinding.ItemBloodResultBinding
+import com.efedaniel.bloodfinder.extensions.convertToDistanceInKm
 import com.efedaniel.bloodfinder.extensions.getTime
 
 class BloodResultsAdapter(
+    private val userLocation: MiniLocation,
     private val clickHandler: ClickHandler
 ): ListAdapter<UploadBloodAvailabilityRequest, BloodResultsAdapter.ViewHolder>(DiffCallback) {
 
@@ -38,6 +42,7 @@ class BloodResultsAdapter(
         fun bind(result: UploadBloodAvailabilityRequest) {
             binding.bloodPosting = result
             binding.creationTimeTextView.text = result.creationTime.getTime()
+            binding.distanceTextView.text = userLocation.distanceTo(result.location).convertToDistanceInKm()
             binding.phoneButton.setOnClickListener { clickHandler.call(getItem(adapterPosition).donorPhoneNumber) }
         }
     }

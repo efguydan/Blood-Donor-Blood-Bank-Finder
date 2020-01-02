@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.efedaniel.bloodfinder.R
 import com.efedaniel.bloodfinder.base.BaseViewModel
+import com.efedaniel.bloodfinder.bloodfinder.models.MiniLocation
 import com.efedaniel.bloodfinder.bloodfinder.models.request.UploadBloodAvailabilityRequest
 import com.efedaniel.bloodfinder.bloodfinder.models.request.UserDetails
 import com.efedaniel.bloodfinder.bloodfinder.repositories.DatabaseRepository
@@ -26,7 +27,7 @@ class BloodRequestViewModel @Inject constructor(
 
     private val user = prefsUtils.getPrefAsObject(PrefKeys.LOGGED_IN_USER_DATA, UserDetails::class.java)
 
-    val donorList = mutableListOf<UploadBloodAvailabilityRequest>()
+    var donorList = mutableListOf<UploadBloodAvailabilityRequest>()
     private var numOfRequests = 0
     private var billingType = ""
 
@@ -82,6 +83,10 @@ class BloodRequestViewModel @Inject constructor(
 
         //After all filters, if the list is not empty, then we move to result fragment
         if (donorList.isNotEmpty()) {
+
+            //Sort the blood donors according to the distance to the current User
+            donorList = donorList.sortedWith(compareBy { it.location.distanceTo(user.location!!) }).toMutableList()
+
             _moveToBloodResults.value = true
             _loadingStatus.value = LoadingStatus.Success
         } else {

@@ -41,26 +41,6 @@
                 tools:text="Chief Efe" />
 
             <TextView
-                android:id="@+id/textView4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:background="@color/yellow"
-                android:fontFamily="@font/muli_bold"
-                android:paddingStart="12dp"
-                android:paddingTop="2dp"
-                android:paddingEnd="12dp"
-                android:paddingBottom="2dp"
-                android:text="@{bloodPosting.status}"
-                android:textAllCaps="true"
-                android:textColor="@android:color/white"
-                android:textSize="10sp"
-                app:layout_constraintBaseline_toBaselineOf="@+id/donorNameTextView"
-                app:layout_constraintEnd_toEndOf="parent"
-                tools:ignore="SmallSp"
-                tools:text="pending" />
-
-            <TextView
                 android:id="@+id/bloodTypeLabelTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

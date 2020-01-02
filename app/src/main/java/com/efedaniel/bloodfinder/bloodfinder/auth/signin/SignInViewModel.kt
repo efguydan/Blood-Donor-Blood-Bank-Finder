@@ -34,11 +34,11 @@ class SignInViewModel @Inject constructor(
     val signInSuccessful get() = _signInSuccessful
 
     fun signInUser(email: String, password: String) {
+        prefsUtils.putString(PrefKeys.PREVIOUSLY_USED_EMAIL_ADDRESS, email)
         viewModelScope.launch {
             _loadingStatus.value = LoadingStatus.Loading(resourceProvider.getString(R.string.verifying_credentials))
             when (val result = authRepository.signInUser(email, password)) {
                 is Result.Success -> {
-                    prefsUtils.putString(PrefKeys.PREVIOUSLY_USED_EMAIL_ADDRESS, email)
                     prefsUtils.putObject(PrefKeys.LOGGED_IN_FIREBASE_AUTH_USER, result.data)
                     getUserDetails(result.data.localId)
                 }

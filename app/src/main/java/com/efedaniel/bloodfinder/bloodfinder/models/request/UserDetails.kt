@@ -1,6 +1,6 @@
 package com.efedaniel.bloodfinder.bloodfinder.models.request
 
-import com.efedaniel.bloodfinder.bloodfinder.models.Location
+import com.efedaniel.bloodfinder.bloodfinder.models.MiniLocation
 
 data class UserDetails(
     var address: String? = null,
@@ -15,9 +15,8 @@ data class UserDetails(
     var title: String? = null,
     var userType: String? = null,
     var bloodType: String? = null,
-    var location: Location? = null
+    var location: MiniLocation? = null
 ) {
-
     fun isBloodDonor() = userType == "Blood Donor"
 
     fun fullName() = if (isBloodDonor()) "$title $firstName $lastName" else institutionName ?: "User"

@@ -1,7 +1,7 @@
 package com.efedaniel.bloodfinder.bloodfinder.repositories
 
 import com.efedaniel.bloodfinder.bloodfinder.apis.DatabaseApiService
-import com.efedaniel.bloodfinder.bloodfinder.models.Location
+import com.efedaniel.bloodfinder.bloodfinder.models.MiniLocation
 import com.efedaniel.bloodfinder.bloodfinder.models.request.UploadBloodAvailabilityRequest
 import com.efedaniel.bloodfinder.bloodfinder.models.request.UserDetails
 import com.efedaniel.bloodfinder.networkutils.GENERIC_ERROR_CODE
@@ -22,7 +22,7 @@ class DatabaseRepository @Inject constructor(private val databaseApiService: Dat
         }
     }
 
-    suspend fun saveUserLocation(userID: String, location: Location): Result<Location> {
+    suspend fun saveUserLocation(userID: String, location: MiniLocation): Result<MiniLocation> {
         return try {
             getAPIResult(databaseApiService.saveUserLocation(userID, location))
         } catch (e: Exception) {
