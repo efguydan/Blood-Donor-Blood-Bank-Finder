@@ -49,6 +49,7 @@ ext.versions = [
         analytics           : '17.2.0',
         auth                : '19.1.0',
         crashlytics         : '2.10.1',
+        messaging           : '20.1.0',
 
         //maps
         maps                : '17.0.0',

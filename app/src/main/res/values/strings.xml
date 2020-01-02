@@ -99,4 +99,5 @@
     <string name="save_selected_location">Save Selected Location</string>
     <string name="save_selected_location_message">Are you sure you want to save the selected location?</string>
     <string name="distance">Distance</string>
+    <string name="default_notification_channel_id">general_channel</string>
 </resources>
