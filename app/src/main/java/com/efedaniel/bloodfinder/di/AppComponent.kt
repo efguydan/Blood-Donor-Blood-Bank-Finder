@@ -10,6 +10,7 @@ import com.efedaniel.bloodfinder.bloodfinder.home.bloodrequestresults.BloodResul
 import com.efedaniel.bloodfinder.bloodfinder.home.dashboard.DashboardFragment
 import com.efedaniel.bloodfinder.bloodfinder.home.profile.ProfileFragment
 import com.efedaniel.bloodfinder.bloodfinder.maps.selectlocation.SelectLocationFragment
+import com.efedaniel.bloodfinder.bloodfinder.notifications.NotificationHandlerService
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
@@ -17,6 +18,8 @@ import javax.inject.Singleton
 @Singleton
 @Component(modules = [APIServiceModule::class, ViewModelModule::class])
 interface AppComponent {
+
+    fun inject(target: NotificationHandlerService)
 
     fun inject(target: SignInFragment)
     fun inject(target: SignUpFragment)

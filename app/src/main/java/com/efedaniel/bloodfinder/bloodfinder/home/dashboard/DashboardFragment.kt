@@ -49,6 +49,7 @@ class DashboardFragment : BaseFragment() {
         binding.parentNestedScrollView.onScrollChanged {
             mainActivity.invalidateToolbarElevation(it)
         }
+        viewModel.subscribeLoggedInUserToNotification()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {

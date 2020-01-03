@@ -30,4 +30,7 @@ interface DatabaseApiService {
 
     @GET("/bloodAvailability.json")
     suspend fun getFilteredBloodAvailability(@Query("orderBy") filterKey: String, @Query("equalTo") filterValue: String): Response<JsonElement>
+
+    @PUT("/users/{user_id}/notificationToken.json")
+    suspend fun saveUserNotificationToken(@Path("user_id") userID: String, @Body token: String): Response<String>
 }

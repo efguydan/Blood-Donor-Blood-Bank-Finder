@@ -15,7 +15,8 @@ data class UserDetails(
     var title: String? = null,
     var userType: String? = null,
     var bloodType: String? = null,
-    var location: MiniLocation? = null
+    var location: MiniLocation? = null,
+    val notificationToken: String? = null
 ) {
     fun isBloodDonor() = userType == "Blood Donor"
 

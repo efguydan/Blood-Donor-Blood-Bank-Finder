@@ -75,4 +75,13 @@ class DatabaseRepository @Inject constructor(private val databaseApiService: Dat
             null
         }
     }
+
+    suspend fun saveUserNotificationToken(userID: String, token: String): Result<String> {
+        return try {
+            getAPIResult(databaseApiService.saveUserNotificationToken(userID, token))
+        } catch (e: Exception) {
+            e.printStackTrace()
+            Result.Error(GENERIC_ERROR_CODE, GENERIC_ERROR_MESSAGE)
+        }
+    }
 }
