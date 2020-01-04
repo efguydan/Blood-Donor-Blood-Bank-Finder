@@ -15,10 +15,7 @@ import com.efedaniel.bloodfinder.networkutils.GENERIC_ERROR_MESSAGE
 import com.efedaniel.bloodfinder.networkutils.LoadingStatus
 import com.efedaniel.bloodfinder.utils.*
 import com.google.gson.Gson
-import com.google.gson.JsonElement
-import com.google.gson.reflect.TypeToken
 import kotlinx.coroutines.launch
-import timber.log.Timber
 import javax.inject.Inject
 
 class BloodAvailabilityViewModel @Inject constructor(

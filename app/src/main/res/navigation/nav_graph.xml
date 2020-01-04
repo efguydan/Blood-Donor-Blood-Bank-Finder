@@ -153,5 +153,9 @@
         android:id="@+id/bloodPostingDetailsFragment"
         android:name="com.efedaniel.bloodfinder.bloodfinder.home.bloodpostingdetails.BloodPostingDetailsFragment"
         android:label="BloodPostingDetailsFragment"
-        tools:layout="@layout/fragment_blood_posting_details"/>
+        tools:layout="@layout/fragment_blood_posting_details">
+        <argument
+            android:name="bloodPosting"
+            app:argType="com.efedaniel.bloodfinder.bloodfinder.models.request.UploadBloodAvailabilityRequest" />
+    </fragment>
 </navigation>

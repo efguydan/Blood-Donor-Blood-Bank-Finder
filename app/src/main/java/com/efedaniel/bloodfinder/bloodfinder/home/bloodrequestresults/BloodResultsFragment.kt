@@ -72,7 +72,7 @@ class BloodResultsFragment : BaseFragment(), BloodResultsAdapter.ClickHandler {
     }
 
     override fun showBloodPostingFullDetails(posting: UploadBloodAvailabilityRequest) {
-        findNavController().navigate(BloodResultsFragmentDirections.actionBloodResultsFragmentToBloodPostingDetailsFragment())
+        findNavController().navigate(BloodResultsFragmentDirections.actionBloodResultsFragmentToBloodPostingDetailsFragment(posting))
     }
 
     private fun setUpToolbar() = mainActivity.run {

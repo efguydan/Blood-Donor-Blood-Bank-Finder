@@ -25,7 +25,7 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/bloodTypTextView"
+                android:id="@+id/bloodTypeTextView"
                 android:layout_width="44dp"
                 android:layout_height="44dp"
                 android:layout_marginStart="16dp"
@@ -53,8 +53,8 @@
                 android:textColor="@color/colorAccent"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toTopOf="@+id/creationTimeTextView"
-                app:layout_constraintStart_toEndOf="@+id/bloodTypTextView"
-                app:layout_constraintTop_toTopOf="@+id/bloodTypTextView"
+                app:layout_constraintStart_toEndOf="@+id/bloodTypeTextView"
+                app:layout_constraintTop_toTopOf="@+id/bloodTypeTextView"
                 tools:text="Chief Efe" />
 
             <TextView
@@ -64,7 +64,7 @@
                 android:fontFamily="@font/muli_light_italic"
                 android:textColor="@color/colorAccent"
                 android:textSize="11sp"
-                app:layout_constraintBottom_toBottomOf="@+id/bloodTypTextView"
+                app:layout_constraintBottom_toBottomOf="@+id/bloodTypeTextView"
                 app:layout_constraintStart_toStartOf="@+id/donorNameTextView"
                 app:layout_constraintTop_toBottomOf="@+id/donorNameTextView"
                 tools:ignore="SmallSp"
