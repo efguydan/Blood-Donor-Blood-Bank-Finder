@@ -44,11 +44,15 @@ class BloodResultsAdapter(
             binding.creationTimeTextView.text = result.creationTime.getTime()
             binding.distanceTextView.text = userLocation.distanceTo(result.location).convertToDistanceInKm()
             binding.phoneButton.setOnClickListener { clickHandler.call(getItem(adapterPosition).donorPhoneNumber) }
+            binding.selectButton.setOnClickListener { clickHandler.showBloodPostingFullDetails(getItem(adapterPosition)) }
+            binding.layoutCardView.setOnClickListener { clickHandler.showBloodPostingFullDetails(getItem(adapterPosition)) }
         }
     }
 
     interface ClickHandler {
         fun call(phoneNUmber: String)
+
+        fun showBloodPostingFullDetails(posting: UploadBloodAvailabilityRequest)
     }
 
 }

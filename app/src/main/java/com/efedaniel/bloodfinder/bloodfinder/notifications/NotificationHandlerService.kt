@@ -7,6 +7,7 @@ import com.efedaniel.bloodfinder.networkutils.Result
 import com.efedaniel.bloodfinder.utils.PrefKeys
 import com.efedaniel.bloodfinder.utils.PrefsUtils
 import com.google.firebase.messaging.FirebaseMessagingService
+import com.google.firebase.messaging.RemoteMessage
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -56,6 +57,10 @@ class NotificationHandlerService : FirebaseMessagingService() {
     override fun onDestroy() {
         super.onDestroy()
         serviceJob.cancel()
+    }
+
+    override fun onMessageReceived(p0: RemoteMessage) {
+
     }
 
 }

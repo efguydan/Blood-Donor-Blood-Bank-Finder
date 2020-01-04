@@ -10,11 +10,14 @@ import android.view.ViewGroup
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 import com.efedaniel.bloodfinder.App
 
 import com.efedaniel.bloodfinder.R
 import com.efedaniel.bloodfinder.base.BaseFragment
 import com.efedaniel.bloodfinder.base.BaseViewModel
+import com.efedaniel.bloodfinder.bloodfinder.home.bloodrequest.BloodRequestFragmentDirections
+import com.efedaniel.bloodfinder.bloodfinder.models.request.UploadBloodAvailabilityRequest
 import com.efedaniel.bloodfinder.bloodfinder.models.request.UserDetails
 import com.efedaniel.bloodfinder.databinding.FragmentBloodResultsBinding
 import com.efedaniel.bloodfinder.extensions.onScrollChanged
@@ -66,6 +69,10 @@ class BloodResultsFragment : BaseFragment(), BloodResultsAdapter.ClickHandler {
         } else {
             requestPermissions(arrayOf(android.Manifest.permission.CALL_PHONE), Misc.CALL_PERMISSION_REQUEST)
         }
+    }
+
+    override fun showBloodPostingFullDetails(posting: UploadBloodAvailabilityRequest) {
+        findNavController().navigate(BloodResultsFragmentDirections.actionBloodResultsFragmentToBloodPostingDetailsFragment())
     }
 
     private fun setUpToolbar() = mainActivity.run {

@@ -70,7 +70,7 @@ class BloodRequestFragment : BaseFragment() {
         return true
     }
 
-    fun setupSpinners() {
+    private fun setupSpinners() {
         //Blood Type
         binding.bloodTypeSpinner.adapter = SpinnerAdapter(context!!, Data.bloodTypes)
         binding.bloodTypeSpinner.registerTextViewLabel(binding.bloodTypeLabelTextView)

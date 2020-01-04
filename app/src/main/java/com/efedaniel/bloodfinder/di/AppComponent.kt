@@ -5,6 +5,7 @@ import com.efedaniel.bloodfinder.bloodfinder.auth.forgotpassword.ForgotPasswordF
 import com.efedaniel.bloodfinder.bloodfinder.auth.signin.SignInFragment
 import com.efedaniel.bloodfinder.bloodfinder.auth.signup.SignUpFragment
 import com.efedaniel.bloodfinder.bloodfinder.home.bloodavailabilty.BloodAvailabilityFragment
+import com.efedaniel.bloodfinder.bloodfinder.home.bloodpostingdetails.BloodPostingDetailsFragment
 import com.efedaniel.bloodfinder.bloodfinder.home.bloodrequest.BloodRequestFragment
 import com.efedaniel.bloodfinder.bloodfinder.home.bloodrequestresults.BloodResultsFragment
 import com.efedaniel.bloodfinder.bloodfinder.home.dashboard.DashboardFragment
@@ -30,6 +31,7 @@ interface AppComponent {
     fun inject(target: BloodRequestFragment)
     fun inject(target: BloodResultsFragment)
     fun inject(target: SelectLocationFragment)
+    fun inject(target: BloodPostingDetailsFragment)
 
     @Component.Builder
     interface Builder {

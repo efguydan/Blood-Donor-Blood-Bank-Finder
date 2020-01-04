@@ -6,6 +6,7 @@ import com.efedaniel.bloodfinder.bloodfinder.auth.forgotpassword.ForgotPasswordV
 import com.efedaniel.bloodfinder.bloodfinder.auth.signin.SignInViewModel
 import com.efedaniel.bloodfinder.bloodfinder.auth.signup.SignUpViewModel
 import com.efedaniel.bloodfinder.bloodfinder.home.bloodavailabilty.BloodAvailabilityViewModel
+import com.efedaniel.bloodfinder.bloodfinder.home.bloodpostingdetails.BloodPostingDetailsViewModel
 import com.efedaniel.bloodfinder.bloodfinder.home.bloodrequest.BloodRequestViewModel
 import com.efedaniel.bloodfinder.bloodfinder.home.bloodrequestresults.BloodResultsViewModel
 import com.efedaniel.bloodfinder.bloodfinder.home.dashboard.DashboardViewModel
@@ -66,4 +67,9 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(SelectLocationViewModel::class)
     abstract fun bindsSelectLocationViewModel(viewModel: SelectLocationViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(BloodPostingDetailsViewModel::class)
+    abstract fun bindsBloodPostingDetailsViewModel(viewModel: BloodPostingDetailsViewModel): ViewModel
 }
