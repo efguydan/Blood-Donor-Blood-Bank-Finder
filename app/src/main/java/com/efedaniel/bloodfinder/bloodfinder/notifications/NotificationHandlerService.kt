@@ -1,9 +1,24 @@
 package com.efedaniel.bloodfinder.bloodfinder.notifications
 
+import android.annotation.TargetApi
+import android.app.Notification
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.content.Context
+import android.graphics.Color
+import android.media.RingtoneManager
+import android.os.Build
+import androidx.annotation.StringRes
+import androidx.core.app.NotificationCompat
+import androidx.navigation.NavDeepLinkBuilder
 import com.efedaniel.bloodfinder.App
+import com.efedaniel.bloodfinder.MainActivity
+import com.efedaniel.bloodfinder.R
 import com.efedaniel.bloodfinder.bloodfinder.models.request.UserDetails
 import com.efedaniel.bloodfinder.bloodfinder.repositories.DatabaseRepository
 import com.efedaniel.bloodfinder.networkutils.Result
+import com.efedaniel.bloodfinder.utils.ApiKeys
+import com.efedaniel.bloodfinder.utils.Misc
 import com.efedaniel.bloodfinder.utils.PrefKeys
 import com.efedaniel.bloodfinder.utils.PrefsUtils
 import com.google.firebase.messaging.FirebaseMessagingService
@@ -13,6 +28,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import timber.log.Timber
+import java.util.*
 import javax.inject.Inject
 
 class NotificationHandlerService : FirebaseMessagingService() {
@@ -59,8 +75,66 @@ class NotificationHandlerService : FirebaseMessagingService() {
         serviceJob.cancel()
     }
 
-    override fun onMessageReceived(p0: RemoteMessage) {
+    override fun onMessageReceived(remoteMessage: RemoteMessage) {
+        val data = remoteMessage.data
+        when(data["notificationType"]) {
+            ApiKeys.REQUEST_NOTIFICATION_TYPE -> sendRequestNotification(data)
+            ApiKeys.ANSWER_NOTIFICATON_TYPE -> {
+                //TODO Come and Handle
+            }
+        }
+    }
 
+    private fun sendRequestNotification(data: Map<String, String>) {
+        val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            setupNotificationChannel(notificationManager, Misc.REQUEST_NOTIFICATION_CHANNEL_ID,
+                R.string.blood_request_channel, R.string.blood_request_channel_description)
+        }
+        notificationManager.notify(Random().nextInt(50000), getRequestNotification(data))
+    }
+
+    private fun getRequestNotification(data: Map<String, String>): Notification {
+        //TODO Come back to set the real destination
+        val pendingIntent = NavDeepLinkBuilder(this)
+            .setComponentName(MainActivity::class.java)
+            .setGraph(R.navigation.nav_graph)
+            .setDestination(R.id.signInFragment)
+            .createPendingIntent()
+
+        val soundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
+        val notificationBody = "Hello ${data["bloodProviderFullName"]}, You have received a blood donation request from" +
+                " ${data["bloodSeekerFullName"]}. Please click on this notification to give them a response"
+
+        return NotificationCompat.Builder(this, Misc.REQUEST_NOTIFICATION_CHANNEL_ID).apply {
+            setSmallIcon(R.drawable.ic_transfusion)
+            color = getColor(R.color.colorAccent)
+            setContentTitle(getString(R.string.blood_donation_request))
+            setContentText(notificationBody)
+            setStyle(NotificationCompat.BigTextStyle().bigText(notificationBody))
+            setAutoCancel(true)
+            setSound(soundUri)
+            setDefaults(Notification.DEFAULT_VIBRATE)
+            setWhen(System.currentTimeMillis())
+            setContentIntent(pendingIntent)
+        }.build()
+    }
+
+    @TargetApi(Build.VERSION_CODES.O)
+    private fun setupNotificationChannel(
+        notificationManager: NotificationManager,
+        channelID: String,
+        @StringRes channelNameID: Int,
+        @StringRes channelDescriptionID: Int
+    ) {
+        notificationManager.createNotificationChannel(NotificationChannel(channelID, getString(channelNameID),
+            NotificationManager.IMPORTANCE_HIGH).apply {
+            description = getString(channelDescriptionID)
+            enableLights(true)
+            lightColor = Color.RED
+            enableVibration(true)
+            vibrationPattern = longArrayOf(100, 200, 300, 400, 500, 400, 300, 200, 400)
+        })
     }
 
 }

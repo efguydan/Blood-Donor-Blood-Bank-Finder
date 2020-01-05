@@ -13,6 +13,8 @@ import com.efedaniel.bloodfinder.bloodfinder.repositories.NotificationRepository
 import com.efedaniel.bloodfinder.networkutils.GENERIC_ERROR_CODE
 import com.efedaniel.bloodfinder.networkutils.GENERIC_ERROR_MESSAGE
 import com.efedaniel.bloodfinder.networkutils.LoadingStatus
+import com.efedaniel.bloodfinder.utils.APIDataKeys
+import com.efedaniel.bloodfinder.utils.ApiKeys
 import com.efedaniel.bloodfinder.utils.ResourceProvider
 import com.google.gson.Gson
 import kotlinx.coroutines.launch
@@ -71,6 +73,7 @@ class BloodPostingDetailsViewModel @Inject constructor(
     private fun sendNotificationToUser() {
         viewModelScope.launch {
             _loadingStatus.value = LoadingStatus.Loading(resourceProvider.getString(R.string.notifying_blood_provider))
+            bloodPostingRequest.notificationType = ApiKeys.REQUEST_NOTIFICATION_TYPE
             val notificationRequest = BloodRequestNotification(bloodPostingRequest,
                 bloodPostingUserDetails.value!!.notificationToken!!)
             val response = notificationRepository.sendBloodRequestNotification(notificationRequest)

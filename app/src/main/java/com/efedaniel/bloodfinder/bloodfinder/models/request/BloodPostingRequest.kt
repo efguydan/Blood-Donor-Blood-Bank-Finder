@@ -10,5 +10,6 @@ data class BloodPostingRequest(
     val bloodSeekerFullName: String,
     val bloodType: String,
     val status: String = ApiKeys.PENDING,
-    var bloodPostingRequestID: String? = null
+    var bloodPostingRequestID: String? = null,
+    var notificationType: String? = null
 )
