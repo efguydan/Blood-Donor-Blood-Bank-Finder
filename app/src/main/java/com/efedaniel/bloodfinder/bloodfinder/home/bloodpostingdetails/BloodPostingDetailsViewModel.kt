@@ -5,7 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.efedaniel.bloodfinder.R
 import com.efedaniel.bloodfinder.base.BaseViewModel
 import com.efedaniel.bloodfinder.bloodfinder.models.request.BloodPostingRequest
-import com.efedaniel.bloodfinder.bloodfinder.models.request.NotificationRequest
+import com.efedaniel.bloodfinder.bloodfinder.models.request.BloodRequestNotification
 import com.efedaniel.bloodfinder.bloodfinder.models.request.UserDetails
 import com.efedaniel.bloodfinder.bloodfinder.models.response.PostResponse
 import com.efedaniel.bloodfinder.bloodfinder.repositories.DatabaseRepository
@@ -71,9 +71,9 @@ class BloodPostingDetailsViewModel @Inject constructor(
     private fun sendNotificationToUser() {
         viewModelScope.launch {
             _loadingStatus.value = LoadingStatus.Loading(resourceProvider.getString(R.string.notifying_blood_provider))
-            val notificationRequest = NotificationRequest(bloodPostingRequest,
+            val notificationRequest = BloodRequestNotification(bloodPostingRequest,
                 bloodPostingUserDetails.value!!.notificationToken!!)
-            val response = notificationRepository.sendNotification(notificationRequest)
+            val response = notificationRepository.sendBloodRequestNotification(notificationRequest)
             if (response?.isSuccessful == true) {
                 _loadingStatus.value = LoadingStatus.Success
                 //TODO What happens when the notification is successfully sent
