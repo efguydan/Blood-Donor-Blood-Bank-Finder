@@ -15,6 +15,8 @@ class AccessTokenInterceptor(
             val url = chain.request().url.newBuilder()
                 .addQueryParameter("key", ApiKeys.WEB_API_KEY).build()
             requestBuilder.url(url)
+        } else if (chain.request().url.toString().contains(ApiKeys.NOTIFICATION_BASE_URL)) {
+            requestBuilder.addHeader(ApiKeys.AUTHORIZATION, ApiKeys.NOTIFICATION_SERVER_KEY)
         }
         return chain.proceed(requestBuilder.build())
     }

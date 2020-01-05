@@ -1,6 +1,7 @@
 package com.efedaniel.bloodfinder.bloodfinder.apis
 
 import com.efedaniel.bloodfinder.bloodfinder.models.MiniLocation
+import com.efedaniel.bloodfinder.bloodfinder.models.request.BloodPostingRequest
 import com.efedaniel.bloodfinder.bloodfinder.models.request.UploadBloodAvailabilityRequest
 import com.efedaniel.bloodfinder.bloodfinder.models.request.UserDetails
 import com.google.gson.JsonElement
@@ -33,4 +34,11 @@ interface DatabaseApiService {
 
     @PUT("/users/{user_id}/notificationToken.json")
     suspend fun saveUserNotificationToken(@Path("user_id") userID: String, @Body token: String): Response<String>
+
+    @POST("/bloodRequests.json")
+    suspend fun uploadBloodPostingRequest(@Body body: BloodPostingRequest): Response<JsonElement>
+
+    @PUT("/bloodRequests/{blood_request_id}/bloodRequestID.json")
+    suspend fun uploadBloodRequestID(@Path("blood_request_id") bloodRequestID: String,
+                                          @Body body: String): Response<JsonElement>
 }

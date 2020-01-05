@@ -21,7 +21,7 @@
     <string name="please_fill_the_details_to_complete_your_account_creation">Please fill the following details to complete your account creation</string>
     <string name="gender">Gender</string>
     <string name="religion">Religion</string>
-    <string name="signing_up">Please Wait, Signing Up...</string>
+    <string name="signing_up">Please Wait, Signing Up…</string>
     <string name="reset_password">Reset Password</string>
     <string name="please_enter_your_registered_email_address_to_continue">Please enter your registered email address to continue</string>
     <string name="success">Success</string>
@@ -38,9 +38,9 @@
     <string name="user_type">User Type</string>
     <string name="marital_status">Marital Status</string>
     <string name="address">Address</string>
-    <string name="verifying_credentials">Verifying Credentials...</string>
-    <string name="saving_user_details">Saving User Details...</string>
-    <string name="please_wait">Please Wait...</string>
+    <string name="verifying_credentials">Verifying Credentials…</string>
+    <string name="saving_user_details">Saving User Details…</string>
+    <string name="please_wait">Please Wait…</string>
     <string name="name_of_hospital">Name Of Hospital</string>
     <string name="name_of_blood_bank">Name Of Blood Bank</string>
     <string name="select_user_type">Please select user type</string>
@@ -51,7 +51,7 @@
     <string name="please_select_marital_status">Please select your marital status to continue</string>
     <string name="incomplete_phone_number">Incomplete phone number</string>
     <string name="logout">Logout</string>
-    <string name="retrieving_account_details">Retrieving Account Details...</string>
+    <string name="retrieving_account_details">Retrieving Account Details…</string>
     <string name="password_must_be_at_least_chars">Password must be at least 6 characters</string>
     <string name="passwords_dont_match">Passwords don\'t match</string>
     <string name="in_progress_check_back_shortly">In Progress, Check Back Shortly</string>
@@ -69,7 +69,7 @@
     <string name="billing_type">Billing Type</string>
     <string name="upload">Upload</string>
     <string name="form_was_not_completed">Form was not completed</string>
-    <string name="uplading_blood_availability">Uploading Blood Availability...</string>
+    <string name="uplading_blood_availability">Uploading Blood Availability…</string>
     <string name="here_are_your_active_blood_availability_postings">Here are your active blood availability postings</string>
     <string name="delete_blood_availability_posting">Delete blood availability posting</string>
     <string name="delete">Delete</string>
@@ -80,7 +80,7 @@
     <string name="find_nearest_blood_donor_or_private_blood_bank">Find nearest Blood Donor or Private Blood Bank</string>
     <string name="search">Search</string>
     <string name="blood_search_results">Blood Search Results</string>
-    <string name="searching">Searching...</string>
+    <string name="searching">Searching…</string>
     <string name="please_select_billing_type">Please select billing type to continue</string>
     <string name="blood_provider_not_found">Sorry, We couldn\'t find any blood posting that was compatible your request</string>
     <string name="amount_of_blood_results_found_format">We found %d blood postings that are compatible your request</string>
@@ -95,16 +95,15 @@
     <string name="location_permission_not_given_error">Hi!\nTo get your current location, we need your permission. Kindly click on proceed to give us your permission.</string>
     <string name="current_location_getting_error">An error was encountered while trying to get your location. Please try again later</string>
     <string name="try_again">Try Again</string>
-    <string name="saving_user_location">Saving User Location...</string>
+    <string name="saving_user_location">Saving User Location…</string>
     <string name="save_selected_location">Save Selected Location</string>
     <string name="save_selected_location_message">Are you sure you want to save the selected location?</string>
     <string name="distance">Distance</string>
     <string name="default_notification_channel_id">general_channel</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="blood_posting_details">Blood Posting Details</string>
-    <string name="fetching_donor_data">Please wait, fetching donor details...</string>
+    <string name="fetching_donor_data">Fetching donor details…</string>
     <string name="user_details">User Details</string>
     <string name="select_this_donor">Select this Donor</string>
+    <string name="uploading_blood_request">Uploading Blood Request…</string>
+    <string name="notifying_blood_provider">Notifying Blood Provider...</string>
 </resources>

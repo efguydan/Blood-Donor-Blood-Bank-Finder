@@ -18,16 +18,21 @@ import com.efedaniel.bloodfinder.App
 import com.efedaniel.bloodfinder.R
 import com.efedaniel.bloodfinder.base.BaseFragment
 import com.efedaniel.bloodfinder.base.BaseViewModel
+import com.efedaniel.bloodfinder.bloodfinder.models.request.BloodPostingRequest
 import com.efedaniel.bloodfinder.bloodfinder.models.request.UploadBloodAvailabilityRequest
 import com.efedaniel.bloodfinder.bloodfinder.models.request.UserDetails
 import com.efedaniel.bloodfinder.databinding.FragmentBloodPostingDetailsBinding
 import com.efedaniel.bloodfinder.utils.Misc
+import com.efedaniel.bloodfinder.utils.PrefKeys
+import com.efedaniel.bloodfinder.utils.PrefsUtils
 import javax.inject.Inject
 
 class BloodPostingDetailsFragment : BaseFragment() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
+    @Inject
+    lateinit var prefsUtils: PrefsUtils
 
     private lateinit var binding: FragmentBloodPostingDetailsBinding
     private lateinit var viewModel: BloodPostingDetailsViewModel
@@ -65,9 +70,17 @@ class BloodPostingDetailsFragment : BaseFragment() {
         binding.phoneNumberTextView.setOnClickListener { call(userDetails.phoneNumber!!) }
 
         binding.selectThisDonorButton.setOnClickListener {
-            //TODO Upload Blood Request
+            val currentUser = prefsUtils.getPrefAsObject(PrefKeys.LOGGED_IN_USER_DATA, UserDetails::class.java)
+            viewModel.uploadBloodPostingRequest(
+                BloodPostingRequest(
+                    bloodPosting.bloodAvailabilityID!!,
+                    bloodPosting.donorID,
+                    currentUser.localID!!,
+                    bloodPosting.donorName,
+                    currentUser.fullName(),
+                    bloodPosting.bloodType
+                ))
             //TODO Send Notification to selected user
-            showSnackbar(getString(R.string.in_progress_check_back_shortly))
         }
     }
 

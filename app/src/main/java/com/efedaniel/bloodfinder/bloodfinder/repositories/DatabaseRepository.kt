@@ -2,6 +2,7 @@ package com.efedaniel.bloodfinder.bloodfinder.repositories
 
 import com.efedaniel.bloodfinder.bloodfinder.apis.DatabaseApiService
 import com.efedaniel.bloodfinder.bloodfinder.models.MiniLocation
+import com.efedaniel.bloodfinder.bloodfinder.models.request.BloodPostingRequest
 import com.efedaniel.bloodfinder.bloodfinder.models.request.UploadBloodAvailabilityRequest
 import com.efedaniel.bloodfinder.bloodfinder.models.request.UserDetails
 import com.efedaniel.bloodfinder.networkutils.GENERIC_ERROR_CODE
@@ -82,6 +83,24 @@ class DatabaseRepository @Inject constructor(private val databaseApiService: Dat
         } catch (e: Exception) {
             e.printStackTrace()
             Result.Error(GENERIC_ERROR_CODE, GENERIC_ERROR_MESSAGE)
+        }
+    }
+
+    suspend fun uploadBloodPostingRequest(body: BloodPostingRequest): Response<JsonElement>? {
+        return try {
+            databaseApiService.uploadBloodPostingRequest(body)
+        } catch (e: java.lang.Exception) {
+            e.printStackTrace()
+            null
+        }
+    }
+
+    suspend fun uploadBloodRequestID(bloodRequestID: String): Response<JsonElement>? {
+        return try {
+            databaseApiService.uploadBloodRequestID(bloodRequestID, bloodRequestID)
+        } catch (e: java.lang.Exception) {
+            e.printStackTrace()
+            null
         }
     }
 }

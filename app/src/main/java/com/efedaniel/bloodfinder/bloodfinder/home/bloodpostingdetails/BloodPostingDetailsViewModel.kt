@@ -4,8 +4,12 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.efedaniel.bloodfinder.R
 import com.efedaniel.bloodfinder.base.BaseViewModel
+import com.efedaniel.bloodfinder.bloodfinder.models.request.BloodPostingRequest
+import com.efedaniel.bloodfinder.bloodfinder.models.request.NotificationRequest
 import com.efedaniel.bloodfinder.bloodfinder.models.request.UserDetails
+import com.efedaniel.bloodfinder.bloodfinder.models.response.PostResponse
 import com.efedaniel.bloodfinder.bloodfinder.repositories.DatabaseRepository
+import com.efedaniel.bloodfinder.bloodfinder.repositories.NotificationRepository
 import com.efedaniel.bloodfinder.networkutils.GENERIC_ERROR_CODE
 import com.efedaniel.bloodfinder.networkutils.GENERIC_ERROR_MESSAGE
 import com.efedaniel.bloodfinder.networkutils.LoadingStatus
@@ -16,11 +20,14 @@ import javax.inject.Inject
 
 class BloodPostingDetailsViewModel @Inject constructor(
     private val resourceProvider: ResourceProvider,
-    private val databaseRepository: DatabaseRepository
+    private val databaseRepository: DatabaseRepository,
+    private val notificationRepository: NotificationRepository
 ): BaseViewModel() {
 
     private val _bloodPostingUserDetails = MutableLiveData<UserDetails>()
     val bloodPostingUserDetails get() = _bloodPostingUserDetails
+
+    private lateinit var bloodPostingRequest: BloodPostingRequest
 
     fun getPostingUserDetails(userID: String) {
         viewModelScope.launch {
@@ -29,6 +36,47 @@ class BloodPostingDetailsViewModel @Inject constructor(
             if (response?.isSuccessful == true) {
                 _loadingStatus.value = LoadingStatus.Success
                 _bloodPostingUserDetails.value = Gson().fromJson(response.body(), UserDetails::class.java)
+            } else {
+                _loadingStatus.value = LoadingStatus.Error(GENERIC_ERROR_CODE, GENERIC_ERROR_MESSAGE)
+            }
+        }
+    }
+
+    fun uploadBloodPostingRequest(bloodPostingRequest: BloodPostingRequest) {
+        this.bloodPostingRequest = bloodPostingRequest
+        viewModelScope.launch {
+            _loadingStatus.value = LoadingStatus.Loading(resourceProvider.getString(R.string.uploading_blood_request))
+            val response = databaseRepository.uploadBloodPostingRequest(bloodPostingRequest)
+            if (response?.isSuccessful == true) {
+                val postResponse = Gson().fromJson(response.body(), PostResponse::class.java)
+                uploadBloodPostingRequestID(postResponse.name)
+            } else {
+                _loadingStatus.value = LoadingStatus.Error(GENERIC_ERROR_CODE, GENERIC_ERROR_MESSAGE)
+            }
+        }
+    }
+
+    private fun uploadBloodPostingRequestID(bloodRequestID: String) {
+        viewModelScope.launch {
+            val response = databaseRepository.uploadBloodRequestID(bloodRequestID)
+            if (response?.isSuccessful == true) {
+                bloodPostingRequest.bloodPostingRequestID = bloodRequestID
+                sendNotificationToUser()
+            } else {
+                _loadingStatus.value = LoadingStatus.Error(GENERIC_ERROR_CODE, GENERIC_ERROR_MESSAGE)
+            }
+        }
+    }
+
+    private fun sendNotificationToUser() {
+        viewModelScope.launch {
+            _loadingStatus.value = LoadingStatus.Loading(resourceProvider.getString(R.string.notifying_blood_provider))
+            val notificationRequest = NotificationRequest(bloodPostingRequest,
+                bloodPostingUserDetails.value!!.notificationToken!!)
+            val response = notificationRepository.sendNotification(notificationRequest)
+            if (response?.isSuccessful == true) {
+                _loadingStatus.value = LoadingStatus.Success
+                //TODO What happens when the notification is successfully sent
             } else {
                 _loadingStatus.value = LoadingStatus.Error(GENERIC_ERROR_CODE, GENERIC_ERROR_MESSAGE)
             }

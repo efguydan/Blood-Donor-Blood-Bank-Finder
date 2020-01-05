@@ -21,8 +21,12 @@ class ApiKeys{
         const val AUTH_BASE_URL = "https://identitytoolkit.googleapis.com/"
         const val DATABASE_BASE_URL = "https://blooddonorbankfinder-h4373.firebaseio.com/"
         const val WEB_API_KEY = "AIzaSyA4PDmmaafAasb2l33XrprsH05DDVz4HEU"
+        const val NOTIFICATION_BASE_URL = "https://fcm.googleapis.com/"
+        const val NOTIFICATION_SERVER_KEY = "key=AAAA-MwlXMI:APA91bHA_d0VTLTAYPjxazk1czQ02wpSNZrURFRZVuIAcVrkdjQBqVSkZPPq0843FXGNrDTFyonmcTKEGf_I4pc2S54GBUGZwBfGLeEbgoq63Mu3kOY_MaSBlWRJttIO_6suOiK8iuU3"
+        const val AUTHORIZATION = "Authorization"
         const val DONOR_ID = "donorID"
         const val BLOOD_TYPE = "bloodType"
+        const val PENDING = "pending"
     }
 }
 
