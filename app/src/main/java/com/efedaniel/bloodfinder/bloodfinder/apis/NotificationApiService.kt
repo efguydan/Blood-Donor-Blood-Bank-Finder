@@ -10,5 +10,4 @@ interface NotificationApiService {
 
     @POST("/fcm/send")
     suspend fun sendBloodRequestNotification(@Body bloodRequestNotification: BloodRequestNotification): Response<JsonElement>
-
 }

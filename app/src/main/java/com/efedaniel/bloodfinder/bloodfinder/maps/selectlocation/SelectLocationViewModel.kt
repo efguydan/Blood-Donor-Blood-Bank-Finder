@@ -20,7 +20,7 @@ class SelectLocationViewModel @Inject constructor(
     private val resourceProvider: ResourceProvider,
     private val databaseRepository: DatabaseRepository,
     private val prefsUtils: PrefsUtils
-): BaseViewModel() {
+) : BaseViewModel() {
 
     private val _locationSavedAction = MutableLiveData(false)
     val locationSavedAction: LiveData<Boolean> get() = _locationSavedAction

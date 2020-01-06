@@ -30,7 +30,8 @@ class SignInFragment : BaseFragment() {
     private lateinit var viewModel: SignInViewModel
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentSignInBinding.inflate(inflater)
@@ -69,7 +70,7 @@ class SignInFragment : BaseFragment() {
         }
         viewModel.signInSuccessful.observe(this, Observer {
             if (it == null) return@Observer
-            findNavController().navigate(when(it) {
+            findNavController().navigate(when (it) {
                 SignInViewModel.UserDetailsFlow.PROFILE -> SignInFragmentDirections.actionSignInFragmentToProfileFragment()
                 SignInViewModel.UserDetailsFlow.LOCATION -> SignInFragmentDirections.actionSignInFragmentToSelectLocationFragment()
                 else -> SignInFragmentDirections.actionSignInFragmentToDashboardFragment()

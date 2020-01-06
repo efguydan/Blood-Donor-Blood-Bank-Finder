@@ -1,6 +1,5 @@
 package com.efedaniel.bloodfinder.bloodfinder.maps.selectlocation
 
-
 import android.content.IntentSender
 import android.content.pm.PackageManager
 import android.location.Location
@@ -42,14 +41,15 @@ class SelectLocationFragment : BaseFragment(), OnMapReadyCallback {
     private lateinit var binding: FragmentSelectLocationBinding
     private lateinit var viewModel: SelectLocationViewModel
     private lateinit var map: GoogleMap
-    private var mapsLocationButton : View? = null
+    private var mapsLocationButton: View? = null
 
     private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
     private lateinit var lastKnownLocation: Location
     private var locationPermissionGranted = false
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentSelectLocationBinding.inflate(inflater)
@@ -108,7 +108,7 @@ class SelectLocationFragment : BaseFragment(), OnMapReadyCallback {
                 try {
                     it.startResolutionForResult(mainActivity, Misc.LOCATION_DEVICE_ACCESS_REQUEST)
                 } catch (sendEx: IntentSender.SendIntentException) {
-                    //ignore the error
+                    // ignore the error
                 }
             }
         }
@@ -120,7 +120,7 @@ class SelectLocationFragment : BaseFragment(), OnMapReadyCallback {
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        return when(item!!.itemId) {
+        return when (item!!.itemId) {
             R.id.action_my_location -> {
 //                getLocationPermission()
                 initiateGettingLocation()
@@ -193,7 +193,7 @@ class SelectLocationFragment : BaseFragment(), OnMapReadyCallback {
         grantResults: IntArray
     ) {
         locationPermissionGranted = false
-        when(requestCode) {
+        when (requestCode) {
             Misc.LOCATION_PERMISSION_REQUEST -> {
                 if (grantResults.isNotEmpty() &&
                     grantResults[0] == PackageManager.PERMISSION_GRANTED &&
@@ -208,20 +208,20 @@ class SelectLocationFragment : BaseFragment(), OnMapReadyCallback {
     override fun onMapReady(googleMap: GoogleMap) {
         map = googleMap
 
-        //Show Dialog to alert users to select their location
+        // Show Dialog to alert users to select their location
         showDialogWithAction(body = getString(R.string.move_map_around_message), positiveRes = R.string.close, cancelOnTouchOutside = true)
 
         // Add a marker in Nigeria and move the camera
         val nigeria = LatLng(9.08, 8.67)
         map.moveCamera(CameraUpdateFactory.newLatLng(nigeria))
 
-        //Enable Selecting Location Button
+        // Enable Selecting Location Button
         binding.selectLocationButton.isEnabled = true
 
-        //Send a current Location Request
+        // Send a current Location Request
         initiateGettingLocation()
 
-        //Setup current location shii
+        // Setup current location shii
         map.isMyLocationEnabled = true
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
         mapsLocationButton = (mapFragment.view!!.findViewById<View>(Integer.parseInt("1")).parent as View).findViewById<View>(Integer.parseInt("2"))

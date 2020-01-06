@@ -22,7 +22,7 @@ class BloodAvailabilityViewModel @Inject constructor(
     private val resourceProvider: ResourceProvider,
     private val databaseRepository: DatabaseRepository,
     private val prefsUtils: PrefsUtils
-): BaseViewModel() {
+) : BaseViewModel() {
 
     private val user = prefsUtils.getPrefAsObject(PrefKeys.LOGGED_IN_USER_DATA, UserDetails::class.java)
 
@@ -83,7 +83,7 @@ class BloodAvailabilityViewModel @Inject constructor(
             val response = databaseRepository.getFilteredBloodAvailability(ApiKeys.DONOR_ID, user.localID!!)
             if (response?.isSuccessful == true) {
                 val bloodPostings = GsonUtils.fromJson<HashMap<String, UploadBloodAvailabilityRequest>>(response.body())
-                _bloodPostingList.value = ArrayList(bloodPostings.values).sortedWith(compareByDescending{it.creationTime}).toMutableList()
+                _bloodPostingList.value = ArrayList(bloodPostings.values).sortedWith(compareByDescending { it.creationTime }).toMutableList()
                 _loadingStatus.value = LoadingStatus.Success
             } else {
                 _loadingStatus.value = LoadingStatus.Error(GENERIC_ERROR_CODE, GENERIC_ERROR_MESSAGE)

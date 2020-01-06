@@ -3,7 +3,6 @@ package com.efedaniel.bloodfinder.bloodfinder.models
 import android.location.Location
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
-import kotlin.math.roundToInt
 
 @Parcelize
 data class MiniLocation(
@@ -12,7 +11,7 @@ data class MiniLocation(
     var address: String? = ""
 ) : Parcelable {
 
-    //TODO get real directions with road with this https://stackoverflow.com/questions/18310126/get-the-distance-between-two-locations-in-android/18312349#18312349
+    // TODO get real directions with road with this https://stackoverflow.com/questions/18310126/get-the-distance-between-two-locations-in-android/18312349#18312349
     fun distanceTo(location: MiniLocation): Float {
         val locationA = Location("Location A")
         locationA.latitude = latitude.toDouble()

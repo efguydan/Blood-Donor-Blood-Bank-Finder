@@ -5,20 +5,18 @@ import androidx.lifecycle.viewModelScope
 import com.efedaniel.bloodfinder.R
 import com.efedaniel.bloodfinder.base.BaseViewModel
 import com.efedaniel.bloodfinder.bloodfinder.repositories.AuthRepository
-import com.efedaniel.bloodfinder.networkutils.GENERIC_ERROR_MESSAGE
 import com.efedaniel.bloodfinder.networkutils.LoadingStatus
 import com.efedaniel.bloodfinder.networkutils.Result
 import com.efedaniel.bloodfinder.utils.APIDataKeys
 import com.efedaniel.bloodfinder.utils.ErrorCodes
 import com.efedaniel.bloodfinder.utils.ResourceProvider
 import kotlinx.coroutines.launch
-import timber.log.Timber
 import javax.inject.Inject
 
 class ForgotPasswordViewModel @Inject constructor(
     private val authRepository: AuthRepository,
     private val resourceProvider: ResourceProvider
-): BaseViewModel() {
+) : BaseViewModel() {
 
     private val _resetSentToMail = MutableLiveData(false)
 
@@ -34,7 +32,7 @@ class ForgotPasswordViewModel @Inject constructor(
                 }
                 is Result.Error -> {
                     if (result.errorCode.toInt() == APIDataKeys.INPUT_ERROR_CODE) {
-                        _loadingStatus.value = LoadingStatus.Error(result.errorCode, when(result.errorMessage) {
+                        _loadingStatus.value = LoadingStatus.Error(result.errorCode, when (result.errorMessage) {
                             ErrorCodes.EMAIL_NOT_FOUND -> resourceProvider.getString(R.string.email_does_not_exist_in_db)
                             ErrorCodes.MISSING_EMAIL -> resourceProvider.getString(R.string.email_cant_be_empty)
                             ErrorCodes.INVALID_EMAIL -> resourceProvider.getString(R.string.email_is_invalid)
@@ -55,5 +53,4 @@ class ForgotPasswordViewModel @Inject constructor(
     override fun addAllLiveDataToObservablesList() {
         observablesList.add(resetSentToMail)
     }
-
 }

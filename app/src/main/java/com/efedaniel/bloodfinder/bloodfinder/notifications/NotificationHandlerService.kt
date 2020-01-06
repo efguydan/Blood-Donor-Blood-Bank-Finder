@@ -78,10 +78,10 @@ class NotificationHandlerService : FirebaseMessagingService() {
 
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
         val data = remoteMessage.data
-        when(data["notificationType"]) {
+        when (data["notificationType"]) {
             ApiKeys.REQUEST_NOTIFICATION_TYPE -> sendRequestNotification(data)
             ApiKeys.ANSWER_NOTIFICATON_TYPE -> {
-                //TODO Come and Handle
+                // TODO Come and Handle
             }
         }
     }
@@ -96,7 +96,7 @@ class NotificationHandlerService : FirebaseMessagingService() {
     }
 
     private fun getRequestNotification(data: Map<String, String>): Notification {
-        //TODO Come back to set the real destination
+        // TODO Come back to set the real destination
         val pendingIntent = NavDeepLinkBuilder(this)
             .setComponentName(MainActivity::class.java)
             .setGraph(R.navigation.nav_graph)
@@ -137,5 +137,4 @@ class NotificationHandlerService : FirebaseMessagingService() {
             vibrationPattern = longArrayOf(100, 200, 300, 400, 500, 400, 300, 200, 400)
         })
     }
-
 }

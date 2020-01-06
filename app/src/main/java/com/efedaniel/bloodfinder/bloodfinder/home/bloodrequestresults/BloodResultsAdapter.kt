@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.efedaniel.bloodfinder.R
 import com.efedaniel.bloodfinder.bloodfinder.models.MiniLocation
 import com.efedaniel.bloodfinder.bloodfinder.models.request.UploadBloodAvailabilityRequest
-import com.efedaniel.bloodfinder.bloodfinder.models.request.UserDetails
 import com.efedaniel.bloodfinder.databinding.ItemBloodResultBinding
 import com.efedaniel.bloodfinder.extensions.convertToDistanceInKm
 import com.efedaniel.bloodfinder.extensions.getTime
@@ -16,7 +15,7 @@ import com.efedaniel.bloodfinder.extensions.getTime
 class BloodResultsAdapter(
     private val userLocation: MiniLocation,
     private val clickHandler: ClickHandler
-): ListAdapter<UploadBloodAvailabilityRequest, BloodResultsAdapter.ViewHolder>(DiffCallback) {
+) : ListAdapter<UploadBloodAvailabilityRequest, BloodResultsAdapter.ViewHolder>(DiffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
@@ -37,7 +36,7 @@ class BloodResultsAdapter(
 
     inner class ViewHolder(
         private var binding: ItemBloodResultBinding
-    ): RecyclerView.ViewHolder(binding.root) {
+    ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(result: UploadBloodAvailabilityRequest) {
             binding.bloodPosting = result
@@ -54,5 +53,4 @@ class BloodResultsAdapter(
 
         fun showBloodPostingFullDetails(posting: UploadBloodAvailabilityRequest)
     }
-
 }

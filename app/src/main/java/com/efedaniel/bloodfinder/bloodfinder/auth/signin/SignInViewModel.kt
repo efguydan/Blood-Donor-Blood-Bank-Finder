@@ -21,7 +21,7 @@ class SignInViewModel @Inject constructor(
     private val databaseRepository: DatabaseRepository,
     private val resourceProvider: ResourceProvider,
     private val prefsUtils: PrefsUtils
-): BaseViewModel() {
+) : BaseViewModel() {
 
     enum class UserDetailsFlow {
         PROFILE,
@@ -44,7 +44,7 @@ class SignInViewModel @Inject constructor(
                 }
                 is Result.Error -> {
                     if (result.errorCode.toInt() == APIDataKeys.INPUT_ERROR_CODE) {
-                        _loadingStatus.value = LoadingStatus.Error(result.errorCode, when(result.errorMessage) {
+                        _loadingStatus.value = LoadingStatus.Error(result.errorCode, when (result.errorMessage) {
                             ErrorCodes.EMAIL_NOT_FOUND -> resourceProvider.getString(R.string.account_hasnt_been_registered)
                             ErrorCodes.INVALID_EMAIL -> resourceProvider.getString(R.string.email_is_invalid)
                             ErrorCodes.INVALID_PASSWORD -> resourceProvider.getString(R.string.password_in_invalid)
@@ -60,7 +60,7 @@ class SignInViewModel @Inject constructor(
         }
     }
 
-    //TODO Come back and re-write this
+    // TODO Come back and re-write this
     private fun getUserDetails(userID: String) {
         viewModelScope.launch {
             _loadingStatus.value = LoadingStatus.Loading(resourceProvider.getString(R.string.retrieving_account_details))
@@ -87,5 +87,4 @@ class SignInViewModel @Inject constructor(
     override fun addAllLiveDataToObservablesList() {
         observablesList.add(signInSuccessful)
     }
-
 }

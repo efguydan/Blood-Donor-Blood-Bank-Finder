@@ -6,19 +6,17 @@ import com.efedaniel.bloodfinder.R
 import com.efedaniel.bloodfinder.base.BaseViewModel
 import com.efedaniel.bloodfinder.bloodfinder.repositories.AuthRepository
 import com.efedaniel.bloodfinder.networkutils.LoadingStatus
-import com.efedaniel.bloodfinder.utils.PrefsUtils
 import com.efedaniel.bloodfinder.utils.ResourceProvider
 import com.efedaniel.bloodfinder.networkutils.Result
 import com.efedaniel.bloodfinder.utils.APIDataKeys
 import com.efedaniel.bloodfinder.utils.ErrorCodes
 import kotlinx.coroutines.launch
-import timber.log.Timber
 import javax.inject.Inject
 
 class SignUpViewModel @Inject constructor(
     private val authRepository: AuthRepository,
     private val resourceProvider: ResourceProvider
-): BaseViewModel() {
+) : BaseViewModel() {
 
     private val _signUpSuccessful = MutableLiveData(false)
 
@@ -34,7 +32,7 @@ class SignUpViewModel @Inject constructor(
                 }
                 is Result.Error -> {
                     if (result.errorCode.toInt() == APIDataKeys.INPUT_ERROR_CODE) {
-                        _loadingStatus.value = LoadingStatus.Error(result.errorCode, when(result.errorMessage) {
+                        _loadingStatus.value = LoadingStatus.Error(result.errorCode, when (result.errorMessage) {
                             ErrorCodes.EMAIL_EXISTS -> resourceProvider.getString(R.string.email_exists)
                             ErrorCodes.INVALID_EMAIL -> resourceProvider.getString(R.string.email_is_invalid)
                             else -> result.errorMessage
@@ -54,5 +52,4 @@ class SignUpViewModel @Inject constructor(
     override fun addAllLiveDataToObservablesList() {
         observablesList.add(signUpSuccessful)
     }
-
 }

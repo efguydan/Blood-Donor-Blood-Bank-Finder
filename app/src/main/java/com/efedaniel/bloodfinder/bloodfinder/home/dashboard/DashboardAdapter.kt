@@ -1,21 +1,16 @@
 package com.efedaniel.bloodfinder.bloodfinder.home.dashboard
 
 import android.view.LayoutInflater
-import android.view.View
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.efedaniel.bloodfinder.R
 import com.efedaniel.bloodfinder.databinding.ItemDashboardBinding
-import android.R.attr.right
-import android.R.attr.left
 import android.view.ViewGroup
-import androidx.constraintlayout.widget.Constraints
-
 
 class DashboardAdapter(
     private val clickListener: (String) -> Unit
-): ListAdapter<String, DashboardAdapter.ViewHolder>(DiffCallback) {
+) : ListAdapter<String, DashboardAdapter.ViewHolder>(DiffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
@@ -38,7 +33,7 @@ class DashboardAdapter(
 
     inner class ViewHolder(
         private var binding: ItemDashboardBinding
-    ): RecyclerView.ViewHolder(binding.root) {
+    ) : RecyclerView.ViewHolder(binding.root) {
 
         init {
             itemView.setOnClickListener {
@@ -48,13 +43,12 @@ class DashboardAdapter(
 
         fun bind(action: String) {
             binding.actionTextView.text = action
-            binding.inProgressTextView.text = when(action) {
+            binding.inProgressTextView.text = when (action) {
                 "Upload Blood Availability" -> itemView.context.getString(R.string.view_list_or_add_new)
                 "Request For Blood" -> itemView.context.getString(R.string.find_nearest_blood_donor_or_private_blood_bank)
                 "Logout" -> itemView.context.getString(R.string.logout_from_the_app)
                 else -> itemView.context.getString(R.string.in_progress_check_back_shortly)
             }
         }
-
     }
 }

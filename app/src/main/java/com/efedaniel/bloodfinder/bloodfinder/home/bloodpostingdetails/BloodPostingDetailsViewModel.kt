@@ -13,7 +13,6 @@ import com.efedaniel.bloodfinder.bloodfinder.repositories.NotificationRepository
 import com.efedaniel.bloodfinder.networkutils.GENERIC_ERROR_CODE
 import com.efedaniel.bloodfinder.networkutils.GENERIC_ERROR_MESSAGE
 import com.efedaniel.bloodfinder.networkutils.LoadingStatus
-import com.efedaniel.bloodfinder.utils.APIDataKeys
 import com.efedaniel.bloodfinder.utils.ApiKeys
 import com.efedaniel.bloodfinder.utils.ResourceProvider
 import com.google.gson.Gson
@@ -24,7 +23,7 @@ class BloodPostingDetailsViewModel @Inject constructor(
     private val resourceProvider: ResourceProvider,
     private val databaseRepository: DatabaseRepository,
     private val notificationRepository: NotificationRepository
-): BaseViewModel() {
+) : BaseViewModel() {
 
     private val _bloodPostingUserDetails = MutableLiveData<UserDetails>()
     val bloodPostingUserDetails get() = _bloodPostingUserDetails
@@ -97,5 +96,4 @@ class BloodPostingDetailsViewModel @Inject constructor(
         observablesList.add(bloodPostingUserDetails)
         observablesList.add(notificationSentSuccessfully)
     }
-
 }

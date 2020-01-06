@@ -13,7 +13,7 @@ import com.efedaniel.bloodfinder.extensions.getTime
 
 class BloodAvailabilityAdapter(
     private val deleteListener: (String, Int) -> Unit
-): ListAdapter<UploadBloodAvailabilityRequest, BloodAvailabilityAdapter.ViewHolder>(DiffCallback)  {
+) : ListAdapter<UploadBloodAvailabilityRequest, BloodAvailabilityAdapter.ViewHolder>(DiffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
@@ -34,7 +34,7 @@ class BloodAvailabilityAdapter(
 
     inner class ViewHolder(
         private var binding: ItemBloodAvailabilityBinding
-    ): RecyclerView.ViewHolder(binding.root) {
+    ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(availabilityRequest: UploadBloodAvailabilityRequest) {
             binding.deletingProgressGroup.visibility = View.GONE
@@ -47,5 +47,4 @@ class BloodAvailabilityAdapter(
             binding.deletingProgressGroup.visibility = if (state) View.VISIBLE else View.GONE
         }
     }
-
 }

@@ -16,7 +16,6 @@ import com.efedaniel.bloodfinder.App
 import com.efedaniel.bloodfinder.R
 import com.efedaniel.bloodfinder.base.BaseFragment
 import com.efedaniel.bloodfinder.base.BaseViewModel
-import com.efedaniel.bloodfinder.bloodfinder.home.bloodrequest.BloodRequestFragmentDirections
 import com.efedaniel.bloodfinder.bloodfinder.models.request.UploadBloodAvailabilityRequest
 import com.efedaniel.bloodfinder.bloodfinder.models.request.UserDetails
 import com.efedaniel.bloodfinder.databinding.FragmentBloodResultsBinding
@@ -37,7 +36,8 @@ class BloodResultsFragment : BaseFragment(), BloodResultsAdapter.ClickHandler {
     private lateinit var viewModel: BloodResultsViewModel
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentBloodResultsBinding.inflate(inflater)
@@ -55,7 +55,7 @@ class BloodResultsFragment : BaseFragment(), BloodResultsAdapter.ClickHandler {
             BloodResultsFragmentArgs.fromBundle(arguments!!).bloodResultsList.size)
 
         val user = prefsUtils.getPrefAsObject(PrefKeys.LOGGED_IN_USER_DATA, UserDetails::class.java)
-        binding.resultsRecyclerView.adapter = BloodResultsAdapter(user.location!!,this)
+        binding.resultsRecyclerView.adapter = BloodResultsAdapter(user.location!!, this)
 
         viewModel.setBloodResults(BloodResultsFragmentArgs.fromBundle(arguments!!).bloodResultsList.toList())
         binding.parentLayout.onScrollChanged { mainActivity.invalidateToolbarElevation(it) }

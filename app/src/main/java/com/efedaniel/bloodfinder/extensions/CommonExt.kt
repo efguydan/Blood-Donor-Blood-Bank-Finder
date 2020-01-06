@@ -14,7 +14,7 @@ fun String.getTime(): String {
     return if (past.get(Calendar.YEAR) == today.get(Calendar.YEAR)) {
         when {
             past.get(Calendar.MONTH) != today.get(Calendar.MONTH) -> formatDate(past.time, Misc.DAY_MONTH_AND_TIME)
-            today.get(Calendar.DAY_OF_MONTH) - past.get(Calendar.DAY_OF_MONTH)  > 1 -> formatDate(past.time, Misc.DAY_MONTH_AND_TIME)
+            today.get(Calendar.DAY_OF_MONTH) - past.get(Calendar.DAY_OF_MONTH) > 1 -> formatDate(past.time, Misc.DAY_MONTH_AND_TIME)
             today.get(Calendar.DAY_OF_MONTH) == past.get(Calendar.DAY_OF_MONTH) -> String.format("Today at %s", formatDate(past.time, Misc.TIME))
             else -> String.format("Yesterday at %s", formatDate(past.time, Misc.TIME))
         }

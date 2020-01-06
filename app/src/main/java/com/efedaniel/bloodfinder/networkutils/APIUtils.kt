@@ -1,6 +1,5 @@
 package com.efedaniel.bloodfinder.networkutils
 
-import com.efedaniel.bloodfinder.bloodfinder.models.request.UserDetails
 import org.json.JSONObject
 import retrofit2.Response
 import timber.log.Timber
@@ -14,8 +13,7 @@ fun <T : Any> getAPIResult(response: Response<T>): Result<T> {
         if (body != null) {
             return Result.Success(body)
         }
-    }
-    else {
+    } else {
         val errorBody = response.errorBody()
         if (errorBody != null) {
             val errorBodyString = errorBody.string()

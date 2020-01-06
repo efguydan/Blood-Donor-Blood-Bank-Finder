@@ -12,7 +12,7 @@ import com.efedaniel.bloodfinder.R
 class SpinnerAdapter(
     private val context: Context,
     private val userTypes: List<String>
-): BaseAdapter() {
+) : BaseAdapter() {
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         val view: View

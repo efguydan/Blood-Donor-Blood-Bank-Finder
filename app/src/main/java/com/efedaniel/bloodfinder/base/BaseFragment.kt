@@ -7,7 +7,6 @@ import androidx.lifecycle.Observer
 import com.efedaniel.bloodfinder.MainActivity
 import com.efedaniel.bloodfinder.R
 import com.efedaniel.bloodfinder.networkutils.LoadingStatus
-import timber.log.Timber
 
 abstract class BaseFragment : Fragment() {
 
@@ -64,7 +63,7 @@ abstract class BaseFragment : Fragment() {
         for (liveData in getViewModel().observablesList) liveData.removeObservers(this)
     }
 
-    //Return true if you handle the back press in your fragment
+    // Return true if you handle the back press in your fragment
     open fun onBackPressed(): Boolean {
         return false
     }

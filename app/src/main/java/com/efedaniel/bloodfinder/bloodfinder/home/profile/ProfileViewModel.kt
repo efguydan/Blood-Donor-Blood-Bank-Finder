@@ -19,7 +19,7 @@ class ProfileViewModel @Inject constructor(
     private val prefsUtils: PrefsUtils,
     private val resourceProvider: ResourceProvider,
     private val databaseRepository: DatabaseRepository
-): BaseViewModel() {
+) : BaseViewModel() {
 
     private val _profileSavedAction = MutableLiveData(false)
 
@@ -50,5 +50,4 @@ class ProfileViewModel @Inject constructor(
     override fun addAllLiveDataToObservablesList() {
         observablesList.add(profileSavedAction)
     }
-
 }

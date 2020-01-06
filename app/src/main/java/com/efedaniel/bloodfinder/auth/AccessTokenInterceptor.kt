@@ -3,7 +3,6 @@ package com.efedaniel.bloodfinder.auth
 import com.efedaniel.bloodfinder.utils.ApiKeys
 import okhttp3.Interceptor
 import okhttp3.Response
-import timber.log.Timber
 
 class AccessTokenInterceptor(
     private val tokenProvider: AccessTokenProvider

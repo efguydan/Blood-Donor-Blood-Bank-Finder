@@ -90,13 +90,13 @@ class MainActivity : AppCompatActivity(), LoadingCallback {
         loadingState = state
         val drawable = heartRateAnimation.drawable
         if (drawable is AnimatedVectorDrawableCompat) {
-            val callback = object: Animatable2Compat.AnimationCallback() {
+            val callback = object : Animatable2Compat.AnimationCallback() {
                 override fun onAnimationEnd(drawab: Drawable?) { if (loadingState) drawable.start() }
             }
             drawable.registerAnimationCallback(callback)
             if (state) drawable.start() else drawable.stop()
         } else if (drawable is AnimatedVectorDrawable) {
-            val callback = @TargetApi(Build.VERSION_CODES.M) object: Animatable2.AnimationCallback() {
+            val callback = @TargetApi(Build.VERSION_CODES.M) object : Animatable2.AnimationCallback() {
                 override fun onAnimationEnd(drawa: Drawable?) { if (loadingState) drawable.start() }
             }
             drawable.registerAnimationCallback(callback)
@@ -160,7 +160,7 @@ class MainActivity : AppCompatActivity(), LoadingCallback {
     }
 
     override fun onBackPressed() {
-        //If the current fragment doesn't consume the back pressed action, then call super onBackPressed
+        // If the current fragment doesn't consume the back pressed action, then call super onBackPressed
         if (!currentFragment.onBackPressed()) super.onBackPressed()
     }
 }

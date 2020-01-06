@@ -23,7 +23,8 @@ class DashboardFragment : BaseFragment() {
     private lateinit var viewModel: DashboardViewModel
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentDashboardBinding.inflate(inflater)
@@ -39,7 +40,7 @@ class DashboardFragment : BaseFragment() {
         binding.viewModel = viewModel
         setHasOptionsMenu(true)
         binding.actionsRecyclerView.adapter = DashboardAdapter {
-            when(it) {
+            when (it) {
                 "Logout" -> logout()
                 "Upload Blood Availability" -> navigateToBloodAvailability()
                 "Request For Blood" -> navigateToBloodRequest()
@@ -58,7 +59,7 @@ class DashboardFragment : BaseFragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        return when(item?.itemId) {
+        return when (item?.itemId) {
             R.id.action_logout -> {
                 logout()
                 true

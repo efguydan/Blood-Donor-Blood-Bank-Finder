@@ -5,7 +5,4 @@ import javax.inject.Inject
 
 class ExampleRepository @Inject constructor(
     private val exampleApiService: AuthApiService
-) {
-
-
-}
+)

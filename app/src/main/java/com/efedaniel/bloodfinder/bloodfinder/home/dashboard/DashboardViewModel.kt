@@ -17,7 +17,7 @@ class DashboardViewModel @Inject constructor(
     private val prefsUtils: PrefsUtils,
     private val resourceProvider: ResourceProvider,
     private val databaseRepository: DatabaseRepository
-): BaseViewModel() {
+) : BaseViewModel() {
 
     private val userDetails: UserDetails = prefsUtils.getPrefAsObject(PrefKeys.LOGGED_IN_USER_DATA, UserDetails::class.java)
 
@@ -39,7 +39,7 @@ class DashboardViewModel @Inject constructor(
         }
     }
 
-    //TODO Change this to be done when user is just logged in to avoid being done multiple times
+    // TODO Change this to be done when user is just logged in to avoid being done multiple times
     fun subscribeLoggedInUserToNotification() {
         if (prefsUtils.doesContain(PrefKeys.DEVICE_NOTIFICATION_TOKEN)) {
             viewModelScope.launch {

@@ -16,8 +16,8 @@ class APIDataKeys {
     }
 }
 
-class ApiKeys{
-    companion object{
+class ApiKeys {
+    companion object {
         const val AUTH_BASE_URL = "https://identitytoolkit.googleapis.com/"
         const val DATABASE_BASE_URL = "https://blooddonorbankfinder-h4373.firebaseio.com/"
         const val WEB_API_KEY = "AIzaSyA4PDmmaafAasb2l33XrprsH05DDVz4HEU"

@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.efedaniel.bloodfinder.R
 import com.efedaniel.bloodfinder.base.BaseViewModel
-import com.efedaniel.bloodfinder.bloodfinder.models.MiniLocation
 import com.efedaniel.bloodfinder.bloodfinder.models.request.UploadBloodAvailabilityRequest
 import com.efedaniel.bloodfinder.bloodfinder.models.request.UserDetails
 import com.efedaniel.bloodfinder.bloodfinder.repositories.DatabaseRepository
@@ -13,9 +12,7 @@ import com.efedaniel.bloodfinder.networkutils.GENERIC_ERROR_CODE
 import com.efedaniel.bloodfinder.networkutils.GENERIC_ERROR_MESSAGE
 import com.efedaniel.bloodfinder.networkutils.LoadingStatus
 import com.efedaniel.bloodfinder.utils.*
-import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -23,7 +20,7 @@ class BloodRequestViewModel @Inject constructor(
     private val resourceProvider: ResourceProvider,
     private val databaseRepository: DatabaseRepository,
     private val prefsUtils: PrefsUtils
-): BaseViewModel() {
+) : BaseViewModel() {
 
     private val user = prefsUtils.getPrefAsObject(PrefKeys.LOGGED_IN_USER_DATA, UserDetails::class.java)
 
@@ -33,7 +30,6 @@ class BloodRequestViewModel @Inject constructor(
 
     private val _moveToBloodResults = MutableLiveData(false)
     val moveToBloodResults: LiveData<Boolean> get() = _moveToBloodResults
-
 
     fun getCompatibleBloods(bloodType: String, billingType: String) {
         _loadingStatus.value = LoadingStatus.Loading(resourceProvider.getString(R.string.searching))
@@ -67,26 +63,26 @@ class BloodRequestViewModel @Inject constructor(
     }
 
     private fun triggerNextStep() {
-        //TODO Come and finish filtering the result using the algorithm.
+        // TODO Come and finish filtering the result using the algorithm.
         Timber.d(donorList.size.toString())
 
         val donorsToRemove = mutableListOf<UploadBloodAvailabilityRequest>()
         for (bloodPosting in donorList) {
 
-            //Remove blood postings created by the current user
+            // Remove blood postings created by the current user
             if (bloodPosting.donorName == user.fullName()) donorsToRemove.add(bloodPosting)
 
-            //Remove the billing types that weren't asked for by the user
+            // Remove the billing types that weren't asked for by the user
             else if (this.billingType.toLowerCase() != "any" && bloodPosting.billingType != this.billingType) donorsToRemove.add(bloodPosting)
 
-            //TODO Add Religion Filter
+            // TODO Add Religion Filter
         }
         donorList.removeAll(donorsToRemove)
 
-        //After all filters, if the list is not empty, then we move to result fragment
+        // After all filters, if the list is not empty, then we move to result fragment
         if (donorList.isNotEmpty()) {
 
-            //Sort the blood donors according to the distance to the current User
+            // Sort the blood donors according to the distance to the current User
             donorList = donorList.sortedWith(compareBy { it.location.distanceTo(user.location!!) }).toMutableList()
 
             _moveToBloodResults.value = true
@@ -101,5 +97,4 @@ class BloodRequestViewModel @Inject constructor(
     }
 
     fun moveToBloodResultsDone() { _moveToBloodResults.value = false }
-
 }

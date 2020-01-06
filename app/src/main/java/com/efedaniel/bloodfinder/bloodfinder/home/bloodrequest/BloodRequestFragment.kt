@@ -27,7 +27,8 @@ class BloodRequestFragment : BaseFragment() {
     private lateinit var viewModel: BloodRequestViewModel
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentBloodRequestBinding.inflate(inflater)
@@ -53,7 +54,7 @@ class BloodRequestFragment : BaseFragment() {
         viewModel.moveToBloodResults.observe(this, Observer {
             if (it == true) {
                 findNavController().navigate(BloodRequestFragmentDirections.actionBloodRequestFragmentToBloodResultsFragment(viewModel.donorList.toTypedArray()))
-                viewModel. moveToBloodResultsDone()
+                viewModel.moveToBloodResultsDone()
             }
         })
     }
@@ -71,11 +72,11 @@ class BloodRequestFragment : BaseFragment() {
     }
 
     private fun setupSpinners() {
-        //Blood Type
+        // Blood Type
         binding.bloodTypeSpinner.adapter = SpinnerAdapter(context!!, Data.bloodTypes)
         binding.bloodTypeSpinner.registerTextViewLabel(binding.bloodTypeLabelTextView)
 
-        //Billing Type
+        // Billing Type
         binding.billingTypeSpinner.registerTextViewLabel(binding.billingTypeLabelTextView)
         binding.billingTypeSpinner.adapter = SpinnerAdapter(context!!, Data.billingTypeWithAny)
     }

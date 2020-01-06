@@ -16,5 +16,4 @@ class NotificationRepository @Inject constructor(private val notificationApiServ
             null
         }
     }
-
 }

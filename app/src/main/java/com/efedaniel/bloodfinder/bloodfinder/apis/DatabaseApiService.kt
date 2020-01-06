@@ -23,8 +23,10 @@ interface DatabaseApiService {
     suspend fun uploadBloodAvailability(@Body body: UploadBloodAvailabilityRequest): Response<JsonElement>
 
     @PUT("/bloodAvailability/{blood_availability_id}/bloodAvailabilityID.json")
-    suspend fun uploadBloodAvailabilityID(@Path("blood_availability_id") bloodAvailabilityID: String,
-                                          @Body body: String): Response<JsonElement>
+    suspend fun uploadBloodAvailabilityID(
+        @Path("blood_availability_id") bloodAvailabilityID: String,
+        @Body body: String
+    ): Response<JsonElement>
 
     @DELETE("/bloodAvailability/{blood_availability_id}.json")
     suspend fun deleteBloodAvailability(@Path("blood_availability_id") bloodAvailabilityID: String): Response<JsonElement>
@@ -39,6 +41,8 @@ interface DatabaseApiService {
     suspend fun uploadBloodPostingRequest(@Body body: BloodPostingRequest): Response<JsonElement>
 
     @PUT("/bloodRequests/{blood_request_id}/bloodRequestID.json")
-    suspend fun uploadBloodRequestID(@Path("blood_request_id") bloodRequestID: String,
-                                          @Body body: String): Response<JsonElement>
+    suspend fun uploadBloodRequestID(
+        @Path("blood_request_id") bloodRequestID: String,
+        @Body body: String
+    ): Response<JsonElement>
 }

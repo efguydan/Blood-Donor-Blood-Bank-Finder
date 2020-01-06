@@ -34,7 +34,8 @@ class ProfileFragment : BaseFragment() {
     private lateinit var viewModel: ProfileViewModel
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentProfileBinding.inflate(inflater)
@@ -66,7 +67,7 @@ class ProfileFragment : BaseFragment() {
     private fun saveUserDetails() {
         val userDetails = UserDetails()
         userDetails.userType = binding.userTypeSpinner.selectedItem as String
-        when(userDetails.userType) {
+        when (userDetails.userType) {
             "Blood Donor" -> {
                 userDetails.firstName = binding.firstNameEditText.text.toString().trim()
                 userDetails.gender = binding.genderSpinner.selectedItem as String
@@ -86,7 +87,7 @@ class ProfileFragment : BaseFragment() {
     }
 
     private fun setupSpinners() {
-        //UserType
+        // UserType
         binding.userTypeSpinner.adapter = SpinnerAdapter(context!!, Data.userTypes)
         binding.userTypeSpinner.registerTextViewLabel(binding.userTypeLabelTextView)
         binding.userTypeSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
@@ -112,33 +113,32 @@ class ProfileFragment : BaseFragment() {
                     }
                 }
             }
-
         }
 
-        //Title
+        // Title
         binding.titleSpinner.adapter = SpinnerAdapter(context!!, Data.titleTypes)
         binding.titleSpinner.registerTextViewLabel(binding.titleLabelTextView)
 
-        //Gender
+        // Gender
         binding.genderSpinner.adapter = SpinnerAdapter(context!!, Data.genderTypes)
         binding.genderSpinner.registerTextViewLabel(binding.genderLabelTextView)
 
-        //Blood Type
+        // Blood Type
         binding.bloodTypeSpinner.adapter = SpinnerAdapter(context!!, Data.bloodTypes)
         binding.bloodTypeSpinner.registerTextViewLabel(binding.bloodTypeLabelTextView)
 
-        //Religion
+        // Religion
         binding.religionSpinner.adapter = SpinnerAdapter(context!!, Data.religionTypes)
         binding.religionSpinner.registerTextViewLabel(binding.religionLabelTextView)
 
-        //Marital Status
+        // Marital Status
         binding.maritalStatusSpinner.adapter = SpinnerAdapter(context!!, Data.maritalStatusTypes)
         binding.maritalStatusSpinner.registerTextViewLabel(binding.maritalStatusTextView)
     }
 
     private fun inputVerified(): Boolean {
         var verified = true
-        when(binding.userTypeSpinner.selectedItemPosition) {
+        when (binding.userTypeSpinner.selectedItemPosition) {
             0 -> {
                 showSnackbar(R.string.select_user_type)
                 return false

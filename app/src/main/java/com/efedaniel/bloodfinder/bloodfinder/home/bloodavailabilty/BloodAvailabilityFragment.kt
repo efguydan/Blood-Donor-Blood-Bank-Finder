@@ -1,6 +1,5 @@
 package com.efedaniel.bloodfinder.bloodfinder.home.bloodavailabilty
 
-
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -43,7 +42,8 @@ class BloodAvailabilityFragment : BaseFragment() {
     private var currentPosition = 0
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentBloodAvailabiltyBinding.inflate(inflater)
@@ -123,15 +123,15 @@ class BloodAvailabilityFragment : BaseFragment() {
 
     private fun bindCustomView(bottomSheet: MaterialDialog) {
         bottomSheet.run {
-            //Blood Type
+            // Blood Type
             bloodTypeSpinner.adapter = SpinnerAdapter(context, Data.bloodTypes)
             bloodTypeSpinner.registerTextViewLabel(bloodTypeLabelTextView)
 
-            //Billing Type
+            // Billing Type
             billingTypeSpinner.adapter = SpinnerAdapter(context, Data.billingType)
             billingTypeSpinner.registerTextViewLabel(billingTypeLabelTextView)
 
-            //Pre-filling Stuff
+            // Pre-filling Stuff
             user = prefsUtils.getPrefAsObject(PrefKeys.LOGGED_IN_USER_DATA, UserDetails::class.java)
             if (user.isBloodDonor()) {
                 bloodTypeSpinner.setSelection(Data.bloodTypes.indexOf(user.bloodType))
