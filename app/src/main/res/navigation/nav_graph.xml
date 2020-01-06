@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/signInFragment">
+    app:startDestination="@id/bloodPostingRequestFragment">
     <fragment
         android:id="@+id/signInFragment"
         android:name="com.efedaniel.bloodfinder.bloodfinder.auth.signin.SignInFragment"

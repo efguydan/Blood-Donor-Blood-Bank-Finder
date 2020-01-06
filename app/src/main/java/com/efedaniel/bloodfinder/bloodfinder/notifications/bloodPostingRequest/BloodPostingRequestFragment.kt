@@ -45,7 +45,7 @@ class BloodPostingRequestFragment : BaseFragment() {
 
     private fun setUpToolbar() = mainActivity.run {
         setUpToolBar(getString(R.string.blood_donation_request), false)
-        invalidateToolbarElevation(0)
+        invalidateToolbarElevation(100)
     }
 
     override fun getViewModel(): BaseViewModel = viewModel

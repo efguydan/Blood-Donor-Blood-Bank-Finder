@@ -113,4 +113,9 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="donation_details">Donation Details</string>
+    <string name="blood_seeker_name">Blood Seeker Name</string>
+    <string name="blood_seeker_address">Blood Seeker Address</string>
+    <string name="decline">Decline</string>
+    <string name="accept">Accept</string>
 </resources>
