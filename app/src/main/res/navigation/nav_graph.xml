@@ -164,4 +164,9 @@
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popUpTo="@+id/nav_graph" />
     </fragment>
+    <fragment
+        android:id="@+id/bloodPostingRequestFragment"
+        android:name="com.efedaniel.bloodfinder.bloodfinder.notifications.bloodPostingRequest.BloodPostingRequestFragment"
+        android:label="BloodPostingRequestFragment"
+        tools:layout="@layout/fragment_blood_posting_request"/>
 </navigation>

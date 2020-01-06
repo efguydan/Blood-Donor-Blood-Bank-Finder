@@ -100,7 +100,7 @@ class NotificationHandlerService : FirebaseMessagingService() {
         val pendingIntent = NavDeepLinkBuilder(this)
             .setComponentName(MainActivity::class.java)
             .setGraph(R.navigation.nav_graph)
-            .setDestination(R.id.signInFragment)
+            .setDestination(R.id.bloodPostingRequestFragment)
             .createPendingIntent()
 
         val soundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)

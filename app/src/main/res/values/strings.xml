@@ -110,4 +110,7 @@
     <string name="blood_request_channel_description">This channel handles sending notifications about blood requests to blood providers</string>
     <string name="blood_donation_request">Blood Donation Request</string>
     <string name="blood_requested_successfully">Blood Requested Successfully</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
