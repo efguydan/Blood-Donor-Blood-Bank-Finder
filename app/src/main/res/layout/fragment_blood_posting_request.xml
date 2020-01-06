@@ -32,9 +32,10 @@
                 android:layout_margin="16dp"
                 android:fontFamily="@font/muli"
                 android:lineSpacingExtra="1.5dp"
-                android:text="Hello Chief Efe Ejemudaro, You have received a blood donation request from Efe Personal Hospital. You need to decide whether to accept or decline the request. Kindly reply as soon as possible so that they would be able to take further action"
                 android:textColor="@android:color/black"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                tools:text="Hello Chief Efe Ejemudaro, You have received a blood donation request from Efe Personal Hospital. You need to decide whether to accept or decline the request. Kindly reply as soon as possible so that they would be able to take further action"
+                />
 
         </androidx.cardview.widget.CardView>
 
