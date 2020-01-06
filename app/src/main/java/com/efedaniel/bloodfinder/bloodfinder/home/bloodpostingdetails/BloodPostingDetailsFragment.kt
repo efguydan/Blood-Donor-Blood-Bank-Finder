@@ -13,6 +13,7 @@ import androidx.core.app.ActivityCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 import com.efedaniel.bloodfinder.App
 
 import com.efedaniel.bloodfinder.R
@@ -80,8 +81,19 @@ class BloodPostingDetailsFragment : BaseFragment() {
                     currentUser.fullName(),
                     bloodPosting.bloodType
                 ))
-            //TODO Send Notification to selected user
         }
+        viewModel.notificationSentSuccessfully.observe(this, Observer {
+            if (it == true) {
+                showDialogWithAction(
+                    title = getString(R.string.blood_requested_successfully),
+                    body = "Your blood request has been sent to ${bloodPosting.donorName}, Please wait for a response from them.",
+                    positiveRes = R.string.close,
+                    positiveAction = {
+                        findNavController().navigate(BloodPostingDetailsFragmentDirections.actionBloodPostingDetailsFragmentToDashboardFragment())
+                    }
+                )
+            }
+        })
     }
 
     private fun call(phoneNumber: String) {

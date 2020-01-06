@@ -157,5 +157,11 @@
         <argument
             android:name="bloodPosting"
             app:argType="com.efedaniel.bloodfinder.bloodfinder.models.request.UploadBloodAvailabilityRequest" />
+        <action
+            android:id="@+id/action_bloodPostingDetailsFragment_to_dashboardFragment"
+            app:destination="@id/dashboardFragment"
+            app:enterAnim="@anim/slide_in_from_left"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popUpTo="@+id/nav_graph" />
     </fragment>
 </navigation>

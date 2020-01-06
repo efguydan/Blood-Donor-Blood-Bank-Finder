@@ -10,6 +10,7 @@ import android.media.RingtoneManager
 import android.os.Build
 import androidx.annotation.StringRes
 import androidx.core.app.NotificationCompat
+import androidx.core.content.ContextCompat
 import androidx.navigation.NavDeepLinkBuilder
 import com.efedaniel.bloodfinder.App
 import com.efedaniel.bloodfinder.MainActivity
@@ -108,7 +109,7 @@ class NotificationHandlerService : FirebaseMessagingService() {
 
         return NotificationCompat.Builder(this, Misc.REQUEST_NOTIFICATION_CHANNEL_ID).apply {
             setSmallIcon(R.drawable.ic_transfusion)
-            color = getColor(R.color.colorAccent)
+            color = ContextCompat.getColor(this@NotificationHandlerService, R.color.colorAccent)
             setContentTitle(getString(R.string.blood_donation_request))
             setContentText(notificationBody)
             setStyle(NotificationCompat.BigTextStyle().bigText(notificationBody))

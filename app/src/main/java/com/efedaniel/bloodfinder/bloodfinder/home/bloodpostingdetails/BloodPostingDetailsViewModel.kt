@@ -29,6 +29,9 @@ class BloodPostingDetailsViewModel @Inject constructor(
     private val _bloodPostingUserDetails = MutableLiveData<UserDetails>()
     val bloodPostingUserDetails get() = _bloodPostingUserDetails
 
+    private val _notificationSentSuccessfully = MutableLiveData(false)
+    val notificationSentSuccessfully get() = _notificationSentSuccessfully
+
     private lateinit var bloodPostingRequest: BloodPostingRequest
 
     fun getPostingUserDetails(userID: String) {
@@ -79,15 +82,20 @@ class BloodPostingDetailsViewModel @Inject constructor(
             val response = notificationRepository.sendBloodRequestNotification(notificationRequest)
             if (response?.isSuccessful == true) {
                 _loadingStatus.value = LoadingStatus.Success
-                //TODO What happens when the notification is successfully sent
+                _notificationSentSuccessfully.value = true
             } else {
                 _loadingStatus.value = LoadingStatus.Error(GENERIC_ERROR_CODE, GENERIC_ERROR_MESSAGE)
             }
         }
     }
 
+    private fun notificationSentActionCompleted() {
+        _notificationSentSuccessfully.value = false
+    }
+
     override fun addAllLiveDataToObservablesList() {
         observablesList.add(bloodPostingUserDetails)
+        observablesList.add(notificationSentSuccessfully)
     }
 
 }
