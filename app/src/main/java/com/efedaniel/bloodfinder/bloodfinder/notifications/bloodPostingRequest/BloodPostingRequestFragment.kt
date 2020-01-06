@@ -71,8 +71,6 @@ class BloodPostingRequestFragment : BaseFragment() {
                 }
             }
         })
-
-
     }
 
     private fun call(phoneNumber: String) {
