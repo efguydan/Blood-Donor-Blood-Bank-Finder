@@ -105,17 +105,17 @@
     <string name="user_details">User Details</string>
     <string name="select_this_donor">Select this Donor</string>
     <string name="uploading_blood_request">Uploading Blood Request…</string>
-    <string name="notifying_blood_provider">Notifying Blood Provider...</string>
+    <string name="notifying_blood_provider">Notifying Blood Provider…</string>
     <string name="blood_request_channel">Blood Request Channel</string>
     <string name="blood_request_channel_description">This channel handles sending notifications about blood requests to blood providers</string>
     <string name="blood_donation_request">Blood Donation Request</string>
     <string name="blood_requested_successfully">Blood Requested Successfully</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="donation_details">Donation Details</string>
     <string name="blood_seeker_name">Blood Seeker Name</string>
     <string name="blood_seeker_address">Blood Seeker Address</string>
     <string name="decline">Decline</string>
     <string name="accept">Accept</string>
+    <string name="blood_request_message_format">Hello %s, You have received a blood donation request from %s. You need to decide whether to accept or decline the request. Kindly reply as soon as possible so that they would be able to take further action</string>
+    <string name="blood_seeker_phone_number">Blood Seeker Phone Number</string>
+    <string name="fetching_seeker_data">Fetching Blood Seeker Details…</string>
 </resources>

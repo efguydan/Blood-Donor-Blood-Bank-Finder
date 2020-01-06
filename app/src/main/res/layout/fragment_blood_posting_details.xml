@@ -12,6 +12,11 @@
             type="com.efedaniel.bloodfinder.bloodfinder.home.bloodpostingdetails.BloodPostingDetailsViewModel" />
     </data>
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -136,6 +141,27 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/muli_light"
+                    android:text="@string/billing_type"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="12sp"
+                    android:layout_marginStart="16dp" />
+
+                <TextView
+                    android:id="@+id/bilingTypeTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="16dp"
+                    android:fontFamily="@font/muli_bold"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="18sp"
+                    tools:text="Free Donation" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/muli_light"
                     android:text="@string/phone_number"
                     android:textColor="@color/colorAccent"
                     android:textSize="12sp"
@@ -170,5 +196,7 @@
             android:text="@string/select_this_donor" />
 
     </LinearLayout>
+
+    </ScrollView>
 
 </layout>

@@ -8,6 +8,7 @@ import android.content.Context
 import android.graphics.Color
 import android.media.RingtoneManager
 import android.os.Build
+import android.os.Bundle
 import androidx.annotation.StringRes
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
@@ -15,7 +16,9 @@ import androidx.navigation.NavDeepLinkBuilder
 import com.efedaniel.bloodfinder.App
 import com.efedaniel.bloodfinder.MainActivity
 import com.efedaniel.bloodfinder.R
+import com.efedaniel.bloodfinder.bloodfinder.models.request.BloodPostingRequest
 import com.efedaniel.bloodfinder.bloodfinder.models.request.UserDetails
+import com.efedaniel.bloodfinder.bloodfinder.notifications.bloodPostingRequest.BloodPostingRequestFragment.Companion.BLOOD_POSTING_KEY
 import com.efedaniel.bloodfinder.bloodfinder.repositories.DatabaseRepository
 import com.efedaniel.bloodfinder.networkutils.Result
 import com.efedaniel.bloodfinder.utils.ApiKeys
@@ -96,14 +99,17 @@ class NotificationHandlerService : FirebaseMessagingService() {
     }
 
     private fun getRequestNotification(data: Map<String, String>): Notification {
-        // TODO Come back to set the real destination
+        val args = Bundle()
+        args.putParcelable(BLOOD_POSTING_KEY, BloodPostingRequest.getBloodPostingFromMap(data))
         val pendingIntent = NavDeepLinkBuilder(this)
             .setComponentName(MainActivity::class.java)
             .setGraph(R.navigation.nav_graph)
             .setDestination(R.id.bloodPostingRequestFragment)
+            .setArguments(args)
             .createPendingIntent()
 
         val soundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
+        //TODO Come back to clean this
         val notificationBody = "Hello ${data["bloodProviderFullName"]}, You have received a blood donation request from" +
                 " ${data["bloodSeekerFullName"]}. Please click on this notification to give them a response"
 

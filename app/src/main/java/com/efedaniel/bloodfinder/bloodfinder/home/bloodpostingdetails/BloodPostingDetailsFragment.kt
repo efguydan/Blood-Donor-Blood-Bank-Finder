@@ -66,6 +66,7 @@ class BloodPostingDetailsFragment : BaseFragment() {
         binding.userNameTextView.text = userDetails.fullName()
         binding.userTypeTextView.text = userDetails.userType
         binding.addressTextView.text = userDetails.address
+        binding.bilingTypeTextView.text = String.format("%s Donation", bloodPosting.billingType)
         binding.phoneNumberTextView.text = userDetails.phoneNumber
         binding.phoneNumberTextView.setOnClickListener { call(userDetails.phoneNumber!!) }
 
@@ -78,7 +79,8 @@ class BloodPostingDetailsFragment : BaseFragment() {
                     currentUser.localID!!,
                     bloodPosting.donorName,
                     currentUser.fullName(),
-                    bloodPosting.bloodType
+                    bloodPosting.bloodType,
+                    bloodPosting.billingType
                 ))
         }
         viewModel.notificationSentSuccessfully.observe(this, Observer {

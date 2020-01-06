@@ -168,5 +168,9 @@
         android:id="@+id/bloodPostingRequestFragment"
         android:name="com.efedaniel.bloodfinder.bloodfinder.notifications.bloodPostingRequest.BloodPostingRequestFragment"
         android:label="BloodPostingRequestFragment"
-        tools:layout="@layout/fragment_blood_posting_request"/>
+        tools:layout="@layout/fragment_blood_posting_request">
+        <argument
+            android:name="bloodPosting"
+            app:argType="com.efedaniel.bloodfinder.bloodfinder.models.request.BloodPostingRequest" />
+    </fragment>
 </navigation>
