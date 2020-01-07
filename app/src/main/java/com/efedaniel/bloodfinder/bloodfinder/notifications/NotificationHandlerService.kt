@@ -142,7 +142,7 @@ class NotificationHandlerService : FirebaseMessagingService() {
         val pendingIntent = NavDeepLinkBuilder(this)
             .setComponentName(MainActivity::class.java)
             .setGraph(R.navigation.nav_graph)
-            .setDestination(R.id.bloodPostingRequestFragment)
+            .setDestination(R.id.bloodPostingResponseFragment)
             .setArguments(args)
             .createPendingIntent()
 

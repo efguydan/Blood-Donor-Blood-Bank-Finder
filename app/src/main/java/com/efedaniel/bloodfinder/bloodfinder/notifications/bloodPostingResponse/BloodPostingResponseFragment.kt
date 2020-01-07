@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import com.efedaniel.bloodfinder.App
 
 import com.efedaniel.bloodfinder.R
@@ -39,6 +40,7 @@ class BloodPostingResponseFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         setUpToolbar()
         (mainActivity.applicationContext as App).component.inject(this)
+        viewModel = ViewModelProviders.of(this, viewModelFactory).get(BloodPostingResponseViewModel::class.java)
         binding.viewModel = viewModel
     }
 
