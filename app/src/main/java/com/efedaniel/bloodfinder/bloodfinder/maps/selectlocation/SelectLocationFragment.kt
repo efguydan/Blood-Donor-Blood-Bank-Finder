@@ -179,6 +179,12 @@ class SelectLocationFragment : BaseFragment(), OnMapReadyCallback {
             ContextCompat.checkSelfPermission(context!!, android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             locationPermissionGranted = true
             getCurrentLocation()
+
+            // Setup current location shii
+            map.isMyLocationEnabled = true
+            val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
+            mapsLocationButton = (mapFragment.view!!.findViewById<View>(Integer.parseInt("1")).parent as View).findViewById(Integer.parseInt("2"))
+            mapsLocationButton?.visibility = View.GONE
         } else {
             requestPermissions(arrayOf(
                 android.Manifest.permission.ACCESS_FINE_LOCATION,
@@ -220,12 +226,6 @@ class SelectLocationFragment : BaseFragment(), OnMapReadyCallback {
 
         // Send a current Location Request
         initiateGettingLocation()
-
-        // Setup current location shii
-        map.isMyLocationEnabled = true
-        val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
-        mapsLocationButton = (mapFragment.view!!.findViewById<View>(Integer.parseInt("1")).parent as View).findViewById<View>(Integer.parseInt("2"))
-        mapsLocationButton?.visibility = View.GONE
     }
 
     private fun setUpToolbar() = mainActivity.run {

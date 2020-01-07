@@ -93,7 +93,7 @@
     <string name="move_map_around_message">Please move the map around so the red marker is on your home location. \nYou can click the icon on the right side of the toolbar to reset the map icon to your current location.</string>
     <string name="my_location">My Location</string>
     <string name="location_permission_not_given_error">Hi!\nTo get your current location, we need your permission. Kindly click on proceed to give us your permission.</string>
-    <string name="current_location_getting_error">An error was encountered while trying to get your location. Please try again later</string>
+    <string name="current_location_getting_error">An error was encountered while trying to get your location. Please wait for a little before trying again</string>
     <string name="try_again">Try Again</string>
     <string name="saving_user_location">Saving User Location…</string>
     <string name="save_selected_location">Save Selected Location</string>
