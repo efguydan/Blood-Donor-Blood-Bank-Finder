@@ -103,4 +103,13 @@ class DatabaseRepository @Inject constructor(private val databaseApiService: Dat
             null
         }
     }
+
+    suspend fun updateBloodRequestStatus(bloodRequestID: String, status: String): Result<String> {
+        return try {
+            getAPIResult(databaseApiService.updateBloodRequestStatus(bloodRequestID, status))
+        } catch (e: Exception) {
+            e.printStackTrace()
+            Result.Error(GENERIC_ERROR_CODE, GENERIC_ERROR_MESSAGE)
+        }
+    }
 }

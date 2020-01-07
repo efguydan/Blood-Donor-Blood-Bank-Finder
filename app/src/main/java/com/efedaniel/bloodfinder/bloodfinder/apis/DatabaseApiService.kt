@@ -45,4 +45,7 @@ interface DatabaseApiService {
         @Path("blood_request_id") bloodRequestID: String,
         @Body body: String
     ): Response<JsonElement>
+
+    @PUT("/bloodRequests/{blood_request_id}/status.json")
+    suspend fun updateBloodRequestStatus(@Path("blood_request_id") bloodRequestID: String, @Body status: String): Response<String>
 }

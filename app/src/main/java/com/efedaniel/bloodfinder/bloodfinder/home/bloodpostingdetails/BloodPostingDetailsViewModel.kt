@@ -88,10 +88,6 @@ class BloodPostingDetailsViewModel @Inject constructor(
         }
     }
 
-    private fun notificationSentActionCompleted() {
-        _notificationSentSuccessfully.value = false
-    }
-
     override fun addAllLiveDataToObservablesList() {
         observablesList.add(bloodPostingUserDetails)
         observablesList.add(notificationSentSuccessfully)

@@ -27,6 +27,8 @@ class ApiKeys {
         const val DONOR_ID = "donorID"
         const val BLOOD_TYPE = "bloodType"
         const val PENDING = "pending"
+        const val ACCEPTED = "accepted"
+        const val DECLINED = "declined"
         const val REQUEST_NOTIFICATION_TYPE = "request"
         const val ANSWER_NOTIFICATON_TYPE = "answer"
     }
