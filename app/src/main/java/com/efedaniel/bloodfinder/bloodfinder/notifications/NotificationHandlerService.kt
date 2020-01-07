@@ -83,9 +83,7 @@ class NotificationHandlerService : FirebaseMessagingService() {
         val data = remoteMessage.data
         when (data["notificationType"]) {
             ApiKeys.REQUEST_NOTIFICATION_TYPE -> sendRequestNotification(data)
-            ApiKeys.ANSWER_NOTIFICATON_TYPE -> {
-                // TODO Come and Handle
-            }
+            ApiKeys.ANSWER_NOTIFICATON_TYPE -> sendAnswerNotification(data)
         }
     }
 
@@ -117,6 +115,45 @@ class NotificationHandlerService : FirebaseMessagingService() {
             setSmallIcon(R.drawable.ic_transfusion)
             color = ContextCompat.getColor(this@NotificationHandlerService, R.color.colorAccent)
             setContentTitle(getString(R.string.blood_donation_request))
+            setContentText(notificationBody)
+            setStyle(NotificationCompat.BigTextStyle().bigText(notificationBody))
+            setAutoCancel(true)
+            setSound(soundUri)
+            setDefaults(Notification.DEFAULT_VIBRATE)
+            setWhen(System.currentTimeMillis())
+            setContentIntent(pendingIntent)
+        }.build()
+    }
+
+    private fun sendAnswerNotification(data: Map<String, String>) {
+        val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            setupNotificationChannel(notificationManager, Misc.ANSWER_NOTIFICATION_CHANNEL_ID,
+                R.string.blood_answer_channel, R.string.blood_answer_channel_description)
+        }
+        notificationManager.notify(Random().nextInt(50000), getAnswerNotification(data))
+    }
+
+    private fun getAnswerNotification(data: Map<String, String>): Notification {
+        //TODO Change this to the real destination
+        val args = Bundle()
+        args.putParcelable(BLOOD_POSTING_KEY, BloodPostingRequest.getBloodPostingFromMap(data))
+        val pendingIntent = NavDeepLinkBuilder(this)
+            .setComponentName(MainActivity::class.java)
+            .setGraph(R.navigation.nav_graph)
+            .setDestination(R.id.bloodPostingRequestFragment)
+            .setArguments(args)
+            .createPendingIntent()
+
+        val soundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
+        //TODO Come back to clean this
+        val notificationBody = "Hello ${data["bloodSeekerFullName"]}, Your blood donation request has been ${data["status"]} " +
+                "by ${data["bloodProviderFullName"]}. Please click on this notification to view more details"
+
+        return NotificationCompat.Builder(this, Misc.REQUEST_NOTIFICATION_CHANNEL_ID).apply {
+            setSmallIcon(R.drawable.ic_transfusion)
+            color = ContextCompat.getColor(this@NotificationHandlerService, R.color.colorAccent)
+            setContentTitle(getString(R.string.blood_donation_response))
             setContentText(notificationBody)
             setStyle(NotificationCompat.BigTextStyle().bigText(notificationBody))
             setAutoCancel(true)

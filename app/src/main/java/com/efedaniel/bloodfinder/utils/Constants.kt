@@ -52,6 +52,7 @@ class Misc {
         const val DAY_MONTH_AND_TIME = "dd MMMM 'at' hh:mma"
         const val TIME = "hh:mma"
         const val REQUEST_NOTIFICATION_CHANNEL_ID = "blood_request_channel"
+        const val ANSWER_NOTIFICATION_CHANNEL_ID = "blood_answer_channel"
         const val CALL_PERMISSION_REQUEST = 200
         const val LOCATION_PERMISSION_REQUEST = 201
         const val LOCATION_DEVICE_ACCESS_REQUEST = 202

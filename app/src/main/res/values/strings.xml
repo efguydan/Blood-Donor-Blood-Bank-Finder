@@ -108,6 +108,8 @@
     <string name="notifying_blood_provider">Notifying Blood Provider…</string>
     <string name="blood_request_channel">Blood Request Channel</string>
     <string name="blood_request_channel_description">This channel handles sending notifications about blood requests to blood providers</string>
+    <string name="blood_answer_channel">Blood Response Channel</string>
+    <string name="blood_answer_channel_description">This channel handles sending notifications about blood responses to blood seekers</string>
     <string name="blood_donation_request">Blood Donation Request</string>
     <string name="blood_requested_successfully">Blood Requested Successfully</string>
     <string name="donation_details">Donation Details</string>
@@ -125,4 +127,5 @@
     <string name="accepting_request">Accepting Request…</string>
     <string name="declining_request">Declining Request…</string>
     <string name="notifying_blood_seeker">Notifying Blood Seeker...</string>
+    <string name="blood_donation_response">Blood Donation Response</string>
 </resources>

@@ -52,6 +52,7 @@ class BloodPostingRequestViewModel @Inject constructor(
             }))
             when (databaseRepository.updateBloodRequestStatus(bloodPosting.bloodPostingRequestID!!, status)) {
                 is Result.Success -> {
+                    bloodPosting.status = status
                     sendNotificationToBloodSeeker(bloodPosting)
                 }
                 is Result.Error -> {
