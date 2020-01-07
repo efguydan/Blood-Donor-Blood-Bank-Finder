@@ -18,7 +18,8 @@ import com.efedaniel.bloodfinder.MainActivity
 import com.efedaniel.bloodfinder.R
 import com.efedaniel.bloodfinder.bloodfinder.models.request.BloodPostingRequest
 import com.efedaniel.bloodfinder.bloodfinder.models.request.UserDetails
-import com.efedaniel.bloodfinder.bloodfinder.notifications.bloodPostingRequest.BloodPostingRequestFragment.Companion.BLOOD_POSTING_KEY
+import com.efedaniel.bloodfinder.bloodfinder.notifications.bloodPostingRequest.BloodPostingRequestFragment.Companion.BLOOD_POSTING_REQUEST_KEY
+import com.efedaniel.bloodfinder.bloodfinder.notifications.bloodPostingResponse.BloodPostingResponseFragment.Companion.BLOOD_POSTING_RESPONSE_KEY
 import com.efedaniel.bloodfinder.bloodfinder.repositories.DatabaseRepository
 import com.efedaniel.bloodfinder.networkutils.Result
 import com.efedaniel.bloodfinder.utils.ApiKeys
@@ -98,7 +99,7 @@ class NotificationHandlerService : FirebaseMessagingService() {
 
     private fun getRequestNotification(data: Map<String, String>): Notification {
         val args = Bundle()
-        args.putParcelable(BLOOD_POSTING_KEY, BloodPostingRequest.getBloodPostingFromMap(data))
+        args.putParcelable(BLOOD_POSTING_REQUEST_KEY, BloodPostingRequest.getBloodPostingFromMap(data))
         val pendingIntent = NavDeepLinkBuilder(this)
             .setComponentName(MainActivity::class.java)
             .setGraph(R.navigation.nav_graph)
@@ -137,7 +138,7 @@ class NotificationHandlerService : FirebaseMessagingService() {
     private fun getAnswerNotification(data: Map<String, String>): Notification {
         //TODO Change this to the real destination
         val args = Bundle()
-        args.putParcelable(BLOOD_POSTING_KEY, BloodPostingRequest.getBloodPostingFromMap(data))
+        args.putParcelable(BLOOD_POSTING_RESPONSE_KEY, BloodPostingRequest.getBloodPostingFromMap(data))
         val pendingIntent = NavDeepLinkBuilder(this)
             .setComponentName(MainActivity::class.java)
             .setGraph(R.navigation.nav_graph)

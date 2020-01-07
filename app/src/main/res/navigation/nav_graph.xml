@@ -179,4 +179,16 @@
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popUpTo="@+id/nav_graph" />
     </fragment>
+    <fragment
+        android:id="@+id/bloodPostingResponseFragment"
+        android:name="com.efedaniel.bloodfinder.bloodfinder.notifications.bloodPostingResponse.BloodPostingResponseFragment"
+        android:label="BloodPostingResponseFragment"
+        tools:layout="@layout/fragment_blood_posting_response">
+        <action
+            android:id="@+id/action_bloodPostingResponseFragment_to_signInFragment"
+            app:destination="@id/signInFragment"
+            app:enterAnim="@anim/slide_in_from_left"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popUpTo="@+id/nav_graph" />
+    </fragment>
 </navigation>

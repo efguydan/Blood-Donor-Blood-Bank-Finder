@@ -13,6 +13,7 @@ import com.efedaniel.bloodfinder.bloodfinder.home.profile.ProfileFragment
 import com.efedaniel.bloodfinder.bloodfinder.maps.selectlocation.SelectLocationFragment
 import com.efedaniel.bloodfinder.bloodfinder.notifications.NotificationHandlerService
 import com.efedaniel.bloodfinder.bloodfinder.notifications.bloodPostingRequest.BloodPostingRequestFragment
+import com.efedaniel.bloodfinder.bloodfinder.notifications.bloodPostingResponse.BloodPostingResponseFragment
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
@@ -34,6 +35,7 @@ interface AppComponent {
     fun inject(target: SelectLocationFragment)
     fun inject(target: BloodPostingDetailsFragment)
     fun inject(target: BloodPostingRequestFragment)
+    fun inject(target: BloodPostingResponseFragment)
 
     @Component.Builder
     interface Builder {

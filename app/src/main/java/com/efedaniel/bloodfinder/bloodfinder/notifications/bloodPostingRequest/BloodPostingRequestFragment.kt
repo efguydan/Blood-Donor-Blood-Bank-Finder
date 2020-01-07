@@ -28,7 +28,7 @@ import javax.inject.Inject
 class BloodPostingRequestFragment : BaseFragment() {
 
     companion object {
-        const val BLOOD_POSTING_KEY = "blood_posting_key"
+        const val BLOOD_POSTING_REQUEST_KEY = "blood_posting_request_key"
     }
 
     @Inject
@@ -55,7 +55,7 @@ class BloodPostingRequestFragment : BaseFragment() {
         binding.viewModel = viewModel
 
         //TODO Am i going to be coming to this fragment later without arguments?
-        bloodPosting = arguments!!.getParcelable(BLOOD_POSTING_KEY)!!
+        bloodPosting = arguments!!.getParcelable(BLOOD_POSTING_REQUEST_KEY)!!
         viewModel.getBloodSeekerData(bloodPosting.bloodSeekerID)
         viewModel.bloodSeekerUserData.observe(this, Observer { if (it != null) { bind(it) } })
         viewModel.notificationSentSuccessfully.observe(this, Observer {
