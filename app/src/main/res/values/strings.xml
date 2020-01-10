@@ -136,4 +136,6 @@
     <string name="fetching_provider_data">Fetching Blood Provider Data…</string>
     <string name="blood_request_accepted_message">You can view the directions to the blood provider\'s location by clicking the button below.</string>
     <string name="blood_request_declined_message">Please go back to search and try another blood donor or private blood bank.</string>
+    <string name="blood_posting_response_message_format">The blood request has been %s and your response has been sent to %s. %s</string>
+    <string name="blood_donor_posting_delete_message">\nAlso, your blood posting has been taken down.</string>
 </resources>

@@ -28,7 +28,7 @@ class BloodPostingRequestViewModel @Inject constructor(
     private val _bloodSeekerUserData = MutableLiveData<UserDetails>()
     val bloodSeekerUserData get() = _bloodSeekerUserData
 
-    private val _notificationSentSuccessfully = MutableLiveData(false)
+    private val _notificationSentSuccessfully = MutableLiveData<String>()
     val notificationSentSuccessfully get() = _notificationSentSuccessfully
 
     fun getBloodSeekerData(userID: String) {
@@ -55,9 +55,9 @@ class BloodPostingRequestViewModel @Inject constructor(
                     bloodPosting.status = status
                     if (bloodPosting.providerType == "Blood Donor" && status == ApiKeys.ACCEPTED) {
                         //Delete Blood Posting for blood donors
-                        deleteBloodAvailability(bloodPosting)
+                        deleteBloodAvailability(bloodPosting, status)
                     } else {
-                        sendNotificationToBloodSeeker(bloodPosting)
+                        sendNotificationToBloodSeeker(bloodPosting, status)
                     }
                 }
                 is Result.Error -> {
@@ -67,18 +67,18 @@ class BloodPostingRequestViewModel @Inject constructor(
         }
     }
 
-    private fun deleteBloodAvailability(bloodPosting: BloodPostingRequest) {
+    private fun deleteBloodAvailability(bloodPosting: BloodPostingRequest, status: String) {
         viewModelScope.launch {
             val response = databaseRepository.deleteBloodAvailability(bloodPosting.bloodAvailabilityID)
             if (response?.isSuccessful == true) {
-                sendNotificationToBloodSeeker(bloodPosting)
+                sendNotificationToBloodSeeker(bloodPosting, status)
             } else {
                 _loadingStatus.value = LoadingStatus.Error(GENERIC_ERROR_CODE, GENERIC_ERROR_MESSAGE)
             }
         }
     }
 
-    private fun sendNotificationToBloodSeeker(bloodPosting: BloodPostingRequest) {
+    private fun sendNotificationToBloodSeeker(bloodPosting: BloodPostingRequest, status: String) {
         viewModelScope.launch {
             _loadingStatus.value = LoadingStatus.Loading(resourceProvider.getString(R.string.notifying_blood_seeker))
             bloodPosting.notificationType = ApiKeys.ANSWER_NOTIFICATON_TYPE
@@ -86,7 +86,7 @@ class BloodPostingRequestViewModel @Inject constructor(
             val response = notificationRepository.sendBloodRequestNotification(notificationRequest)
             if (response?.isSuccessful == true) {
                 _loadingStatus.value = LoadingStatus.Success
-                _notificationSentSuccessfully.value = true
+                _notificationSentSuccessfully.value = status
             } else {
                 _loadingStatus.value = LoadingStatus.Error(GENERIC_ERROR_CODE, GENERIC_ERROR_MESSAGE)
             }

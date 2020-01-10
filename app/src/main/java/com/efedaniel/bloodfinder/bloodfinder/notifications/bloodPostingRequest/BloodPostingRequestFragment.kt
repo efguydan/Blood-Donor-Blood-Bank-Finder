@@ -59,9 +59,9 @@ class BloodPostingRequestFragment : BaseFragment() {
         viewModel.getBloodSeekerData(bloodPosting.bloodSeekerID)
         viewModel.bloodSeekerUserData.observe(this, Observer { if (it != null) { bind(it) } })
         viewModel.notificationSentSuccessfully.observe(this, Observer {
-            if (it == true) {
+            if (it != null) {
                 showDialogWithAction(
-                    body = "Your response has been sent to ${bloodPosting.bloodSeekerFullName}, Thank you",
+                    body = getMessage(it),
                     positiveRes = R.string.close,
                     positiveAction = {
                         findNavController().navigate(BloodPostingRequestFragmentDirections.actionBloodPostingRequestFragmentToSignInFragment())
@@ -70,6 +70,9 @@ class BloodPostingRequestFragment : BaseFragment() {
             }
         })
     }
+
+    private fun getMessage(status: String) = String.format(getString(R.string.blood_posting_response_message_format), status, bloodPosting.bloodSeekerFullName,
+            if (bloodPosting.providerType == "Blood Donor") getString(R.string.blood_donor_posting_delete_message) else "")
 
     private fun bind(userDetails: UserDetails) {
         binding.bloodRequestMessageTextView.text = String.format(getString(R.string.blood_request_message_format),
