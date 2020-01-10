@@ -75,10 +75,22 @@ class BloodPostingResponseFragment : BaseFragment() {
         binding.billingTypeTextView.text = String.format("%s Donation", bloodPosting.billingType)
         if (bloodPosting.status == ApiKeys.ACCEPTED) {
             binding.viewRouteButton.setOnClickListener {
-                // TODO Come and handle maps intent
+                launchMapsActivity()
             }
         } else {
             binding.viewRouteButton.hide()
+        }
+    }
+
+    private fun launchMapsActivity() {
+        val location = viewModel.bloodProviderUserData.value!!.location!!
+        val mapsIntentUri = Uri.parse("google.navigation:q=${location.latitude},${location.longitude}")
+        val mapsIntent = Intent(Intent.ACTION_VIEW, mapsIntentUri)
+        mapsIntent.setPackage("com.google.android.apps.maps")
+        if (mapsIntent.resolveActivity(mainActivity.packageManager) != null) {
+            startActivity(mapsIntent)
+        } else {
+            //TODO Do I want to direct them to install google maps
         }
     }
 
