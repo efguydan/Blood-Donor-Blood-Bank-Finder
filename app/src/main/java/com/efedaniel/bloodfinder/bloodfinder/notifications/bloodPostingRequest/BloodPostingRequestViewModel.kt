@@ -52,13 +52,28 @@ class BloodPostingRequestViewModel @Inject constructor(
             }))
             when (databaseRepository.updateBloodRequestStatus(bloodPosting.bloodPostingRequestID!!, status)) {
                 is Result.Success -> {
-                    // TODO If status is accept, then delete blood posting if it is an individual blood donor
                     bloodPosting.status = status
-                    sendNotificationToBloodSeeker(bloodPosting)
+                    if (bloodPosting.providerType == "Blood Donor" && status == ApiKeys.ACCEPTED) {
+                        //Delete Blood Posting for blood donors
+                        deleteBloodAvailability(bloodPosting)
+                    } else {
+                        sendNotificationToBloodSeeker(bloodPosting)
+                    }
                 }
                 is Result.Error -> {
                     _loadingStatus.value = LoadingStatus.Error(GENERIC_ERROR_CODE, GENERIC_ERROR_MESSAGE)
                 }
+            }
+        }
+    }
+
+    private fun deleteBloodAvailability(bloodPosting: BloodPostingRequest) {
+        viewModelScope.launch {
+            val response = databaseRepository.deleteBloodAvailability(bloodPosting.bloodAvailabilityID)
+            if (response?.isSuccessful == true) {
+                sendNotificationToBloodSeeker(bloodPosting)
+            } else {
+                _loadingStatus.value = LoadingStatus.Error(GENERIC_ERROR_CODE, GENERIC_ERROR_MESSAGE)
             }
         }
     }

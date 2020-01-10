@@ -80,7 +80,9 @@ class BloodPostingDetailsFragment : BaseFragment() {
                     bloodPosting.donorName,
                     currentUser.fullName(),
                     bloodPosting.bloodType,
-                    bloodPosting.billingType
+                    bloodPosting.billingType,
+                    currentUser.userType!!,
+                    bloodPosting.donorType
                 ))
         }
         viewModel.notificationSentSuccessfully.observe(this, Observer {

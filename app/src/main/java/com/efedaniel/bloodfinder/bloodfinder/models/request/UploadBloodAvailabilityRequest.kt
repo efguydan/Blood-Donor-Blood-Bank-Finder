@@ -13,6 +13,7 @@ data class UploadBloodAvailabilityRequest(
     val donorName: String,
     val donorReligion: String,
     val location: MiniLocation,
+    val donorType: String,
     val creationTime: String = System.currentTimeMillis().toString(),
     val bloodAvailabilityID: String? = null,
     val status: String = "pending"

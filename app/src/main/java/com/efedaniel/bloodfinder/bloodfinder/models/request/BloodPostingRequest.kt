@@ -13,6 +13,8 @@ data class BloodPostingRequest(
     val bloodSeekerFullName: String,
     val bloodType: String,
     val billingType: String,
+    val seekerType: String,
+    val providerType: String,
     var status: String = ApiKeys.PENDING,
     var bloodPostingRequestID: String? = null,
     var notificationType: String? = null
@@ -27,6 +29,8 @@ data class BloodPostingRequest(
                 map["bloodSeekerFullName"] ?: "",
                 map["bloodType"] ?: "",
                 map["billingType"] ?: "",
+                map["seekerType"] ?: "",
+                map["providerType"] ?: "",
                 map["status"] ?: "",
                 map["bloodPostingRequestID"]
             )
