@@ -1,6 +1,5 @@
 package com.efedaniel.bloodfinder.bloodfinder.notifications.bloodPostingRequest
 
-
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
@@ -39,7 +38,8 @@ class BloodPostingRequestFragment : BaseFragment() {
     private lateinit var bloodPosting: BloodPostingRequest
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentBloodPostingRequestBinding.inflate(inflater)
@@ -54,7 +54,7 @@ class BloodPostingRequestFragment : BaseFragment() {
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(BloodPostingRequestViewModel::class.java)
         binding.viewModel = viewModel
 
-        //TODO Am i going to be coming to this fragment later without arguments?
+        // TODO Am i going to be coming to this fragment later without arguments?
         bloodPosting = arguments!!.getParcelable(BLOOD_POSTING_REQUEST_KEY)!!
         viewModel.getBloodSeekerData(bloodPosting.bloodSeekerID)
         viewModel.bloodSeekerUserData.observe(this, Observer { if (it != null) { bind(it) } })
@@ -115,5 +115,4 @@ class BloodPostingRequestFragment : BaseFragment() {
     }
 
     override fun getViewModel(): BaseViewModel = viewModel
-
 }

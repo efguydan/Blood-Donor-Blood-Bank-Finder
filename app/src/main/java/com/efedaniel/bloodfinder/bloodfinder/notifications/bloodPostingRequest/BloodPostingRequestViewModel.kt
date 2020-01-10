@@ -46,12 +46,13 @@ class BloodPostingRequestViewModel @Inject constructor(
 
     fun updateBloodRequestStatus(bloodPosting: BloodPostingRequest, status: String) {
         viewModelScope.launch {
-            _loadingStatus.value = LoadingStatus.Loading(resourceProvider.getString(when(status) {
+            _loadingStatus.value = LoadingStatus.Loading(resourceProvider.getString(when (status) {
                 ApiKeys.ACCEPTED -> R.string.accepting_request
                 else -> R.string.declining_request
             }))
             when (databaseRepository.updateBloodRequestStatus(bloodPosting.bloodPostingRequestID!!, status)) {
                 is Result.Success -> {
+                    // TODO If status is accept, then delete blood posting if it is an individual blood donor
                     bloodPosting.status = status
                     sendNotificationToBloodSeeker(bloodPosting)
                 }

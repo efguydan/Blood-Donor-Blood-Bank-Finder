@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Blood Finder</string>
-    <string name="default_loading_message">Loading, Please wait . . .</string>
-    <string name="ok">Ok</string>
+    <string name="default_loading_message">Loading, Please wait…</string>
+    <string name="ok">OK</string>
     <string name="sign_in">Sign In</string>
     <string name="email_address">Email Address</string>
     <string name="password">Password</string>
@@ -118,6 +118,7 @@
     <string name="decline">Decline</string>
     <string name="accept">Accept</string>
     <string name="blood_request_message_format">Hello %s, You have received a blood donation request from %s. You need to decide whether to accept or decline the request. Kindly reply as soon as possible so that they would be able to take further action</string>
+    <string name="blood_response_message_format">Hello %s, Your blood donation request has been %s by %s. %s</string>
     <string name="blood_seeker_phone_number">Blood Seeker Phone Number</string>
     <string name="fetching_seeker_data">Fetching Blood Seeker Details…</string>
     <string name="accept_request">Accept Request</string>
@@ -126,6 +127,13 @@
     <string name="decline_request_message">Are you sure you want to decline this blood request?</string>
     <string name="accepting_request">Accepting Request…</string>
     <string name="declining_request">Declining Request…</string>
-    <string name="notifying_blood_seeker">Notifying Blood Seeker...</string>
+    <string name="notifying_blood_seeker">Notifying Blood Seeker…</string>
     <string name="blood_donation_response">Blood Donation Response</string>
+    <string name="view_directions">View Directions</string>
+    <string name="blood_provider_name">Blood Provider Name</string>
+    <string name="blood_provider_address">Blood Provider Address</string>
+    <string name="blood_provider_phone_number">Blood Provider Phone Number</string>
+    <string name="fetching_provider_data">Fetching Blood Provider Data…</string>
+    <string name="blood_request_accepted_message">You can view the directions to the blood provider\'s location by clicking the button below.</string>
+    <string name="blood_request_declined_message">Please go back to search and try another blood donor or private blood bank.</string>
 </resources>
