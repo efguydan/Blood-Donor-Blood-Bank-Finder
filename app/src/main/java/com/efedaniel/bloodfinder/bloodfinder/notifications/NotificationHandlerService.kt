@@ -181,4 +181,5 @@ class NotificationHandlerService : FirebaseMessagingService() {
             vibrationPattern = longArrayOf(100, 200, 300, 400, 500, 400, 300, 200, 400)
         })
     }
+
 }
