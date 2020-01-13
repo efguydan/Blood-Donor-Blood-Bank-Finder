@@ -47,6 +47,7 @@ class DashboardAdapter(
                 "Upload Blood Availability" -> itemView.context.getString(R.string.view_list_or_add_new)
                 "Request For Blood" -> itemView.context.getString(R.string.find_nearest_blood_donor_or_private_blood_bank)
                 "Logout" -> itemView.context.getString(R.string.logout_from_the_app)
+                "View Profile" -> itemView.context.getString(R.string.view_your_profile)
                 else -> itemView.context.getString(R.string.in_progress_check_back_shortly)
             }
         }

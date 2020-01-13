@@ -138,4 +138,8 @@
     <string name="blood_request_declined_message">Please go back to search and try another blood donor or private blood bank.</string>
     <string name="blood_posting_response_message_format">The blood request has been %s and your response has been sent to %s. %s</string>
     <string name="blood_donor_posting_delete_message">\nAlso, your blood posting has been taken down.</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="view_your_profile">View Your Profile</string>
 </resources>
