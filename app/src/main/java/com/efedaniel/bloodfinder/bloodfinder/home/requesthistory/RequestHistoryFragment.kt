@@ -13,6 +13,7 @@ import com.efedaniel.bloodfinder.R
 import com.efedaniel.bloodfinder.base.BaseFragment
 import com.efedaniel.bloodfinder.base.BaseViewModel
 import com.efedaniel.bloodfinder.databinding.FragmentRequestHistoryBinding
+import com.efedaniel.bloodfinder.extensions.onScrollChanged
 import javax.inject.Inject
 
 class RequestHistoryFragment : BaseFragment() {
@@ -39,7 +40,10 @@ class RequestHistoryFragment : BaseFragment() {
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(RequestHistoryViewModel::class.java)
         binding.viewModel = viewModel
 
-        binding.requestHistoryRecyclerView.adapter = RequestHistoryAdapter()
+        binding.requestHistoryRecyclerView.apply {
+            adapter = RequestHistoryAdapter()
+            onScrollChanged { mainActivity.invalidateToolbarElevation(it) }
+        }
         viewModel.getUserRequestHistory()
     }
 

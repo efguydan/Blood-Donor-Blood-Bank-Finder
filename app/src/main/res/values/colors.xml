@@ -6,6 +6,6 @@
     <color name="line_separator_color">#a7d4d3d3</color>
     <color name="design_snackbar_background_color" tools:override="true">@color/colorAccent</color>
     <color name="green">#297702</color>
-    <color name="yellow">#9B9205</color>
+    <color name="yellow">#B6AA0D</color>
     <color name="shimmer_placeholder">#6F6D6D</color>
 </resources>
