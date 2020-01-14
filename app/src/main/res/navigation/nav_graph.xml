@@ -86,6 +86,13 @@
             app:exitAnim="@anim/slide_out_to_left"
             app:popEnterAnim="@anim/slide_in_from_left"
             app:popExitAnim="@anim/slide_out_to_right" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_requestHistoryFragment"
+            app:destination="@id/requestHistoryFragment"
+            app:enterAnim="@anim/slide_in_from_right"
+            app:exitAnim="@anim/slide_out_to_left"
+            app:popEnterAnim="@anim/slide_in_from_left"
+            app:popExitAnim="@anim/slide_out_to_right" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -203,4 +210,9 @@
         android:name="com.efedaniel.bloodfinder.bloodfinder.home.viewprofile.ViewProfileFragment"
         android:label="ViewProfileFragment"
         tools:layout="@layout/fragment_view_profile"/>
+    <fragment
+        android:id="@+id/requestHistoryFragment"
+        android:name="com.efedaniel.bloodfinder.bloodfinder.home.requesthistory.RequestHistoryFragment"
+        android:label="RequestHistoryFragment"
+        tools:layout="@layout/fragment_request_history"/>
 </navigation>

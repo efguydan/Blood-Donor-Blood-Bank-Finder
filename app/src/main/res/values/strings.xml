@@ -142,4 +142,6 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="view_your_profile">View Your Profile</string>
+    <string name="request_history">Request History</string>
+    <string name="view_your_blood_request_history">View Your Blood Request History</string>
 </resources>

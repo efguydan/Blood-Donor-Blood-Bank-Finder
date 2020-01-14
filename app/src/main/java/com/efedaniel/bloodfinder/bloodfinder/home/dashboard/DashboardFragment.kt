@@ -45,6 +45,7 @@ class DashboardFragment : BaseFragment() {
                 "Upload Blood Availability" -> navigateToBloodAvailability()
                 "Request For Blood" -> navigateToBloodRequest()
                 "View Profile" -> navigateToViewProfile()
+                "View Request History" -> navigateToRequestHistory()
                 else -> showSnackbar(it)
             }
         }
@@ -76,6 +77,8 @@ class DashboardFragment : BaseFragment() {
     private fun navigateToBloodRequest() = findNavController().navigate(DashboardFragmentDirections.actionDashboardFragmentToBloodRequestFragment())
 
     private fun navigateToViewProfile() = findNavController().navigate(DashboardFragmentDirections.actionDashboardFragmentToViewProfileFragment())
+
+    private fun navigateToRequestHistory() = findNavController().navigate(DashboardFragmentDirections.actionDashboardFragmentToRequestHistoryFragment())
 
     private fun setUpToolbar() = mainActivity.run {
         setUpToolBar(getString(R.string.dashboard), false)

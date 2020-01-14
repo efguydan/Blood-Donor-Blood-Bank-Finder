@@ -10,6 +10,7 @@ import com.efedaniel.bloodfinder.bloodfinder.home.bloodrequest.BloodRequestFragm
 import com.efedaniel.bloodfinder.bloodfinder.home.bloodrequestresults.BloodResultsFragment
 import com.efedaniel.bloodfinder.bloodfinder.home.dashboard.DashboardFragment
 import com.efedaniel.bloodfinder.bloodfinder.home.profile.ProfileFragment
+import com.efedaniel.bloodfinder.bloodfinder.home.requesthistory.RequestHistoryFragment
 import com.efedaniel.bloodfinder.bloodfinder.home.viewprofile.ViewProfileFragment
 import com.efedaniel.bloodfinder.bloodfinder.maps.selectlocation.SelectLocationFragment
 import com.efedaniel.bloodfinder.bloodfinder.notifications.NotificationHandlerService
@@ -38,6 +39,7 @@ interface AppComponent {
     fun inject(target: BloodPostingRequestFragment)
     fun inject(target: BloodPostingResponseFragment)
     fun inject(target: ViewProfileFragment)
+    fun inject(target: RequestHistoryFragment)
 
     @Component.Builder
     interface Builder {

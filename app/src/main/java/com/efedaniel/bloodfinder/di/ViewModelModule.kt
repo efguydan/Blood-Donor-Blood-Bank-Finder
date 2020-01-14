@@ -11,6 +11,7 @@ import com.efedaniel.bloodfinder.bloodfinder.home.bloodrequest.BloodRequestViewM
 import com.efedaniel.bloodfinder.bloodfinder.home.bloodrequestresults.BloodResultsViewModel
 import com.efedaniel.bloodfinder.bloodfinder.home.dashboard.DashboardViewModel
 import com.efedaniel.bloodfinder.bloodfinder.home.profile.ProfileViewModel
+import com.efedaniel.bloodfinder.bloodfinder.home.requesthistory.RequestHistoryViewModel
 import com.efedaniel.bloodfinder.bloodfinder.home.viewprofile.ViewProfileViewModel
 import com.efedaniel.bloodfinder.bloodfinder.maps.selectlocation.SelectLocationViewModel
 import com.efedaniel.bloodfinder.bloodfinder.notifications.bloodPostingRequest.BloodPostingRequestViewModel
@@ -90,4 +91,9 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(ViewProfileViewModel::class)
     abstract fun bindsViewProfileViewModel(viewModel: ViewProfileViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(RequestHistoryViewModel::class)
+    abstract fun bindsRequestHistoryViewModel(viewModel: RequestHistoryViewModel): ViewModel
 }
