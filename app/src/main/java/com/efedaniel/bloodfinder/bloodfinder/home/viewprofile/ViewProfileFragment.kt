@@ -13,13 +13,19 @@ import com.efedaniel.bloodfinder.App
 import com.efedaniel.bloodfinder.R
 import com.efedaniel.bloodfinder.base.BaseFragment
 import com.efedaniel.bloodfinder.base.BaseViewModel
+import com.efedaniel.bloodfinder.bloodfinder.models.request.UserDetails
 import com.efedaniel.bloodfinder.databinding.FragmentViewProfileBinding
+import com.efedaniel.bloodfinder.utils.PrefKeys
+import com.efedaniel.bloodfinder.utils.PrefsUtils
 import javax.inject.Inject
 
 class ViewProfileFragment : BaseFragment() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
+
+    @Inject
+    lateinit var prefsUtils: PrefsUtils
 
     private lateinit var binding : FragmentViewProfileBinding
     private lateinit var viewModel: ViewProfileViewModel
@@ -39,6 +45,10 @@ class ViewProfileFragment : BaseFragment() {
         (mainActivity.applicationContext as App).component.inject(this)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(ViewProfileViewModel::class.java)
         binding.viewModel = viewModel
+
+        val userDetails = prefsUtils.getPrefAsObject(PrefKeys.LOGGED_IN_USER_DATA, UserDetails::class.java)
+        binding.userDetails = userDetails
+        binding.executePendingBindings()
     }
 
     private fun setUpToolbar() = mainActivity.run {

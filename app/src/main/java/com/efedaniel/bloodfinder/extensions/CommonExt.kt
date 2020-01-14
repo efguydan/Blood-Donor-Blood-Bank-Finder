@@ -31,3 +31,8 @@ fun Float.convertToDistanceInKm(): String {
     df.roundingMode = RoundingMode.CEILING
     return String.format("%skm", df.format(distanceInKm))
 }
+
+fun String.getCharAt(index: Int): String {
+    val array = this.toCharArray()
+    return if (array.size > index) array[index].toString() else ""
+}
