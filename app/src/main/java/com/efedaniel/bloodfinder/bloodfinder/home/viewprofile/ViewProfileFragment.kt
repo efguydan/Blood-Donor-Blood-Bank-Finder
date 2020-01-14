@@ -15,6 +15,7 @@ import com.efedaniel.bloodfinder.base.BaseFragment
 import com.efedaniel.bloodfinder.base.BaseViewModel
 import com.efedaniel.bloodfinder.bloodfinder.models.request.UserDetails
 import com.efedaniel.bloodfinder.databinding.FragmentViewProfileBinding
+import com.efedaniel.bloodfinder.extensions.hide
 import com.efedaniel.bloodfinder.utils.PrefKeys
 import com.efedaniel.bloodfinder.utils.PrefsUtils
 import javax.inject.Inject
@@ -49,6 +50,18 @@ class ViewProfileFragment : BaseFragment() {
         val userDetails = prefsUtils.getPrefAsObject(PrefKeys.LOGGED_IN_USER_DATA, UserDetails::class.java)
         binding.userDetails = userDetails
         binding.executePendingBindings()
+        if (!userDetails.isBloodDonor()) {
+            binding.apply {
+                genderLabelTextView.hide()
+                genderTextView.hide()
+                bloodTypeLabelTextView.hide()
+                bloodTypeTextView.hide()
+                religionLabelTextView.hide()
+                religionTextView.hide()
+                maritalStatusLabelTextView.hide()
+                maritalStatusTextView.hide()
+            }
+        }
     }
 
     private fun setUpToolbar() = mainActivity.run {

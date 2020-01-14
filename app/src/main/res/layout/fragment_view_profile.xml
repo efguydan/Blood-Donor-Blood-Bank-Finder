@@ -22,10 +22,10 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/nameCardView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -90,6 +90,175 @@
                         tools:text="Private Blood Bank"/>
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/detailsCardView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.6"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/nameCardView">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginBottom="24dp"
+                        android:fontFamily="@font/muli_bold"
+                        android:text="@string/user_details"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/genderLabelTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/muli_light"
+                        android:text="@string/gender"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="12sp"
+                        android:layout_marginStart="16dp" />
+
+                    <TextView
+                        android:id="@+id/genderTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginBottom="16dp"
+                        android:fontFamily="@font/muli_bold"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="18sp"
+                        android:text="@{userDetails.gender}"
+                        tools:text="Male" />
+
+                    <TextView
+                        android:id="@+id/bloodTypeLabelTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/muli_light"
+                        android:text="@string/blood_type"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="12sp"
+                        android:layout_marginStart="16dp" />
+
+                    <TextView
+                        android:id="@+id/bloodTypeTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginBottom="16dp"
+                        android:fontFamily="@font/muli_bold"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="18sp"
+                        android:text="@{userDetails.bloodType}"
+                        tools:text="O+" />
+
+                    <TextView
+                        android:id="@+id/religionLabelTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/muli_light"
+                        android:text="@string/religion"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="12sp"
+                        android:layout_marginStart="16dp" />
+
+                    <TextView
+                        android:id="@+id/religionTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginBottom="16dp"
+                        android:fontFamily="@font/muli_bold"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="18sp"
+                        android:text="@{userDetails.religion}"
+                        tools:text="Muslim" />
+
+                    <TextView
+                        android:id="@+id/maritalStatusLabelTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/muli_light"
+                        android:text="@string/marital_status"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="12sp"
+                        android:layout_marginStart="16dp" />
+
+                    <TextView
+                        android:id="@+id/maritalStatusTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginBottom="16dp"
+                        android:fontFamily="@font/muli_bold"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="18sp"
+                        android:text="@{userDetails.maritalStatus}"
+                        tools:text="Complicated" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/muli_light"
+                        android:text="@string/phone_number"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="12sp"
+                        android:layout_marginStart="16dp" />
+
+                    <TextView
+                        android:id="@+id/phoneNumberTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginBottom="16dp"
+                        android:fontFamily="@font/muli_bold"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="18sp"
+                        android:text="@{userDetails.phoneNumber}"
+                        tools:text="08103925220" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/muli_light"
+                        android:text="@string/address"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="12sp"
+                        android:layout_marginStart="16dp" />
+
+                    <TextView
+                        android:id="@+id/addressTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginBottom="16dp"
+                        android:fontFamily="@font/muli_bold"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="18sp"
+                        android:text="@{userDetails.address}"
+                        tools:text="Obafemi Awolowo University, Ile-Ife, Osun State, Nigeria" />
+
+                </LinearLayout>
 
             </androidx.cardview.widget.CardView>
 
