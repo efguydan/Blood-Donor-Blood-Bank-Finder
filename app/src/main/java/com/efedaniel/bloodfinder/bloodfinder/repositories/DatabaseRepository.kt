@@ -89,7 +89,7 @@ class DatabaseRepository @Inject constructor(private val databaseApiService: Dat
     suspend fun uploadBloodPostingRequest(body: BloodPostingRequest): Response<JsonElement>? {
         return try {
             databaseApiService.uploadBloodPostingRequest(body)
-        } catch (e: java.lang.Exception) {
+        } catch (e: Exception) {
             e.printStackTrace()
             null
         }
@@ -110,6 +110,15 @@ class DatabaseRepository @Inject constructor(private val databaseApiService: Dat
         } catch (e: Exception) {
             e.printStackTrace()
             Result.Error(GENERIC_ERROR_CODE, GENERIC_ERROR_MESSAGE)
+        }
+    }
+
+    suspend fun getUserBloodPostingHistory(key: String, value: String): Response<JsonElement>? {
+        return try {
+            databaseApiService.getUserBloodPostingHistory("\"$key\"", "\"$value\"")
+        } catch (e: Exception) {
+            e.printStackTrace()
+            null
         }
     }
 }

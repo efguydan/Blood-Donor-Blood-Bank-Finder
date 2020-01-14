@@ -48,4 +48,7 @@ interface DatabaseApiService {
 
     @PUT("/bloodRequests/{blood_request_id}/status.json")
     suspend fun updateBloodRequestStatus(@Path("blood_request_id") bloodRequestID: String, @Body status: String): Response<String>
+
+    @GET("/bloodRequests.json")
+    suspend fun getUserBloodPostingHistory(@Query("orderBy") filterKey: String, @Query("equalTo") filterValue: String): Response<JsonElement>
 }

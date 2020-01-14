@@ -25,6 +25,7 @@ class ApiKeys {
         const val NOTIFICATION_SERVER_KEY = "key=AAAA-MwlXMI:APA91bHA_d0VTLTAYPjxazk1czQ02wpSNZrURFRZVuIAcVrkdjQBqVSkZPPq0843FXGNrDTFyonmcTKEGf_I4pc2S54GBUGZwBfGLeEbgoq63Mu3kOY_MaSBlWRJttIO_6suOiK8iuU3"
         const val AUTHORIZATION = "Authorization"
         const val DONOR_ID = "donorID"
+        const val BLOOD_SEEKER_ID = "bloodSeekerID"
         const val BLOOD_TYPE = "bloodType"
         const val PENDING = "pending"
         const val ACCEPTED = "accepted"

@@ -5,6 +5,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.efedaniel.bloodfinder.bloodfinder.home.bloodavailabilty.BloodAvailabilityAdapter
 import com.efedaniel.bloodfinder.bloodfinder.home.bloodrequestresults.BloodResultsAdapter
 import com.efedaniel.bloodfinder.bloodfinder.home.dashboard.DashboardAdapter
+import com.efedaniel.bloodfinder.bloodfinder.home.requesthistory.RequestHistoryAdapter
+import com.efedaniel.bloodfinder.bloodfinder.models.request.BloodPostingRequest
 import com.efedaniel.bloodfinder.bloodfinder.models.request.UploadBloodAvailabilityRequest
 
 @BindingAdapter("quizList")
@@ -20,4 +22,9 @@ fun bindBloodAvailabilityRecyclerView(recyclerView: RecyclerView, data: List<Upl
 @BindingAdapter("bloodResultList")
 fun bindBloodResultRecyclerView(recyclerView: RecyclerView, data: List<UploadBloodAvailabilityRequest>?) {
     data?.let { (recyclerView.adapter as BloodResultsAdapter).submitList(data) }
+}
+
+@BindingAdapter("requestHistoryList")
+fun bindrequestHistoryRecyclerView(recyclerView: RecyclerView, data: List<BloodPostingRequest>?) {
+    data?.let { (recyclerView.adapter as RequestHistoryAdapter).submitList(data) }
 }

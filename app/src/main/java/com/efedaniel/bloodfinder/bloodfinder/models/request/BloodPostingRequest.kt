@@ -16,7 +16,8 @@ data class BloodPostingRequest(
     val seekerType: String,
     val providerType: String,
     var status: String = ApiKeys.PENDING,
-    var bloodPostingRequestID: String? = null,
+    var bloodRequestID: String? = null,
+    val creationTime: String = System.currentTimeMillis().toString(),
     var notificationType: String? = null
 ) : Parcelable {
 
@@ -32,7 +33,8 @@ data class BloodPostingRequest(
                 map["seekerType"] ?: "",
                 map["providerType"] ?: "",
                 map["status"] ?: "",
-                map["bloodPostingRequestID"]
+                map["bloodRequestID"],
+                map["creationTime"] ?: ""
             )
     }
 }

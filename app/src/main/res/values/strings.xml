@@ -144,4 +144,5 @@
     <string name="view_your_profile">View Your Profile</string>
     <string name="request_history">Request History</string>
     <string name="view_your_blood_request_history">View Your Blood Request History</string>
+    <string name="getting_request_history">Getting Request History...</string>
 </resources>

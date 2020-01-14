@@ -64,7 +64,7 @@ class BloodPostingDetailsViewModel @Inject constructor(
         viewModelScope.launch {
             val response = databaseRepository.uploadBloodRequestID(bloodRequestID)
             if (response?.isSuccessful == true) {
-                bloodPostingRequest.bloodPostingRequestID = bloodRequestID
+                bloodPostingRequest.bloodRequestID = bloodRequestID
                 sendNotificationToUser()
             } else {
                 _loadingStatus.value = LoadingStatus.Error(GENERIC_ERROR_CODE, GENERIC_ERROR_MESSAGE)

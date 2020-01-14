@@ -50,7 +50,7 @@ class BloodPostingRequestViewModel @Inject constructor(
                 ApiKeys.ACCEPTED -> R.string.accepting_request
                 else -> R.string.declining_request
             }))
-            when (databaseRepository.updateBloodRequestStatus(bloodPosting.bloodPostingRequestID!!, status)) {
+            when (databaseRepository.updateBloodRequestStatus(bloodPosting.bloodRequestID!!, status)) {
                 is Result.Success -> {
                     bloodPosting.status = status
                     if (bloodPosting.providerType == "Blood Donor" && status == ApiKeys.ACCEPTED) {

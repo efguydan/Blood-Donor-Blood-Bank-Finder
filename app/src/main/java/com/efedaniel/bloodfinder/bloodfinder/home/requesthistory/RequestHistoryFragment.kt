@@ -38,6 +38,9 @@ class RequestHistoryFragment : BaseFragment() {
         (mainActivity.applicationContext as App).component.inject(this)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(RequestHistoryViewModel::class.java)
         binding.viewModel = viewModel
+
+        binding.requestHistoryRecyclerView.adapter = RequestHistoryAdapter()
+        viewModel.getUserRequestHistory()
     }
 
     private fun setUpToolbar() = mainActivity.run {
