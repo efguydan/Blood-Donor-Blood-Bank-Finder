@@ -93,6 +93,13 @@
             app:exitAnim="@anim/slide_out_to_left"
             app:popEnterAnim="@anim/slide_in_from_left"
             app:popExitAnim="@anim/slide_out_to_right" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_donationHistoryFragment"
+            app:destination="@id/donationHistoryFragment"
+            app:enterAnim="@anim/slide_in_from_right"
+            app:exitAnim="@anim/slide_out_to_left"
+            app:popEnterAnim="@anim/slide_in_from_left"
+            app:popExitAnim="@anim/slide_out_to_right" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -215,4 +222,9 @@
         android:name="com.efedaniel.bloodfinder.bloodfinder.home.requesthistory.RequestHistoryFragment"
         android:label="RequestHistoryFragment"
         tools:layout="@layout/fragment_request_history"/>
+    <fragment
+        android:id="@+id/donationHistoryFragment"
+        android:name="com.efedaniel.bloodfinder.bloodfinder.home.donationhistory.DonationHistoryFragment"
+        android:label="DonationHistoryFragment"
+        tools:layout="@layout/fragment_donation_history" />
 </navigation>

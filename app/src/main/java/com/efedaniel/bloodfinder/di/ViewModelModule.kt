@@ -10,6 +10,7 @@ import com.efedaniel.bloodfinder.bloodfinder.home.bloodpostingdetails.BloodPosti
 import com.efedaniel.bloodfinder.bloodfinder.home.bloodrequest.BloodRequestViewModel
 import com.efedaniel.bloodfinder.bloodfinder.home.bloodrequestresults.BloodResultsViewModel
 import com.efedaniel.bloodfinder.bloodfinder.home.dashboard.DashboardViewModel
+import com.efedaniel.bloodfinder.bloodfinder.home.donationhistory.DonationHistoryViewModel
 import com.efedaniel.bloodfinder.bloodfinder.home.profile.ProfileViewModel
 import com.efedaniel.bloodfinder.bloodfinder.home.requesthistory.RequestHistoryViewModel
 import com.efedaniel.bloodfinder.bloodfinder.home.viewprofile.ViewProfileViewModel
@@ -96,4 +97,9 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(RequestHistoryViewModel::class)
     abstract fun bindsRequestHistoryViewModel(viewModel: RequestHistoryViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(DonationHistoryViewModel::class)
+    abstract fun bindsDonationHistoryViewModel(viewModel: DonationHistoryViewModel): ViewModel
 }

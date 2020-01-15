@@ -9,6 +9,7 @@ import com.efedaniel.bloodfinder.bloodfinder.home.bloodpostingdetails.BloodPosti
 import com.efedaniel.bloodfinder.bloodfinder.home.bloodrequest.BloodRequestFragment
 import com.efedaniel.bloodfinder.bloodfinder.home.bloodrequestresults.BloodResultsFragment
 import com.efedaniel.bloodfinder.bloodfinder.home.dashboard.DashboardFragment
+import com.efedaniel.bloodfinder.bloodfinder.home.donationhistory.DonationHistoryFragment
 import com.efedaniel.bloodfinder.bloodfinder.home.profile.ProfileFragment
 import com.efedaniel.bloodfinder.bloodfinder.home.requesthistory.RequestHistoryFragment
 import com.efedaniel.bloodfinder.bloodfinder.home.viewprofile.ViewProfileFragment
@@ -40,6 +41,7 @@ interface AppComponent {
     fun inject(target: BloodPostingResponseFragment)
     fun inject(target: ViewProfileFragment)
     fun inject(target: RequestHistoryFragment)
+    fun inject(target: DonationHistoryFragment)
 
     @Component.Builder
     interface Builder {

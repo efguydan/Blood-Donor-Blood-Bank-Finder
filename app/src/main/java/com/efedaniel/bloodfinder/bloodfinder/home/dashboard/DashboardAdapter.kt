@@ -49,6 +49,7 @@ class DashboardAdapter(
                 "Logout" -> itemView.context.getString(R.string.logout_from_the_app)
                 "View Profile" -> itemView.context.getString(R.string.view_your_profile)
                 "View Request History" -> itemView.context.getString(R.string.view_your_blood_request_history)
+                "View Donation History" -> itemView.context.getString(R.string.view_your_blood_donation_history)
                 else -> itemView.context.getString(R.string.in_progress_check_back_shortly)
             }
         }
