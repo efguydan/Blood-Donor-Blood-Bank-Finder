@@ -19,7 +19,7 @@ class RequestHistoryViewModel @Inject constructor(
     private val resourceProvider: ResourceProvider,
     private val databaseRepository: DatabaseRepository,
     private val prefsUtils: PrefsUtils
-): BaseViewModel() {
+) : BaseViewModel() {
 
     private val user = prefsUtils.getPrefAsObject(PrefKeys.LOGGED_IN_USER_DATA, UserDetails::class.java)
 

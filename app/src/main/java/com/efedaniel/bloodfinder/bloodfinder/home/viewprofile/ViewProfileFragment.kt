@@ -1,8 +1,6 @@
 package com.efedaniel.bloodfinder.bloodfinder.home.viewprofile
 
-
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,11 +26,12 @@ class ViewProfileFragment : BaseFragment() {
     @Inject
     lateinit var prefsUtils: PrefsUtils
 
-    private lateinit var binding : FragmentViewProfileBinding
+    private lateinit var binding: FragmentViewProfileBinding
     private lateinit var viewModel: ViewProfileViewModel
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentViewProfileBinding.inflate(inflater)
@@ -70,5 +69,4 @@ class ViewProfileFragment : BaseFragment() {
     }
 
     override fun getViewModel(): BaseViewModel = viewModel
-
 }

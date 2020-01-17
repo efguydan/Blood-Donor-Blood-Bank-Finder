@@ -46,7 +46,7 @@ class RequestHistoryAdapter : ListAdapter<BloodPostingRequest, RequestHistoryAda
                 executePendingBindings()
                 creationTimeTextView.text = bloodPostingRequest.creationTime.getTime()
                 statusTextView.text = bloodPostingRequest.status.capitalize()
-                statusTextView.setTextColor(ContextCompat.getColor(itemView.context, when(bloodPostingRequest.status) {
+                statusTextView.setTextColor(ContextCompat.getColor(itemView.context, when (bloodPostingRequest.status) {
                     ApiKeys.ACCEPTED -> R.color.green
                     ApiKeys.PENDING -> R.color.yellow
                     else -> R.color.colorAccent
@@ -54,5 +54,4 @@ class RequestHistoryAdapter : ListAdapter<BloodPostingRequest, RequestHistoryAda
             }
         }
     }
-
 }

@@ -90,7 +90,7 @@ class BloodPostingResponseFragment : BaseFragment() {
         if (mapsIntent.resolveActivity(mainActivity.packageManager) != null) {
             startActivity(mapsIntent)
         } else {
-            //TODO Do I want to direct them to install google maps
+            // TODO Do I want to direct them to install google maps
         }
     }
 

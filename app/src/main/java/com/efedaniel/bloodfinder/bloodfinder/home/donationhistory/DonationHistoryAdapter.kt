@@ -47,14 +47,12 @@ class DonationHistoryAdapter : ListAdapter<BloodPostingRequest, DonationHistoryA
                 creationTimeTextView.text = bloodPostingRequest.creationTime.getTime()
                 statusTextView.text = bloodPostingRequest.status.capitalize()
                 statusTextView.setTextColor(
-                    ContextCompat.getColor(itemView.context, when(bloodPostingRequest.status) {
+                    ContextCompat.getColor(itemView.context, when (bloodPostingRequest.status) {
                         ApiKeys.ACCEPTED -> R.color.green
                         ApiKeys.PENDING -> R.color.yellow
                         else -> R.color.colorAccent
                     }))
             }
         }
-
     }
-
 }

@@ -24,7 +24,7 @@ data class UserDetails(
     fun fullName() = if (isBloodDonor()) "$title $firstName $lastName" else institutionName ?: "User"
 
     fun getInitials(): String {
-        return when(userType) {
+        return when (userType) {
             "Blood Donor" -> "${firstName!!.getCharAt(0)}${lastName!!.getCharAt(0)}"
             else -> {
                 val array = institutionName!!.split(" ")

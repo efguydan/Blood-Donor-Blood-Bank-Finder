@@ -43,5 +43,4 @@ class DonationHistoryViewModel @Inject constructor(
     override fun addAllLiveDataToObservablesList() {
         observablesList.add(donationHistoryList)
     }
-
 }

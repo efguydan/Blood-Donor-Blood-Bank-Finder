@@ -54,7 +54,7 @@ class BloodPostingRequestViewModel @Inject constructor(
                 is Result.Success -> {
                     bloodPosting.status = status
                     if (bloodPosting.providerType == "Blood Donor" && status == ApiKeys.ACCEPTED) {
-                        //Delete Blood Posting for blood donors
+                        // Delete Blood Posting for blood donors
                         deleteBloodAvailability(bloodPosting, status)
                     } else {
                         sendNotificationToBloodSeeker(bloodPosting, status)
