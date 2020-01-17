@@ -99,32 +99,19 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <CheckBox
-            android:id="@+id/rememberMeCheckBox"
-            style="@style/AppTheme.TextAppearance.LightText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:text="@string/remember_me"
-            android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/passwordLayout" />
-
         <TextView
             android:id="@+id/forgotPasswordTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:fontFamily="@font/muli_bold"
             android:padding="8dp"
             android:text="@string/forgot_password"
             android:textAllCaps="true"
             android:textColor="@color/colorAccent"
-            app:layout_constraintBaseline_toBaselineOf="@+id/rememberMeCheckBox"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/rememberMeCheckBox" />
+            app:layout_constraintTop_toBottomOf="@+id/passwordLayout" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/signInButton"
@@ -136,7 +123,7 @@
             android:text="@string/sign_in"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rememberMeCheckBox" />
+            app:layout_constraintTop_toBottomOf="@+id/forgotPasswordTextView" />
 
         <TextView
             android:id="@+id/textView3"
