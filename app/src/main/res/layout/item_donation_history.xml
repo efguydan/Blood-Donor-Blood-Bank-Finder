@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="bloodPosting"
+            type="com.efedaniel.bloodfinder.bloodfinder.models.request.BloodPostingRequest" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@android:color/white" >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/bloodTypeTextView"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/solid_circular_background"
+                android:fontFamily="@font/muli_bold"
+                android:gravity="center"
+                android:text="@{bloodPosting.bloodType}"
+                android:textColor="@android:color/white"
+                android:textSize="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="SpUsage"
+                tools:text="O+" />
+
+            <TextView
+                android:id="@+id/seekerNameTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/muli_bold"
+                android:maxLines="1"
+                android:text="@{bloodPosting.bloodSeekerFullName}"
+                android:textColor="@color/colorAccent"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toTopOf="@+id/creationTimeTextView"
+                app:layout_constraintStart_toEndOf="@+id/bloodTypeTextView"
+                app:layout_constraintTop_toTopOf="@+id/bloodTypeTextView"
+                tools:text="Chief Efe" />
+
+            <TextView
+                android:id="@+id/creationTimeTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/muli_light_italic"
+                android:textColor="@color/colorAccent"
+                android:textSize="11sp"
+                app:layout_constraintBottom_toBottomOf="@+id/bloodTypeTextView"
+                app:layout_constraintStart_toStartOf="@+id/seekerNameTextView"
+                app:layout_constraintTop_toBottomOf="@+id/seekerNameTextView"
+                tools:ignore="SmallSp"
+                tools:text="Today at 12:00pm" />
+
+            <TextView
+                android:id="@+id/statusLabelTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/muli_light"
+                android:text="@string/status"
+                android:textColor="@color/colorAccent"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toStartOf="@+id/guideline2"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/creationTimeTextView" />
+
+            <TextView
+                android:id="@+id/billingTypeLabelTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/muli_light"
+                android:text="@string/billing_type"
+                android:textColor="@color/colorAccent"
+                android:textSize="12sp"
+                app:layout_constraintBaseline_toBaselineOf="@+id/statusLabelTextView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/guideline2" />
+
+            <TextView
+                android:id="@+id/statusTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="16dp"
+                android:fontFamily="@font/muli_bold"
+                android:textColor="@color/colorAccent"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/statusLabelTextView"
+                tools:text="Accepted" />
+
+            <TextView
+                android:id="@+id/billingTypeTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/muli_bold"
+                android:text="@{bloodPosting.billingType}"
+                android:textColor="@color/colorAccent"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/guideline2"
+                app:layout_constraintTop_toBottomOf="@+id/billingTypeLabelTextView"
+                tools:text="Paid" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.50" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</layout>

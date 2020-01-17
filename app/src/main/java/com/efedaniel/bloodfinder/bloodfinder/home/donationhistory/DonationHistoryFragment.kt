@@ -14,6 +14,7 @@ import com.efedaniel.bloodfinder.R
 import com.efedaniel.bloodfinder.base.BaseFragment
 import com.efedaniel.bloodfinder.base.BaseViewModel
 import com.efedaniel.bloodfinder.databinding.FragmentDonationHistoryBinding
+import com.efedaniel.bloodfinder.extensions.onScrollChanged
 import javax.inject.Inject
 
 class DonationHistoryFragment : BaseFragment() {
@@ -39,6 +40,12 @@ class DonationHistoryFragment : BaseFragment() {
         (mainActivity.applicationContext as App).component.inject(this)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(DonationHistoryViewModel::class.java)
         binding.viewModel = viewModel
+
+        binding.donationHistoryRecyclerView.apply {
+            adapter = DonationHistoryAdapter()
+            onScrollChanged { mainActivity.invalidateToolbarElevation(it) }
+        }
+        viewModel.getUserDonationHistory()
     }
 
     private fun setUpToolbar() = mainActivity.run {

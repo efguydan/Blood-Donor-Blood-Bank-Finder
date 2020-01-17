@@ -16,16 +16,20 @@
         android:background="@android:color/white"
         tools:context=".bloodfinder.home.donationhistory.DonationHistoryFragment">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/donationHistoryRecyclerView"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/muli_light_italic"
-            android:text="@string/in_progress_check_back_shortly"
-            android:textColor="@color/colorAccent"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            app:donationHistoryList="@{viewModel.donationHistoryList}"
+            tools:itemCount="3"
+            tools:listitem="@layout/item_donation_history" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

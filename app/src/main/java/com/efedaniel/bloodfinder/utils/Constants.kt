@@ -26,6 +26,7 @@ class ApiKeys {
         const val AUTHORIZATION = "Authorization"
         const val DONOR_ID = "donorID"
         const val BLOOD_SEEKER_ID = "bloodSeekerID"
+        const val BLOOD_PROVIDER_ID = "bloodProviderID"
         const val BLOOD_TYPE = "bloodType"
         const val PENDING = "pending"
         const val ACCEPTED = "accepted"

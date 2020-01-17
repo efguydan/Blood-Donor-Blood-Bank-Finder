@@ -41,6 +41,6 @@ class RequestHistoryViewModel @Inject constructor(
     }
 
     override fun addAllLiveDataToObservablesList() {
-
+        observablesList.add(requestHistoryList)
     }
 }

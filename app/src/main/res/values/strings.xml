@@ -145,4 +145,5 @@
     <string name="status">Status</string>
     <string name="donation_history">Donation History</string>
     <string name="view_your_blood_donation_history">View Your Blood Donation History</string>
+    <string name="fetching_donation_history">Fetching Donation History...</string>
 </resources>
