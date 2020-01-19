@@ -10,6 +10,8 @@ import com.efedaniel.bloodfinder.R
 import com.efedaniel.bloodfinder.bloodfinder.models.request.BloodPostingRequest
 import com.efedaniel.bloodfinder.databinding.ItemRequestHistoryBinding
 import com.efedaniel.bloodfinder.extensions.getTime
+import com.efedaniel.bloodfinder.extensions.hide
+import com.efedaniel.bloodfinder.extensions.show
 import com.efedaniel.bloodfinder.utils.ApiKeys
 
 class RequestHistoryAdapter(
@@ -53,8 +55,14 @@ class RequestHistoryAdapter(
                     ApiKeys.PENDING -> R.color.yellow
                     else -> R.color.colorAccent
                 }))
-                parentCardView.setOnClickListener {
-                    clickListener(bloodPostingRequest)
+                parentCardView.setOnClickListener { clickListener(bloodPostingRequest) }
+                selectButton.apply {
+                    if (bloodPostingRequest.status == ApiKeys.PENDING) {
+                        hide()
+                    } else {
+                        show()
+                        setOnClickListener { clickListener(bloodPostingRequest) }
+                    }
                 }
             }
         }
