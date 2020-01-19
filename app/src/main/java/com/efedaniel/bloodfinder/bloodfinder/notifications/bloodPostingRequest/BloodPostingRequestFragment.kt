@@ -49,13 +49,12 @@ class BloodPostingRequestFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setUpToolbar()
+        setUpToolbar(arguments!!.getParcelable<BloodPostingRequest>(BLOOD_POSTING_REQUEST_KEY) == null)
         (mainActivity.applicationContext as App).component.inject(this)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(BloodPostingRequestViewModel::class.java)
         binding.viewModel = viewModel
 
-        // TODO Am i going to be coming to this fragment later without arguments?
-        bloodPosting = arguments!!.getParcelable(BLOOD_POSTING_REQUEST_KEY)!!
+        bloodPosting = arguments!!.getParcelable(BLOOD_POSTING_REQUEST_KEY) ?: BloodPostingRequestFragmentArgs.fromBundle(arguments!!).bloodPosting
         viewModel.getBloodSeekerData(bloodPosting.bloodSeekerID)
         viewModel.bloodSeekerUserData.observe(this, Observer { if (it != null) { bind(it) } })
         viewModel.notificationSentSuccessfully.observe(this, Observer {
@@ -110,8 +109,8 @@ class BloodPostingRequestFragment : BaseFragment() {
         }
     }
 
-    private fun setUpToolbar() = mainActivity.run {
-        setUpToolBar(getString(R.string.donation_request), false)
+    private fun setUpToolbar(showUpIcon: Boolean) = mainActivity.run {
+        setUpToolBar(getString(R.string.donation_request), showUpIcon)
         invalidateToolbarElevation(0)
     }
 

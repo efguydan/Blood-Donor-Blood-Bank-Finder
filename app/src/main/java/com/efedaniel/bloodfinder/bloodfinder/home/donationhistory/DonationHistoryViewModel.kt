@@ -27,6 +27,7 @@ class DonationHistoryViewModel @Inject constructor(
     val donationHistoryList: LiveData<MutableList<BloodPostingRequest>> get() = _donationHistoryList
 
     fun getUserDonationHistory() {
+        if (_donationHistoryList.value != null) return
         viewModelScope.launch {
             _loadingStatus.value = LoadingStatus.Loading(resourceProvider.getString(R.string.fetching_donation_history))
             val response = databaseRepository.getUserBloodPostingHistory(ApiKeys.BLOOD_PROVIDER_ID, user.localID!!)

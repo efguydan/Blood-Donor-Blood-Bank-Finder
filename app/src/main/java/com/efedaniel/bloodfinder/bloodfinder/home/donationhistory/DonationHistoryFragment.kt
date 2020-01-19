@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 import com.efedaniel.bloodfinder.App
 
 import com.efedaniel.bloodfinder.R
@@ -13,6 +14,7 @@ import com.efedaniel.bloodfinder.base.BaseFragment
 import com.efedaniel.bloodfinder.base.BaseViewModel
 import com.efedaniel.bloodfinder.databinding.FragmentDonationHistoryBinding
 import com.efedaniel.bloodfinder.extensions.onScrollChanged
+import com.efedaniel.bloodfinder.utils.ApiKeys
 import javax.inject.Inject
 
 class DonationHistoryFragment : BaseFragment() {
@@ -41,7 +43,11 @@ class DonationHistoryFragment : BaseFragment() {
         binding.viewModel = viewModel
 
         binding.donationHistoryRecyclerView.apply {
-            adapter = DonationHistoryAdapter()
+            adapter = DonationHistoryAdapter {
+                if (it.status == ApiKeys.PENDING) {
+                    findNavController().navigate(DonationHistoryFragmentDirections.actionDonationHistoryFragmentToBloodPostingRequestFragment(it))
+                }
+            }
             onScrollChanged { mainActivity.invalidateToolbarElevation(it) }
         }
         viewModel.getUserDonationHistory()

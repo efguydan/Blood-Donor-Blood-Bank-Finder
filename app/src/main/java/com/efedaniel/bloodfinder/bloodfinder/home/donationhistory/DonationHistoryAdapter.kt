@@ -10,9 +10,13 @@ import com.efedaniel.bloodfinder.R
 import com.efedaniel.bloodfinder.bloodfinder.models.request.BloodPostingRequest
 import com.efedaniel.bloodfinder.databinding.ItemDonationHistoryBinding
 import com.efedaniel.bloodfinder.extensions.getTime
+import com.efedaniel.bloodfinder.extensions.hide
+import com.efedaniel.bloodfinder.extensions.show
 import com.efedaniel.bloodfinder.utils.ApiKeys
 
-class DonationHistoryAdapter : ListAdapter<BloodPostingRequest, DonationHistoryAdapter.ViewHolder>(DiffCallback) {
+class DonationHistoryAdapter(
+    private val clickListener: (BloodPostingRequest) -> Unit
+) : ListAdapter<BloodPostingRequest, DonationHistoryAdapter.ViewHolder>(DiffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
@@ -52,6 +56,15 @@ class DonationHistoryAdapter : ListAdapter<BloodPostingRequest, DonationHistoryA
                         ApiKeys.PENDING -> R.color.yellow
                         else -> R.color.colorAccent
                     }))
+                parentCardView.setOnClickListener { clickListener(bloodPostingRequest) }
+                selectButton.apply {
+                    if (bloodPostingRequest.status == ApiKeys.PENDING) {
+                        show()
+                        setOnClickListener { clickListener(bloodPostingRequest) }
+                    } else {
+                        hide()
+                    }
+                }
             }
         }
     }
