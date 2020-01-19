@@ -2,6 +2,7 @@ package com.efedaniel.bloodfinder.bloodfinder.home.requesthistory
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
 import androidx.lifecycle.viewModelScope
 import com.efedaniel.bloodfinder.R
 import com.efedaniel.bloodfinder.base.BaseViewModel
@@ -26,6 +27,8 @@ class RequestHistoryViewModel @Inject constructor(
     private val _requestHistoryList = MutableLiveData<MutableList<BloodPostingRequest>>()
     val requestHistoryList: LiveData<MutableList<BloodPostingRequest>> get() = _requestHistoryList
 
+    val emptyViewVisibility = Transformations.map(_requestHistoryList) { it.isEmpty() }
+
     fun getUserRequestHistory() {
         if (_requestHistoryList.value != null) return
         viewModelScope.launch {
@@ -43,5 +46,6 @@ class RequestHistoryViewModel @Inject constructor(
 
     override fun addAllLiveDataToObservablesList() {
         observablesList.add(requestHistoryList)
+        observablesList.add(emptyViewVisibility)
     }
 }

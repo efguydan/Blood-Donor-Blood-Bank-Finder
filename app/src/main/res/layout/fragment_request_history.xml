@@ -31,6 +31,11 @@
             tools:itemCount="3"
             tools:listitem="@layout/item_request_history" />
 
+        <include
+            android:id="@+id/emptyView"
+            layout="@layout/empty_layout"
+            android:visibility="gone" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>
