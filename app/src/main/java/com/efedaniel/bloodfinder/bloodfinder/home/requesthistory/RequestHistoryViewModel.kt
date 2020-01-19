@@ -27,6 +27,7 @@ class RequestHistoryViewModel @Inject constructor(
     val requestHistoryList: LiveData<MutableList<BloodPostingRequest>> get() = _requestHistoryList
 
     fun getUserRequestHistory() {
+        if (_requestHistoryList.value != null) return
         viewModelScope.launch {
             _loadingStatus.value = LoadingStatus.Loading(resourceProvider.getString(R.string.getting_request_history))
             val response = databaseRepository.getUserBloodPostingHistory(ApiKeys.BLOOD_SEEKER_ID, user.localID!!)

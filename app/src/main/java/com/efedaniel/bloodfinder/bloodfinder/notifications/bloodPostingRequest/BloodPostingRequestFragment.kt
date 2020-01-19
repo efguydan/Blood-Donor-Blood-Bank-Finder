@@ -63,9 +63,7 @@ class BloodPostingRequestFragment : BaseFragment() {
                 showDialogWithAction(
                     body = getMessage(it),
                     positiveRes = R.string.close,
-                    positiveAction = {
-                        findNavController().navigate(BloodPostingRequestFragmentDirections.actionBloodPostingRequestFragmentToSignInFragment())
-                    }
+                    positiveAction = { mainActivity.onBackPressed() }
                 )
             }
         })
@@ -113,8 +111,8 @@ class BloodPostingRequestFragment : BaseFragment() {
     }
 
     private fun setUpToolbar() = mainActivity.run {
-        setUpToolBar(getString(R.string.blood_donation_request), false)
-        invalidateToolbarElevation(100)
+        setUpToolBar(getString(R.string.donation_request), false)
+        invalidateToolbarElevation(0)
     }
 
     override fun getViewModel(): BaseViewModel = viewModel

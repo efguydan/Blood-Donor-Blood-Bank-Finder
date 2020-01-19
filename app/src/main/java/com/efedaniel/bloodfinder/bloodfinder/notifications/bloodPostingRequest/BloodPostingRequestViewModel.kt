@@ -81,7 +81,7 @@ class BloodPostingRequestViewModel @Inject constructor(
     private fun sendNotificationToBloodSeeker(bloodPosting: BloodPostingRequest, status: String) {
         viewModelScope.launch {
             _loadingStatus.value = LoadingStatus.Loading(resourceProvider.getString(R.string.notifying_blood_seeker))
-            bloodPosting.notificationType = ApiKeys.ANSWER_NOTIFICATON_TYPE
+            bloodPosting.notificationType = ApiKeys.ANSWER_NOTIFICATION_TYPE
             val notificationRequest = BloodRequestNotification(bloodPosting, bloodSeekerUserData.value!!.notificationToken!!)
             val response = notificationRepository.sendBloodRequestNotification(notificationRequest)
             if (response?.isSuccessful == true) {

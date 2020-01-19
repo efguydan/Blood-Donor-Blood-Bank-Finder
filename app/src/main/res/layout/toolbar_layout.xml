@@ -21,6 +21,8 @@
         android:layout_gravity="center_vertical"
         android:fontFamily="@font/muli_bold"
         android:gravity="center_vertical"
+        android:ellipsize="end"
+        android:maxLines="1"
         android:paddingStart="16dp"
         android:paddingTop="2dp"
         android:paddingEnd="16dp"

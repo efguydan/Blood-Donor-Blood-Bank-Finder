@@ -60,7 +60,6 @@ class SignInViewModel @Inject constructor(
         }
     }
 
-    // TODO Come back and re-write this
     private fun getUserDetails(userID: String) {
         viewModelScope.launch {
             _loadingStatus.value = LoadingStatus.Loading(resourceProvider.getString(R.string.retrieving_account_details))

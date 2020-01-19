@@ -193,24 +193,15 @@
         <argument
             android:name="bloodPosting"
             app:argType="com.efedaniel.bloodfinder.bloodfinder.models.request.BloodPostingRequest" />
-        <action
-            android:id="@+id/action_bloodPostingRequestFragment_to_signInFragment"
-            app:destination="@id/signInFragment"
-            app:enterAnim="@anim/slide_in_from_left"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popUpTo="@+id/nav_graph" />
     </fragment>
     <fragment
         android:id="@+id/bloodPostingResponseFragment"
         android:name="com.efedaniel.bloodfinder.bloodfinder.notifications.bloodPostingResponse.BloodPostingResponseFragment"
         android:label="BloodPostingResponseFragment"
         tools:layout="@layout/fragment_blood_posting_response">
-        <action
-            android:id="@+id/action_bloodPostingResponseFragment_to_signInFragment"
-            app:destination="@id/signInFragment"
-            app:enterAnim="@anim/slide_in_from_left"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popUpTo="@+id/nav_graph" />
+        <argument
+            android:name="bloodPosting"
+            app:argType="com.efedaniel.bloodfinder.bloodfinder.models.request.BloodPostingRequest" />
     </fragment>
     <fragment
         android:id="@+id/viewProfileFragment"
@@ -221,7 +212,15 @@
         android:id="@+id/requestHistoryFragment"
         android:name="com.efedaniel.bloodfinder.bloodfinder.home.requesthistory.RequestHistoryFragment"
         android:label="RequestHistoryFragment"
-        tools:layout="@layout/fragment_request_history"/>
+        tools:layout="@layout/fragment_request_history">
+        <action
+            android:id="@+id/action_requestHistoryFragment_to_bloodPostingResponseFragment"
+            app:destination="@id/bloodPostingResponseFragment"
+            app:enterAnim="@anim/slide_in_from_right"
+            app:exitAnim="@anim/slide_out_to_left"
+            app:popEnterAnim="@anim/slide_in_from_left"
+            app:popExitAnim="@anim/slide_out_to_right" />
+    </fragment>
     <fragment
         android:id="@+id/donationHistoryFragment"
         android:name="com.efedaniel.bloodfinder.bloodfinder.home.donationhistory.DonationHistoryFragment"

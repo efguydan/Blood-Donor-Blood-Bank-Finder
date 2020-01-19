@@ -84,7 +84,7 @@ class NotificationHandlerService : FirebaseMessagingService() {
         val data = remoteMessage.data
         when (data["notificationType"]) {
             ApiKeys.REQUEST_NOTIFICATION_TYPE -> sendRequestNotification(data)
-            ApiKeys.ANSWER_NOTIFICATON_TYPE -> sendAnswerNotification(data)
+            ApiKeys.ANSWER_NOTIFICATION_TYPE -> sendAnswerNotification(data)
         }
     }
 
@@ -115,7 +115,7 @@ class NotificationHandlerService : FirebaseMessagingService() {
         return NotificationCompat.Builder(this, Misc.REQUEST_NOTIFICATION_CHANNEL_ID).apply {
             setSmallIcon(R.drawable.ic_transfusion)
             color = ContextCompat.getColor(this@NotificationHandlerService, R.color.colorAccent)
-            setContentTitle(getString(R.string.blood_donation_request))
+            setContentTitle(getString(R.string.donation_request))
             setContentText(notificationBody)
             setStyle(NotificationCompat.BigTextStyle().bigText(notificationBody))
             setAutoCancel(true)
@@ -154,7 +154,7 @@ class NotificationHandlerService : FirebaseMessagingService() {
         return NotificationCompat.Builder(this, Misc.REQUEST_NOTIFICATION_CHANNEL_ID).apply {
             setSmallIcon(R.drawable.ic_transfusion)
             color = ContextCompat.getColor(this@NotificationHandlerService, R.color.colorAccent)
-            setContentTitle(getString(R.string.blood_donation_response))
+            setContentTitle(getString(R.string.donation_response))
             setContentText(notificationBody)
             setStyle(NotificationCompat.BigTextStyle().bigText(notificationBody))
             setAutoCancel(true)

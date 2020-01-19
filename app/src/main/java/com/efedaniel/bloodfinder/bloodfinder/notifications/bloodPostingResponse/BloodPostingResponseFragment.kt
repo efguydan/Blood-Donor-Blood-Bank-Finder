@@ -49,13 +49,12 @@ class BloodPostingResponseFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setUpToolbar()
+        setUpToolbar(arguments!!.getParcelable<BloodPostingRequest>(BLOOD_POSTING_RESPONSE_KEY) == null)
         (mainActivity.applicationContext as App).component.inject(this)
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(BloodPostingResponseViewModel::class.java)
         binding.viewModel = viewModel
 
-        // TODO Am i going to be coming to this fragment later without arguments?
-        bloodPosting = arguments!!.getParcelable(BLOOD_POSTING_RESPONSE_KEY)!!
+        bloodPosting = arguments!!.getParcelable(BLOOD_POSTING_RESPONSE_KEY) ?: BloodPostingResponseFragmentArgs.fromBundle(arguments!!).bloodPosting
 
         viewModel.getBloodProviderData(bloodPosting.bloodProviderID)
         viewModel.bloodProviderUserData.observe(this, Observer { if (it != null) { bind(it) } })
@@ -86,11 +85,18 @@ class BloodPostingResponseFragment : BaseFragment() {
         val location = viewModel.bloodProviderUserData.value!!.location!!
         val mapsIntentUri = Uri.parse("google.navigation:q=${location.latitude},${location.longitude}")
         val mapsIntent = Intent(Intent.ACTION_VIEW, mapsIntentUri)
-        mapsIntent.setPackage("com.google.android.apps.maps")
+        mapsIntent.setPackage(Misc.MAPS_APP_ID)
         if (mapsIntent.resolveActivity(mainActivity.packageManager) != null) {
             startActivity(mapsIntent)
         } else {
-            // TODO Do I want to direct them to install google maps
+            showDialogWithAction(
+                body = getString(R.string.google_maps_not_installed),
+                positiveRes = R.string.proceed,
+                positiveAction = {
+                    startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(Misc.MAPS_PLAY_STORE_URL)))
+                },
+                negativeRes = R.string.close
+            )
         }
     }
 
@@ -104,9 +110,9 @@ class BloodPostingResponseFragment : BaseFragment() {
         }
     }
 
-    private fun setUpToolbar() = mainActivity.run {
-        setUpToolBar(getString(R.string.blood_donation_response), false)
-        invalidateToolbarElevation(100)
+    private fun setUpToolbar(showUpIcon: Boolean) = mainActivity.run {
+        setUpToolBar(getString(R.string.donation_response), showUpIcon)
+        invalidateToolbarElevation(0)
     }
 
     override fun getViewModel(): BaseViewModel = viewModel

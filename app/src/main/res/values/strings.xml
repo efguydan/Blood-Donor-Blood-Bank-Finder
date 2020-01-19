@@ -110,7 +110,7 @@
     <string name="blood_request_channel_description">This channel handles sending notifications about blood requests to blood providers</string>
     <string name="blood_answer_channel">Blood Response Channel</string>
     <string name="blood_answer_channel_description">This channel handles sending notifications about blood responses to blood seekers</string>
-    <string name="blood_donation_request">Blood Donation Request</string>
+    <string name="donation_request">Donation Request</string>
     <string name="blood_requested_successfully">Blood Requested Successfully</string>
     <string name="donation_details">Donation Details</string>
     <string name="blood_seeker_name">Blood Seeker Name</string>
@@ -128,7 +128,6 @@
     <string name="accepting_request">Accepting Request…</string>
     <string name="declining_request">Declining Request…</string>
     <string name="notifying_blood_seeker">Notifying Blood Seeker…</string>
-    <string name="blood_donation_response">Blood Donation Response</string>
     <string name="view_directions">View Directions</string>
     <string name="blood_provider_name">Blood Provider Name</string>
     <string name="blood_provider_address">Blood Provider Address</string>
@@ -141,9 +140,11 @@
     <string name="view_your_profile">View Your Profile</string>
     <string name="request_history">Request History</string>
     <string name="view_your_blood_request_history">View Your Blood Request History</string>
-    <string name="getting_request_history">Getting Request History…</string>
+    <string name="getting_request_history">Fetching Request History…</string>
     <string name="status">Status</string>
     <string name="donation_history">Donation History</string>
     <string name="view_your_blood_donation_history">View Your Blood Donation History</string>
-    <string name="fetching_donation_history">Fetching Donation History...</string>
+    <string name="fetching_donation_history">Fetching Donation History…</string>
+    <string name="google_maps_not_installed">Sorry, We did not find maps installed on your device. Please click proceed to install or close to cancel this dialog</string>
+    <string name="donation_response">Donation Response</string>
 </resources>

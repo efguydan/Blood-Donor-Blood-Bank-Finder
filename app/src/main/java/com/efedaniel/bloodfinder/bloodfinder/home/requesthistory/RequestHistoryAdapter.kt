@@ -12,7 +12,9 @@ import com.efedaniel.bloodfinder.databinding.ItemRequestHistoryBinding
 import com.efedaniel.bloodfinder.extensions.getTime
 import com.efedaniel.bloodfinder.utils.ApiKeys
 
-class RequestHistoryAdapter : ListAdapter<BloodPostingRequest, RequestHistoryAdapter.ViewHolder>(DiffCallback) {
+class RequestHistoryAdapter(
+    private val clickListener: (BloodPostingRequest) -> Unit
+) : ListAdapter<BloodPostingRequest, RequestHistoryAdapter.ViewHolder>(DiffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
@@ -51,6 +53,9 @@ class RequestHistoryAdapter : ListAdapter<BloodPostingRequest, RequestHistoryAda
                     ApiKeys.PENDING -> R.color.yellow
                     else -> R.color.colorAccent
                 }))
+                parentCardView.setOnClickListener {
+                    clickListener(bloodPostingRequest)
+                }
             }
         }
     }
