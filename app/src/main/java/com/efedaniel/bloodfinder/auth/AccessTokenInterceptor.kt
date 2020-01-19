@@ -4,9 +4,7 @@ import com.efedaniel.bloodfinder.utils.ApiKeys
 import okhttp3.Interceptor
 import okhttp3.Response
 
-class AccessTokenInterceptor(
-    private val tokenProvider: AccessTokenProvider
-) : Interceptor {
+class AccessTokenInterceptor : Interceptor {
 
     override fun intercept(chain: Interceptor.Chain): Response {
         val requestBuilder = chain.request().newBuilder()

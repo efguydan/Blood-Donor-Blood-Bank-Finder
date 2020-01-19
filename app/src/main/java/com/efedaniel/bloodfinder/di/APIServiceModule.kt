@@ -1,9 +1,7 @@
 package com.efedaniel.bloodfinder.di
 
 import com.efedaniel.bloodfinder.BuildConfig
-import com.efedaniel.bloodfinder.auth.AccessTokenAuthenticator
 import com.efedaniel.bloodfinder.auth.AccessTokenInterceptor
-import com.efedaniel.bloodfinder.auth.AccessTokenProvider
 import com.efedaniel.bloodfinder.bloodfinder.apis.*
 import com.efedaniel.bloodfinder.utils.ApiKeys
 import com.google.gson.Gson
@@ -21,36 +19,20 @@ import javax.inject.Singleton
 class APIServiceModule {
 
     @Provides
-    @Named("ExampleService")
+    @Named("InterceptorService")
     @Singleton
     fun provideExampleServiceHttpClient(
-        upstream: OkHttpClient,
-        @Named("ExampleService") accessTokenProvider: AccessTokenProvider
+        upstream: OkHttpClient
     ): OkHttpClient {
         return upstream.newBuilder()
-            .addInterceptor(AccessTokenInterceptor(accessTokenProvider))
-            .authenticator(AccessTokenAuthenticator(accessTokenProvider))
+            .addInterceptor(AccessTokenInterceptor())
             .build()
-    }
-
-    @Provides
-    @Singleton
-    fun provideExampleAPIAuthService(
-        client: Lazy<OkHttpClient>,
-        gson: Gson
-    ): ExampleAPIAuthService {
-        return Retrofit.Builder()
-            .baseUrl(ExampleAPIAuthService.ENDPOINT)
-            .client(client.get())
-            .addConverterFactory(GsonConverterFactory.create(gson))
-            .build()
-            .create(ExampleAPIAuthService::class.java)
     }
 
     @Provides
     @Singleton
     fun provideAuthAPIService(
-        @Named("ExampleService") client: Lazy<OkHttpClient>,
+        @Named("InterceptorService") client: Lazy<OkHttpClient>,
         gson: Gson
     ): AuthApiService {
         return Retrofit.Builder()
@@ -64,7 +46,7 @@ class APIServiceModule {
     @Provides
     @Singleton
     fun providesDataApiService(
-        @Named("ExampleService") client: Lazy<OkHttpClient>,
+        @Named("InterceptorService") client: Lazy<OkHttpClient>,
         gson: Gson
     ): DatabaseApiService {
         return Retrofit.Builder()
@@ -78,7 +60,7 @@ class APIServiceModule {
     @Provides
     @Singleton
     fun providesNotificationApiService(
-        @Named("ExampleService") client: Lazy<OkHttpClient>,
+        @Named("InterceptorService") client: Lazy<OkHttpClient>,
         gson: Gson
     ): NotificationApiService {
         return Retrofit.Builder()
@@ -88,11 +70,6 @@ class APIServiceModule {
             .build()
             .create(NotificationApiService::class.java)
     }
-
-    @Provides
-    @Named("ExampleService")
-    fun provideAccessTokenProvider(accessTokenProvider: AccessTokenProviderImpl): AccessTokenProvider =
-        accessTokenProvider
 
     @Provides
     @Singleton

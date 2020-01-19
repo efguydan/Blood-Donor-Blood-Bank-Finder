@@ -9,7 +9,6 @@ import timber.log.Timber
 
 class App : Application() {
 
-    private var applicationScope = CoroutineScope(Dispatchers.Default)
     lateinit var component: AppComponent
 
     override fun onCreate() {
