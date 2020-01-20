@@ -3,7 +3,7 @@ ext.versions = [
         minSdkVersion       : 21,
         targetSdkVersion    : 28,
         compileSdkVersion   : 28,
-        publishVersionName  : '0.0.1',
+        publishVersionName  : '1.0.0',
         publishVersionCode  : 1,
 
         //tests
