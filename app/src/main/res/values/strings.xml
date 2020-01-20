@@ -154,4 +154,6 @@
     <string name="empty_donation_history_description">You have no donation history at the moment.</string>
     <string name="kind_of_blood_donor">Kind of Blood Donor</string>
     <string name="please_select_kind_of_donor">Please select preferred kind of donor to continue</string>
+    <string name="blood_request_message">"Hello %s, You have received a blood donation request from %s. Please click on this notification to give them a response"</string>
+    <string name="blood_response_message">"Hello %s, Your blood donation request has been %s by %s. Please click on this notification to view more details"</string>
 </resources>

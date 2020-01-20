@@ -87,6 +87,7 @@ class SelectLocationFragment : BaseFragment(), OnMapReadyCallback {
                 viewModel.locationSavedActionCompleted()
             }
         })
+        //TODO Add places search????????
     }
 
     private fun initiateGettingLocation() {

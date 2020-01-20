@@ -108,9 +108,8 @@ class NotificationHandlerService : FirebaseMessagingService() {
             .createPendingIntent()
 
         val soundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
-        // TODO Come back to clean this
-        val notificationBody = "Hello ${data["bloodProviderFullName"]}, You have received a blood donation request from" +
-                " ${data["bloodSeekerFullName"]}. Please click on this notification to give them a response"
+        val notificationBody = String.format(getString(R.string.blood_request_message),
+            data["bloodProviderFullName"], data["bloodSeekerFullName"])
 
         return NotificationCompat.Builder(this, Misc.REQUEST_NOTIFICATION_CHANNEL_ID).apply {
             setSmallIcon(R.drawable.ic_transfusion)
@@ -136,7 +135,6 @@ class NotificationHandlerService : FirebaseMessagingService() {
     }
 
     private fun getAnswerNotification(data: Map<String, String>): Notification {
-        // TODO Change this to the real destination
         val args = Bundle()
         args.putParcelable(BLOOD_POSTING_RESPONSE_KEY, BloodPostingRequest.getBloodPostingFromMap(data))
         val pendingIntent = NavDeepLinkBuilder(this)
@@ -147,9 +145,8 @@ class NotificationHandlerService : FirebaseMessagingService() {
             .createPendingIntent()
 
         val soundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
-        // TODO Come back to clean this
-        val notificationBody = "Hello ${data["bloodSeekerFullName"]}, Your blood donation request has been ${data["status"]} " +
-                "by ${data["bloodProviderFullName"]}. Please click on this notification to view more details"
+        val notificationBody = String.format(getString(R.string.blood_response_message),
+            data["bloodSeekerFullName"], data["status"], data["bloodProviderFullName"])
 
         return NotificationCompat.Builder(this, Misc.REQUEST_NOTIFICATION_CHANNEL_ID).apply {
             setSmallIcon(R.drawable.ic_transfusion)
