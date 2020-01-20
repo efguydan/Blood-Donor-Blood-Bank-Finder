@@ -148,4 +148,8 @@
     <string name="google_maps_not_installed">Sorry, We did not find maps installed on your device. Please click proceed to install or close to cancel this dialog</string>
     <string name="donation_response">Donation Response</string>
     <string name="empty_request_history_description">You have no request history at the moment.</string>
+    <string name="empty_view">Empty View</string>
+    <string name="empty_request_history">No Request History</string>
+    <string name="empty_donation_history">No Donation History</string>
+    <string name="empty_donation_history_description">You have no donation history at the moment.</string>
 </resources>

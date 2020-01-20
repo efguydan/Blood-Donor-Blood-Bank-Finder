@@ -57,6 +57,7 @@ class RequestHistoryFragment : BaseFragment() {
         viewModel.emptyViewVisibility.observe(this, Observer {
             if (it) {
                 binding.emptyView.show()
+                binding.emptyView.emptyTextTitle.text = getString(R.string.empty_request_history)
                 binding.emptyView.emptyTextDescription.text = getString(R.string.empty_request_history_description)
             }
         })

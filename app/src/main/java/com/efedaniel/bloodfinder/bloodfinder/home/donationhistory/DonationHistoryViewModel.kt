@@ -2,6 +2,7 @@ package com.efedaniel.bloodfinder.bloodfinder.home.donationhistory
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
 import androidx.lifecycle.viewModelScope
 import com.efedaniel.bloodfinder.R
 import com.efedaniel.bloodfinder.base.BaseViewModel
@@ -26,6 +27,8 @@ class DonationHistoryViewModel @Inject constructor(
     private val _donationHistoryList = MutableLiveData<MutableList<BloodPostingRequest>>()
     val donationHistoryList: LiveData<MutableList<BloodPostingRequest>> get() = _donationHistoryList
 
+    val emptyViewVisibility = Transformations.map(_donationHistoryList) { it.isEmpty() }
+
     fun getUserDonationHistory() {
         if (_donationHistoryList.value != null) return
         viewModelScope.launch {
@@ -43,5 +46,6 @@ class DonationHistoryViewModel @Inject constructor(
 
     override fun addAllLiveDataToObservablesList() {
         observablesList.add(donationHistoryList)
+        observablesList.add(emptyViewVisibility)
     }
 }
