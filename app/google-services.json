@@ -15,19 +15,19 @@
       },
       "oauth_client": [
         {
-          "client_id": "1068576890050-k14cvvguqo43spldg5d6nvc2cu460cgt.apps.googleusercontent.com",
+          "client_id": "1068576890050-bhhgolkc84v51aau16j0mfdkkr0l8nqn.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.efedaniel.bloodfinder",
-            "certificate_hash": "0456ebd30532a00bb01408e698bb1923f0639280"
+            "certificate_hash": "1bb41a1345ccd93dd7b29f3d4de978bdf1c14f7f"
           }
         },
         {
-          "client_id": "1068576890050-lelfrm0l0rkcifo9i3jn3e1uqh570j6r.apps.googleusercontent.com",
+          "client_id": "1068576890050-urarr424mg1tmur08caqol40jisb3dg2.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.efedaniel.bloodfinder",
-            "certificate_hash": "7ac15b504c7e6edba37a5142af9ebc304109e01e"
+            "certificate_hash": "9289c7dced6bdc835949e29dab42bd0f04fdf3ed"
           }
         },
         {
