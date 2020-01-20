@@ -68,6 +68,12 @@ class Data {
             "O+",
             "O-"
         )
+        val kindOfBloodDonor = listOf(
+            "Select Kind of Blood Donor",
+            "Blood Donor",
+            "Private Blood Bank",
+            "Any"
+        )
         val billingType = listOf(
             "Select Billing Type",
             "Free",

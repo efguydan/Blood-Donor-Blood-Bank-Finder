@@ -27,13 +27,15 @@ class BloodRequestViewModel @Inject constructor(
     var donorList = mutableListOf<UploadBloodAvailabilityRequest>()
     private var numOfRequests = 0
     private var billingType = ""
+    private var kindOfBloodDonor = ""
 
     private val _moveToBloodResults = MutableLiveData(false)
     val moveToBloodResults: LiveData<Boolean> get() = _moveToBloodResults
 
-    fun getCompatibleBloods(bloodType: String, billingType: String) {
+    fun getCompatibleBloods(bloodType: String, billingType: String, kindOfBloodDonor: String) {
         _loadingStatus.value = LoadingStatus.Loading(resourceProvider.getString(R.string.searching))
         this.billingType = billingType
+        this.kindOfBloodDonor = kindOfBloodDonor
         donorList.clear()
         numOfRequests = Data.bloodCompatibilityMapping.getValue(bloodType).size
         for (type in Data.bloodCompatibilityMapping.getValue(bloodType)) {
@@ -63,7 +65,6 @@ class BloodRequestViewModel @Inject constructor(
     }
 
     private fun triggerNextStep() {
-        // TODO Come and finish filtering the result using the algorithm.
         Timber.d(donorList.size.toString())
 
         val donorsToRemove = mutableListOf<UploadBloodAvailabilityRequest>()
@@ -75,7 +76,8 @@ class BloodRequestViewModel @Inject constructor(
             // Remove the billing types that weren't asked for by the user
             else if (this.billingType.toLowerCase() != "any" && bloodPosting.billingType != this.billingType) donorsToRemove.add(bloodPosting)
 
-            // TODO Add Religion Filter
+            // Remove the kind of donors that were not asked for by the user
+            else if (this.kindOfBloodDonor.toLowerCase() != "any" && bloodPosting.donorType != this.kindOfBloodDonor) donorsToRemove.add(bloodPosting)
         }
         donorList.removeAll(donorsToRemove)
 

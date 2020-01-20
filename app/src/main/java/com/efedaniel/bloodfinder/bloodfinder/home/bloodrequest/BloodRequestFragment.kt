@@ -47,7 +47,8 @@ class BloodRequestFragment : BaseFragment() {
             if (isInputVerified()) {
                 viewModel.getCompatibleBloods(
                     binding.bloodTypeSpinner.selectedItem as String,
-                    binding.billingTypeSpinner.selectedItem as String
+                    binding.billingTypeSpinner.selectedItem as String,
+                    binding.kindOfDonorSpinner.selectedItem as String
                 )
             }
         }
@@ -68,6 +69,10 @@ class BloodRequestFragment : BaseFragment() {
             showSnackbar(R.string.please_select_billing_type)
             return false
         }
+        if (binding.kindOfDonorSpinner.selectedItemPosition == 0) {
+            showSnackbar(R.string.please_select_kind_of_donor)
+            return false
+        }
         return true
     }
 
@@ -79,6 +84,10 @@ class BloodRequestFragment : BaseFragment() {
         // Billing Type
         binding.billingTypeSpinner.registerTextViewLabel(binding.billingTypeLabelTextView)
         binding.billingTypeSpinner.adapter = SpinnerAdapter(context!!, Data.billingTypeWithAny)
+
+        // Kind of Donor
+        binding.kindOfDonorSpinner.registerTextViewLabel(binding.kindOfDonorLabelTextView)
+        binding.kindOfDonorSpinner.adapter = SpinnerAdapter(context!!, Data.kindOfBloodDonor)
     }
 
     private fun setUpToolbar() = mainActivity.run {

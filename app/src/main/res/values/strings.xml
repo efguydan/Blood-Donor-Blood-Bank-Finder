@@ -69,7 +69,7 @@
     <string name="billing_type">Billing Type</string>
     <string name="upload">Upload</string>
     <string name="form_was_not_completed">Form was not completed</string>
-    <string name="uplading_blood_availability">Uploading Blood Availability…</string>
+    <string name="uploading_blood_availability">Uploading Blood Availability…</string>
     <string name="here_are_your_active_blood_availability_postings">Here are your active blood availability postings</string>
     <string name="delete_blood_availability_posting">Delete blood availability posting</string>
     <string name="delete">Delete</string>
@@ -82,8 +82,8 @@
     <string name="blood_search_results">Blood Search Results</string>
     <string name="searching">Searching…</string>
     <string name="please_select_billing_type">Please select billing type to continue</string>
-    <string name="blood_provider_not_found">Sorry, We couldn\'t find any blood posting that was compatible your request</string>
-    <string name="amount_of_blood_results_found_format">We found %d blood postings that are compatible your request</string>
+    <string name="blood_provider_not_found">Sorry, We couldn\'t find any blood posting that was compatible with your request</string>
+    <string name="amount_of_blood_results_found_format">We found %d blood postings that are compatible with your request</string>
     <string name="call">Call</string>
     <string name="select">Select</string>
     <string name="select_location">Select Location</string>
@@ -152,4 +152,6 @@
     <string name="empty_request_history">No Request History</string>
     <string name="empty_donation_history">No Donation History</string>
     <string name="empty_donation_history_description">You have no donation history at the moment.</string>
+    <string name="kind_of_blood_donor">Kind of Blood Donor</string>
+    <string name="please_select_kind_of_donor">Please select preferred kind of donor to continue</string>
 </resources>

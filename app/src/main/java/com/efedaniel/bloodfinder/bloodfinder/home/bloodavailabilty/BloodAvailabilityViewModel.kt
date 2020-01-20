@@ -44,7 +44,7 @@ class BloodAvailabilityViewModel @Inject constructor(
 
     fun uploadBloodAvailability(requestBody: UploadBloodAvailabilityRequest) {
         viewModelScope.launch {
-            _loadingStatus.value = LoadingStatus.Loading(resourceProvider.getString(R.string.uplading_blood_availability))
+            _loadingStatus.value = LoadingStatus.Loading(resourceProvider.getString(R.string.uploading_blood_availability))
             val response = databaseRepository.uploadBloodAvailability(requestBody)
             if (response?.isSuccessful == true) {
                 val postResponse = Gson().fromJson(response.body(), PostResponse::class.java)
