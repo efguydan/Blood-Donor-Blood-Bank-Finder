@@ -179,13 +179,10 @@ class SelectLocationFragment : BaseFragment(), OnMapReadyCallback {
         if (ContextCompat.checkSelfPermission(context!!, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
             ContextCompat.checkSelfPermission(context!!, android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             locationPermissionGranted = true
-            getCurrentLocation()
+//            getCurrentLocation()
 
             // Setup current location shii
-            map.isMyLocationEnabled = true
-            val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
-            mapsLocationButton = (mapFragment.view!!.findViewById<View>(Integer.parseInt("1")).parent as View).findViewById(Integer.parseInt("2"))
-            mapsLocationButton?.visibility = View.GONE
+            setupCurrentLocation()
         } else {
             requestPermissions(arrayOf(
                 android.Manifest.permission.ACCESS_FINE_LOCATION,
@@ -206,10 +203,17 @@ class SelectLocationFragment : BaseFragment(), OnMapReadyCallback {
                     grantResults[0] == PackageManager.PERMISSION_GRANTED &&
                     grantResults[1] == PackageManager.PERMISSION_GRANTED) {
                     locationPermissionGranted = true
-                    getCurrentLocation()
+                    setupCurrentLocation()
                 }
             }
         }
+    }
+
+    private fun setupCurrentLocation() {
+        map.isMyLocationEnabled = true
+        val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
+        mapsLocationButton = (mapFragment.view!!.findViewById<View>(Integer.parseInt("1")).parent as View).findViewById(Integer.parseInt("2"))
+        mapsLocationButton?.visibility = View.GONE
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
@@ -224,6 +228,9 @@ class SelectLocationFragment : BaseFragment(), OnMapReadyCallback {
 
         // Enable Selecting Location Button
         binding.selectLocationButton.isEnabled = true
+
+        //Get Location Permission
+        getLocationPermission()
 
         // Send a current Location Request
         initiateGettingLocation()
