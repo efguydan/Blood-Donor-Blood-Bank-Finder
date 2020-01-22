@@ -72,7 +72,8 @@ class SelectLocationFragment : BaseFragment(), OnMapReadyCallback {
 
         //Initialise Places
         if (!Places.isInitialized()) {
-            Places.initialize(mainActivity.applicationContext, Secret.BILLING_API_KEY)
+            //TODO Insert your Google API key to run
+//            Places.initialize(mainActivity.applicationContext, Secret.BILLING_API_KEY)
             Places.createClient(mainActivity)
         }
 
