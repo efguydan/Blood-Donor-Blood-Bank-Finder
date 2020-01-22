@@ -4,7 +4,6 @@ import android.app.Activity.RESULT_OK
 import android.content.Intent
 import android.content.IntentSender
 import android.content.pm.PackageManager
-import android.location.Location
 import android.os.Bundle
 import android.view.*
 import androidx.core.content.ContextCompat
@@ -19,7 +18,6 @@ import com.efedaniel.bloodfinder.base.BaseViewModel
 import com.efedaniel.bloodfinder.databinding.FragmentSelectLocationBinding
 import com.efedaniel.bloodfinder.utils.Misc
 import com.google.android.gms.common.api.ResolvableApiException
-import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.LocationSettingsRequest
