@@ -58,7 +58,7 @@ class Misc {
         const val CALL_PERMISSION_REQUEST = 200
         const val LOCATION_PERMISSION_REQUEST = 201
         const val LOCATION_DEVICE_ACCESS_REQUEST = 202
-        const val LOCATION_AUTOCOMPLETE_CODE = 202
+        const val LOCATION_AUTOCOMPLETE_CODE = 203
         const val MAPS_APP_ID = "com.google.android.apps.maps"
         const val MAPS_PLAY_STORE_URL = "market://details?id=$MAPS_APP_ID"
     }
