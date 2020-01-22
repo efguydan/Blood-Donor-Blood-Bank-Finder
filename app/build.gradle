@@ -71,11 +71,16 @@ dependencies {
     implementation 'androidx.core:core-ktx:' + versions.androidxCore
     implementation 'androidx.recyclerview:recyclerview:' + versions.androidxRecyclerView
     implementation 'androidx.browser:browser:' + versions.androidxBrowser
+    implementation 'com.google.android.material:material:' + versions.androidxMaterial
 
     //Dagger 2
     kapt 'com.google.dagger:dagger-compiler:' + versions.dagger
     implementation 'com.google.dagger:dagger:' + versions.dagger
     compileOnly 'org.glassfish:javax.annotation:' + versions.glassfish
+
+    //Affolestad
+    implementation 'com.afollestad.material-dialogs:core:' + versions.materialDialogs
+    implementation 'com.afollestad.material-dialogs:bottomsheets:' + versions.materialDialogs
 
     //Network
     implementation 'com.squareup.retrofit2:retrofit:' + versions.retrofit
@@ -95,15 +100,11 @@ dependencies {
     //Google Maps
     implementation 'com.google.android.gms:play-services-maps:' + versions.maps
     implementation 'com.google.android.gms:play-services-location:' + versions.maps
+    implementation 'com.google.android.libraries.places:places:2.1.0'
 
     //Timber
     implementation 'com.jakewharton.timber:timber:' + versions.timber
 
-    //Affolestad
-    implementation 'com.afollestad.material-dialogs:core:' + versions.materialDialogs
-    implementation 'com.afollestad.material-dialogs:bottomsheets:' + versions.materialDialogs
-
-    implementation 'com.google.android.material:material:' + versions.androidxMaterial
 }
 
 apply from: '../spotless.gradle'

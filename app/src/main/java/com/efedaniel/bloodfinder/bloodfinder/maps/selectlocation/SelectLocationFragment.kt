@@ -1,5 +1,7 @@
 package com.efedaniel.bloodfinder.bloodfinder.maps.selectlocation
 
+import android.app.Activity.RESULT_OK
+import android.content.Intent
 import android.content.IntentSender
 import android.content.pm.PackageManager
 import android.location.Location
@@ -26,6 +28,10 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.libraries.places.api.Places
+import com.google.android.libraries.places.api.model.Place
+import com.google.android.libraries.places.widget.Autocomplete
+import com.google.android.libraries.places.widget.model.AutocompleteActivityMode
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -43,8 +49,6 @@ class SelectLocationFragment : BaseFragment(), OnMapReadyCallback {
     private lateinit var map: GoogleMap
     private var mapsLocationButton: View? = null
 
-    private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
-    private lateinit var lastKnownLocation: Location
     private var locationPermissionGranted = false
 
     override fun onCreateView(
@@ -65,6 +69,12 @@ class SelectLocationFragment : BaseFragment(), OnMapReadyCallback {
         binding.viewModel = viewModel
         setHasOptionsMenu(true)
         (childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment).getMapAsync(this)
+
+        //Initialise Places
+        if (!Places.isInitialized()) {
+            Places.initialize(mainActivity.applicationContext, Secret.BILLING_API_KEY)
+            Places.createClient(mainActivity)
+        }
 
         binding.selectLocationButton.setOnClickListener {
             Timber.d("Latitude: %s", map.cameraPosition.target.latitude.toString())
@@ -87,7 +97,6 @@ class SelectLocationFragment : BaseFragment(), OnMapReadyCallback {
                 viewModel.locationSavedActionCompleted()
             }
         })
-        //TODO Add places search????????
     }
 
     private fun initiateGettingLocation() {
@@ -115,62 +124,47 @@ class SelectLocationFragment : BaseFragment(), OnMapReadyCallback {
         }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
-        inflater!!.inflate(R.menu.select_location_menu, menu)
+        inflater.inflate(R.menu.select_location_menu, menu)
     }
 
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        return when (item!!.itemId) {
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
             R.id.action_my_location -> {
-//                getLocationPermission()
+                getLocationPermission()
                 initiateGettingLocation()
                 mapsLocationButton?.callOnClick()
+                true
+            }
+            R.id.action_search -> {
+                val fields = listOf(Place.Field.ID, Place.Field.NAME, Place.Field.ADDRESS, Place.Field.LAT_LNG)
+                val intent = Autocomplete.IntentBuilder(
+                    AutocompleteActivityMode.FULLSCREEN, fields).setCountry("NG")
+                    .build(mainActivity)
+                startActivityForResult(intent, Misc.LOCATION_AUTOCOMPLETE_CODE)
                 true
             }
             else -> super.onOptionsItemSelected(item)
         }
     }
 
-    private fun getCurrentLocation() {
-        if (!locationPermissionGranted) {
-            showDialogWithAction(
-                body = getString(R.string.location_permission_not_given_error),
-                positiveRes = R.string.proceed,
-                positiveAction = { getLocationPermission() }
-            )
-            return
-        }
-        try {
-            fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(context!!)
-            val lastLocation = fusedLocationProviderClient.lastLocation
-            lastLocation.addOnCompleteListener { task ->
-                if (task.isSuccessful && task.result != null) {
-                    // Set the map's camera position to the current location of the device
-
-                    lastKnownLocation = task.result!!
-                    Timber.d("Latitude: %s", lastKnownLocation.latitude)
-                    Timber.d("Longitude: %s", lastKnownLocation.longitude)
-
-                    map.moveCamera(
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == Misc.LOCATION_AUTOCOMPLETE_CODE) {
+            when (resultCode) {
+                RESULT_OK -> {
+                    val place = Autocomplete.getPlaceFromIntent(data!!)
+                    map.animateCamera(
                         CameraUpdateFactory.newLatLngZoom(
                             LatLng(
-                                lastKnownLocation.latitude,
-                                lastKnownLocation.longitude
+                                place.latLng!!.latitude,
+                                place.latLng!!.longitude
                             ), DEFAULT_ZOOM.toFloat()
                         )
                     )
-                } else {
-                    Timber.d("Current location is null. Using defaults.")
-                    task.exception?.printStackTrace()
-                    showDialogWithAction(
-                        body = getString(R.string.current_location_getting_error),
-                        positiveRes = R.string.close
-                    )
                 }
             }
-        } catch (e: SecurityException) {
-            e.printStackTrace()
         }
     }
 
@@ -179,8 +173,6 @@ class SelectLocationFragment : BaseFragment(), OnMapReadyCallback {
         if (ContextCompat.checkSelfPermission(context!!, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
             ContextCompat.checkSelfPermission(context!!, android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             locationPermissionGranted = true
-//            getCurrentLocation()
-
             // Setup current location shii
             setupCurrentLocation()
         } else {

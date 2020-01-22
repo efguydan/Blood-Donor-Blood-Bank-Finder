@@ -56,13 +56,13 @@ class DashboardFragment : BaseFragment() {
         viewModel.subscribeLoggedInUserToNotification()
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
-        inflater?.inflate(R.menu.dashboard_menu, menu)
+        inflater.inflate(R.menu.dashboard_menu, menu)
     }
 
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        return when (item?.itemId) {
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
             R.id.action_logout -> {
                 logout()
                 true
