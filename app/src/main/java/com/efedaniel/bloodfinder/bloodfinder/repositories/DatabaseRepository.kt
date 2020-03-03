@@ -44,7 +44,7 @@ class DatabaseRepository @Inject constructor(private val databaseApiService: Dat
     suspend fun uploadBloodAvailability(body: UploadBloodAvailabilityRequest): Response<JsonElement>? {
         return try {
             databaseApiService.uploadBloodAvailability(body)
-        } catch (e: java.lang.Exception) {
+        } catch (e: Exception) {
             e.printStackTrace()
             null
         }
