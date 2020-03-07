@@ -218,3 +218,6 @@ gradle-app.setting
 
 
 # End of https://www.gitignore.io/api/macos,gradle,intellij,androidstudio
+
+#Personal unignored files
+!showcase/Blood Finder_1.0.0.apk
