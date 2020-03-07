@@ -14,10 +14,8 @@ Private Blood Banks are users that can act as both a Blood Provider and Blood Se
 ## Code Formatting
 Code Formatting is done with the gradle *spotless* plugin. other settings for the plugin can be configured in [spotless.gradle](spotless.gradle). To format code, run `./gradlew spotlessApply`
 
-## Dependencies
-
 ## License
-```
+```text
 Copyright 2020 Efe Ejemudaro
 
 Licensed under the Apache License, Version 2.0 (the "License");
