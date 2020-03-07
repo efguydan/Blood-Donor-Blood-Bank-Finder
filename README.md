@@ -1,4 +1,5 @@
 ## Blood Donors and Banks Finder
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/a9b78dc3a59f4836ab2016bd94753914)](https://app.codacy.com/manual/efeejemudaro/Blood-Donor-Blood-Bank-Finder?utm_source=github.com&utm_medium=referral&utm_content=efguydan/Blood-Donor-Blood-Bank-Finder&utm_campaign=Badge_Grade_Dashboard)
 [![Build Status](https://dev.azure.com/Efguydan/BloodFinder/_apis/build/status/efguydan.Blood-Donor-Blood-Bank-Finder?branchName=master)](https://dev.azure.com/Efguydan/BloodFinder/_build/latest?definitionId=1&branchName=master)
 [![License](https://img.shields.io/badge/license-Apache%202-4EB1BA.svg?style=flat-square)](https://www.apache.org/licenses/LICENSE-2.0.html)
 
