@@ -12,7 +12,7 @@ Private Blood Banks are users that can act as both a Blood Provider and Blood Se
 ![Showcase 2](https://raw.githubusercontent.com/efguydan/Blood-Donor-Blood-Bank-Finder/master/showcase/showcase_2.png)
 
 ## Code Formatting
-Code Formatting is done with the gradle *spotless* plugin. other settings for the plugin can be configured in [spotless.gradle](spotless.gradle). To format code, run `./gradlew spotlessApply
+Code Formatting is done with the gradle *spotless* plugin. other settings for the plugin can be configured in [spotless.gradle](spotless.gradle). To format code, run `./gradlew spotlessApply`
 
 ## Dependencies
 
