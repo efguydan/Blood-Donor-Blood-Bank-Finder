@@ -1,4 +1,7 @@
 ## Blood Donors and Banks Finder
+[![Build Status](https://dev.azure.com/Efguydan/BloodFinder/_apis/build/status/efguydan.Blood-Donor-Blood-Bank-Finder?branchName=master)](https://dev.azure.com/Efguydan/BloodFinder/_build/latest?definitionId=1&branchName=master)
+[![License](https://img.shields.io/badge/license-Apache%202-4EB1BA.svg?style=flat-square)](https://www.apache.org/licenses/LICENSE-2.0.html)
+
 Blood Donors and Banks Finder is an Android Application designed to effectively match Blood Seekers such as Hospitals with Blood Providers such as Hospitals.
 Private Blood Banks are users that can act as both a Blood Provider and Blood Seeker.
 
@@ -9,7 +12,7 @@ Private Blood Banks are users that can act as both a Blood Provider and Blood Se
 
 
 ## Code Formatting
-Code Formatting is done with the gradle *spotless* plugin. other settings for the plugin can be configured in [spotless.gradle](spotless.gradle). To format code, run ./gradlew spotlessApply
+Code Formatting is done with the gradle *spotless* plugin. other settings for the plugin can be configured in [spotless.gradle](spotless.gradle). To format code, run `./gradlew spotlessApply
 
 ## Dependencies
 
