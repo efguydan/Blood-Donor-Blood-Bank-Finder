@@ -4,7 +4,7 @@
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Download Sample](https://img.shields.io/badge/Download-v1.0.0-blue.svg)](https://github.com/efguydan/Blood-Donor-Blood-Bank-Finder/raw/master/showcase/Blood%20Finder_1.0.0.apk)
 
-Blood Donors and Banks Finder is an Android Application designed to effectively match Blood Seekers such as Hospitals with Blood Providers such as Hospitals.
+Blood Donors and Banks Finder is an Android Application designed to effectively match Blood Seekers such as Hospitals with Blood Providers such as Blood Donors.
 Private Blood Banks are users that can act as both a Blood Provider and Blood Seeker.
 
 ## App Screenshots
